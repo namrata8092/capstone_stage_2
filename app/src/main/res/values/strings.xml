@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">PlacesInMyCircle</string>
+    <string-array name="category_name">
+        <item>Airport</item>
+        <item>ATM</item>
+        <item>Bank</item>
+        <item>Bus Station</item>
+        <item>Car Parking</item>
+        <item>Doctor</item>
+        <item>Entertainment / Parks</item>
+        <item>Fire Station</item>
+        <item>Gas Station</item>
+        <item>Hospital</item>
+        <item>Laundry</item>
+        <item>Library</item>
+        <item>Movie Theatre</item>
+        <item>Pharmacy</item>
+        <item>Shopping Mall</item>
+        <item>Store</item>
+        <item>Subway Station</item>
+        <item>Taxi Station</item>
+        <item>University</item>
+    </string-array>
+    <integer-array name="category_icon">
+        <item>@drawable/airport</item>
+        <item>@drawable/atm</item>
+        <item>@drawable/bank</item>
+        <item>@drawable/bus_station</item>
+        <item>@drawable/car_parking</item>
+        <item>@drawable/doctor</item>
+        <item>@drawable/entertainment</item>
+        <item>@drawable/fire_station</item>
+        <item>@drawable/gas_station</item>
+        <item>@drawable/hospital</item>
+        <item>@drawable/laundry</item>
+        <item>@drawable/library</item>
+        <item>@drawable/movie_theatre</item>
+        <item>@drawable/pharmacy</item>
+        <item>@drawable/shoppingmall</item>
+        <item>@drawable/store</item>
+        <item>@drawable/subway_station</item>
+        <item>@drawable/taxi_station</item>
+        <item>@drawable/university</item>
+    </integer-array>
 </resources>

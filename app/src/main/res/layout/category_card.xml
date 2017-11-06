@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/categoryIcon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/categoryName"
+        android:layout_margin="@dimen/category_icon_layout_margin"
+        tools:background="@drawable/university" />
+
+    <TextView
+        android:id="@+id/categoryName"
+        style="@style/category_name"
+        android:layout_alignParentTop="true"
+        tools:text="Name" />
+</RelativeLayout>
