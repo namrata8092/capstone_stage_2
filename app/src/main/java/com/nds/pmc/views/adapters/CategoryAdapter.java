@@ -16,13 +16,13 @@ import com.nds.pmc.R;
  * Created by Namrata on 11/5/2017.
  */
 
-public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
     private Context mContext;
     private AdapterView.OnItemClickListener mClickListener;
     private String[] categoryName;
     private TypedArray categoryIcon;
 
-    public CategoriesAdapter(Context context, AdapterView.OnItemClickListener clickListener) {
+    public CategoryAdapter(Context context, AdapterView.OnItemClickListener clickListener) {
         this.mContext = context;
         this.mClickListener = clickListener;
         this.categoryName = context.getResources().getStringArray(R.array.category_name);
@@ -32,7 +32,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @Override
     public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        View categoryView = layoutInflater.inflate(R.layout.category_card, parent);
+        View categoryView = layoutInflater.inflate(R.layout.category_card, parent, false);
         return new CategoryViewHolder(categoryView);
     }
 

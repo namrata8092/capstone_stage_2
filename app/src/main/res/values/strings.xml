@@ -7,7 +7,7 @@
         <item>Bus Station</item>
         <item>Car Parking</item>
         <item>Doctor</item>
-        <item>Entertainment / Parks</item>
+        <item>Entertainment</item>
         <item>Fire Station</item>
         <item>Gas Station</item>
         <item>Hospital</item>
@@ -17,7 +17,7 @@
         <item>Pharmacy</item>
         <item>Shopping Mall</item>
         <item>Store</item>
-        <item>Subway Station</item>
+        <item>Subway</item>
         <item>Taxi Station</item>
         <item>University</item>
     </string-array>
@@ -42,4 +42,25 @@
         <item>@drawable/taxi_station</item>
         <item>@drawable/university</item>
     </integer-array>
+    <string-array name="category_key">
+        <item>airport</item>
+        <item>atm</item>
+        <item>bank</item>
+        <item>bus_station</item>
+        <item>parking</item>
+        <item>dentist,doctor,physiotherapist</item>
+        <item>amusement_park,aquarium,art_gallery,bowling_alley,casino,museum,park,restaurant,rv_park,zoo</item>
+        <item>fire_station</item>
+        <item>gas_station</item>
+        <item>hospital</item>
+        <item>laundry</item>
+        <item>library</item>
+        <item>movie_theatre</item>
+        <item>pharmacy</item>
+        <item>shopping_mall</item>
+        <item>bicycle_store,book_store,clothing_store,convenience_store,department_store,electronics_store,furniture_store,hardware_store,home_goods_store,jewelry_store,liquor_store,pet_store,shoe_store,store</item>
+        <item>subway_station,transit_station,train_station</item>
+        <item>taxi_stand</item>
+        <item>university</item>
+    </string-array>
 </resources>
