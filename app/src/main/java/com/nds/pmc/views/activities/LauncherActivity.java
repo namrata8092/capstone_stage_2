@@ -18,7 +18,6 @@ import com.nds.pmc.views.fragments.SearchCategoryFragment;
  */
 
 public class LauncherActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +26,4 @@ public class LauncherActivity extends AppCompatActivity {
         SearchCategoryFragment searchCategoryFragment = new SearchCategoryFragment();
         fragmentManager.beginTransaction().replace(R.id.container, searchCategoryFragment).commit();
     }
-
-
 }

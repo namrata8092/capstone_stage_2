@@ -21,6 +21,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        debugConfig {
+            storeFile file(DEBUG_STORE_FILE)
+            keyAlias DEBUG_KEY_ALIAS
+            keyPassword DEBUG_KEY_PASSWORD
+            storePassword DEBUG_STORE_PASSWORD
+        }
+        releaseConfig {
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+        }
+        unsigned {
+            keyAlias ''
+            keyPassword ''
+            storePassword ''
+        }
+    }
 }
 
 dependencies {
@@ -35,4 +54,5 @@ dependencies {
     implementation 'com.android.support:support-v4:27.0.0'
     implementation 'com.android.support:design:27.0.0'
     implementation 'com.android.support:cardview-v7:27.0.0'
+    implementation 'com.google.code.gson:gson:2.2.4'
 }

@@ -6,12 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.nds.pmc.R;
+import com.nds.pmc.tos.requests.RequestWithParameters;
 import com.nds.pmc.views.adapters.CategoryAdapter;
 
 /**
@@ -32,11 +35,15 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
         mSearchRecyclerView.setLayoutManager(mGridLayoutManager);
         mCategoryAdapter = new CategoryAdapter(getContext(), this);
         mSearchRecyclerView.setAdapter(mCategoryAdapter);
+        RequestWithParameters rm = new RequestWithParameters("40.5743", "74.6099",
+                "lodging",getResources().getString(R.string.API_KEY));
+        rm.createRequest();
+        Log.d("Test",rm.createRequest());
         return rootView;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Toast.makeText(getContext(),"position "+position, Toast.LENGTH_LONG).show();
     }
 }

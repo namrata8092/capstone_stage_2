@@ -63,4 +63,5 @@
         <item>taxi_stand</item>
         <item>university</item>
     </string-array>
+    <string name="API_KEY">AIzaSyBiO_7JW2S1Z9tjxuDvO9rcjQw0EzsbdUE</string>
 </resources>
