@@ -3,4 +3,12 @@
     <dimen name="category_icon_layout_margin">10dp</dimen>
     <dimen name="category_title_margin">10dp</dimen>
     <dimen name="category_title_text_size">14sp</dimen>
+    <dimen name="progressbar_size">48dp</dimen>
+    <dimen name="tiny_font_size">5sp</dimen>
+    <dimen name="vsmall_font_size">8sp</dimen>
+    <dimen name="small_font_size">10sp</dimen>
+    <dimen name="medium_font_size">12sp</dimen>
+    <dimen name="regular_font_size">13sp</dimen>
+    <dimen name="large_font_size">16sp</dimen>
+    <dimen name="vlarge_font_size">22sp</dimen>
 </resources>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nds.pmc.R;
@@ -49,19 +50,22 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categoryName.length;
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnItemClickListener {
+    public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView categoryIcon;
         TextView categoryName;
+        RelativeLayout container;
 
         public CategoryViewHolder(View itemView) {
             super(itemView);
             categoryIcon = (ImageView) itemView.findViewById(R.id.categoryIcon);
             categoryName = (TextView) itemView.findViewById(R.id.categoryName);
+            container = (RelativeLayout)itemView.findViewById(R.id.container);
+            container.setOnClickListener(this);
         }
 
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            mClickListener.onItemClick(parent, view, position, id);
+        public void onClick(View v) {
+            mClickListener.onItemClick(null, v, getAdapterPosition(), v.getId());
         }
     }
 }

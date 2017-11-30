@@ -25,25 +25,28 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
     private RecyclerView mSearchRecyclerView;
     private GridLayoutManager mGridLayoutManager;
     private CategoryAdapter mCategoryAdapter;
+    private String[] searchParams;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.search_categories_layout, container, false );
+        searchParams = getContext().getResources().getStringArray(R.array.category_key);
         mSearchRecyclerView = (RecyclerView)rootView.findViewById(R.id.categoryRecyclerView);
         mGridLayoutManager = new GridLayoutManager(getContext(), getResources().getInteger(R.integer.no_of_grid_cells));
         mSearchRecyclerView.setLayoutManager(mGridLayoutManager);
         mCategoryAdapter = new CategoryAdapter(getContext(), this);
         mSearchRecyclerView.setAdapter(mCategoryAdapter);
-        RequestWithParameters rm = new RequestWithParameters("40.5743", "74.6099",
-                "lodging",getResources().getString(R.string.API_KEY));
-        rm.createRequest();
-        Log.d("Test",rm.createRequest());
         return rootView;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getContext(),"position "+position, Toast.LENGTH_LONG).show();
+        String searchParam = searchParams[position];
+        RequestWithParameters rm = new RequestWithParameters("40.5743", "74.6099",
+                searchParam,getResources().getString(R.string.API_KEY));
+        SearchResultListFragment searchResultListFragment = SearchResultListFragment.newInstance(rm.createRequest());
+
+        Log.d("Test",rm.createRequest());
     }
 }

@@ -14,4 +14,5 @@ public final class Constants {
     public static final String API_KEY_KEY = "key";
     public static final String RADIUS_VALUE = "30000";
     public static final String RANKBY_VALUE = "prominence";
+    public static final String URL_KEY="url";
 }
