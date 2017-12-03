@@ -1,7 +1,6 @@
 package com.nds.pmc.tos.responses;
 
 import com.google.gson.annotations.SerializedName;
-import com.nds.pmc.tos.SearchResult;
 
 import java.util.List;
 

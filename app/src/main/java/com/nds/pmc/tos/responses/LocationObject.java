@@ -1,4 +1,4 @@
-package com.nds.pmc.tos;
+package com.nds.pmc.tos.responses;
 
 import com.google.gson.annotations.SerializedName;
 

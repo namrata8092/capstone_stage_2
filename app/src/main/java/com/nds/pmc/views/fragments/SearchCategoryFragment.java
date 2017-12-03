@@ -1,5 +1,7 @@
 package com.nds.pmc.views.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,9 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.nds.pmc.R;
+import com.nds.pmc.common.Constants;
 import com.nds.pmc.tos.requests.RequestWithParameters;
 import com.nds.pmc.views.adapters.CategoryAdapter;
 
@@ -25,13 +27,13 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
     private RecyclerView mSearchRecyclerView;
     private GridLayoutManager mGridLayoutManager;
     private CategoryAdapter mCategoryAdapter;
-    private String[] searchParams;
+    private String[] categoryKey;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.search_categories_layout, container, false );
-        searchParams = getContext().getResources().getStringArray(R.array.category_key);
+        categoryKey = getContext().getResources().getStringArray(R.array.category_key);
         mSearchRecyclerView = (RecyclerView)rootView.findViewById(R.id.categoryRecyclerView);
         mGridLayoutManager = new GridLayoutManager(getContext(), getResources().getInteger(R.integer.no_of_grid_cells));
         mSearchRecyclerView.setLayoutManager(mGridLayoutManager);
@@ -42,11 +44,13 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String searchParam = searchParams[position];
-        RequestWithParameters rm = new RequestWithParameters("40.5743", "74.6099",
-                searchParam,getResources().getString(R.string.API_KEY));
-        SearchResultListFragment searchResultListFragment = SearchResultListFragment.newInstance(rm.createRequest());
-
-        Log.d("Test",rm.createRequest());
+        Intent searchResultActivity = new Intent();
+        searchResultActivity.setAction(Constants.ACTION_SEARCH_CATEGORY_RESULT);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.EXTRA_SEARCH_CATEGORY_KEY, categoryKey[position]);
+        bundle.putString(Constants.EXTRA_LOCATION_LATITUDE, "40.5743");
+        bundle.putString(Constants.EXTRA_LOCATION_LONGITUDE, "74.6099");
+        searchResultActivity.putExtras(bundle);
+        startActivity(searchResultActivity);
     }
 }

@@ -3,8 +3,8 @@ package com.nds.pmc.converter;
 import com.nds.pmc.model.PhotoModel;
 import com.nds.pmc.model.Place;
 import com.nds.pmc.model.PlacesSearchResult;
-import com.nds.pmc.tos.PhotoObject;
-import com.nds.pmc.tos.SearchResult;
+import com.nds.pmc.tos.responses.PhotoObject;
+import com.nds.pmc.tos.responses.SearchResult;
 import com.nds.pmc.tos.responses.BaseResponse;
 import com.nds.pmc.util.JSONSerializeHelper;
 

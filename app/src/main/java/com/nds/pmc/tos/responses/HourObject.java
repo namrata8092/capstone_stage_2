@@ -1,8 +1,7 @@
-package com.nds.pmc.tos;
+package com.nds.pmc.tos.responses;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**

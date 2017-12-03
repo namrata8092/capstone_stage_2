@@ -3,8 +3,6 @@ package com.nds.pmc.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.nds.pmc.tos.PhotoObject;
-
 /**
  * Created by Namrata on 11/12/2017.
  */
