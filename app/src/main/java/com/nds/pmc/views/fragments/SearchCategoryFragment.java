@@ -1,6 +1,5 @@
 package com.nds.pmc.views.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,7 @@ import android.widget.AdapterView;
 
 import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
-import com.nds.pmc.tos.requests.RequestWithParameters;
+import com.nds.pmc.model.PlaceLocation;
 import com.nds.pmc.views.adapters.CategoryAdapter;
 
 /**
@@ -28,6 +26,25 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
     private GridLayoutManager mGridLayoutManager;
     private CategoryAdapter mCategoryAdapter;
     private String[] categoryKey;
+    private PlaceLocation placeLocation;
+
+    public static SearchCategoryFragment newInstance(PlaceLocation location){
+        SearchCategoryFragment fragment = new SearchCategoryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Constants.LOCATION_KEY, location);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(savedInstanceState!=null && savedInstanceState.containsKey(Constants.LOCATION_KEY)){
+            placeLocation = savedInstanceState.getParcelable(Constants.LOCATION_KEY);
+        }else{
+            placeLocation = getArguments().getParcelable(Constants.LOCATION_KEY);
+        }
+    }
 
     @Nullable
     @Override
@@ -48,8 +65,7 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
         searchResultActivity.setAction(Constants.ACTION_SEARCH_CATEGORY_RESULT);
         Bundle bundle = new Bundle();
         bundle.putString(Constants.EXTRA_SEARCH_CATEGORY_KEY, categoryKey[position]);
-        bundle.putString(Constants.EXTRA_LOCATION_LATITUDE, "40.5743");
-        bundle.putString(Constants.EXTRA_LOCATION_LONGITUDE, "74.6099");
+        bundle.putParcelable(Constants.LOCATION_KEY, placeLocation);
         searchResultActivity.putExtras(bundle);
         startActivity(searchResultActivity);
     }

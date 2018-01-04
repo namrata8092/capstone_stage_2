@@ -66,4 +66,5 @@
     <string name="API_KEY">AIzaSyBiO_7JW2S1Z9tjxuDvO9rcjQw0EzsbdUE</string>
     <string name="network_error">There is no internet connection on device, please check connection and try again.</string>
     <string name="zero_search_result">Sorry there is no result found for this category.</string>
+    <string name="error_location_off_no_saved_location">No location data found, please try again with location on.</string>
 </resources>

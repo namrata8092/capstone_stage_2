@@ -1,9 +1,6 @@
 package com.nds.pmc.views.activities;
 
-import android.app.LoaderManager;
-import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.content.Loader;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +15,7 @@ import com.nds.pmc.common.Constants;
 import com.nds.pmc.common.NetworkRequestManager;
 import com.nds.pmc.common.NetworkRequester;
 import com.nds.pmc.converter.SearchResponseConverter;
+import com.nds.pmc.model.PlaceLocation;
 import com.nds.pmc.model.PlacesSearchResult;
 import com.nds.pmc.tos.requests.RequestWithParameters;
 import com.nds.pmc.util.NetworkUtil;
@@ -37,6 +35,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
     private CategorySearchResultActivity mCategorySearchResultActivity;
     private PMCApplication mPMCApplication;
     private NetworkRequestManager mNetworkRequestManager;
+    private PlaceLocation location;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,9 +53,10 @@ public class CategorySearchResultActivity extends AppCompatActivity {
             displayErrorFragment(getResources().getString(R.string.network_error));
         } else if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
+            location = bundle.getParcelable(Constants.LOCATION_KEY);
             final RequestWithParameters rm = new RequestWithParameters(
-                    bundle.getString(Constants.EXTRA_LOCATION_LATITUDE),
-                    bundle.getString(Constants.EXTRA_LOCATION_LATITUDE),
+                    location.getLatitude(),
+                    location.getLongitude(),
                     bundle.getString(Constants.EXTRA_SEARCH_CATEGORY_KEY),
                     getResources().getString(R.string.API_KEY));
             showProgressBar();
