@@ -2,6 +2,7 @@ package com.nds.pmc.views.activities;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -98,6 +99,24 @@ public class LauncherActivity extends AppCompatActivity implements GoogleApiClie
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Constants.REQ_PERMISSION: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    LogUtil.d(TAG, "PERMISSION_GRANTED");
+                    getLastKnownLocation();
+                } else {
+                    LogUtil.d(TAG, "permissionsDenied");
+                    permissionsDenied();
+                }
+                break;
+            }
+        }
+    }
+
+    @Override
     public void onConnected(@Nullable Bundle bundle) {
         getLastKnownLocation();
     }
@@ -143,6 +162,7 @@ public class LauncherActivity extends AppCompatActivity implements GoogleApiClie
     }
 
     private void displaySearchCategory(String lat, String lon) {
+        mContainer.setVisibility(View.VISIBLE);
         mFragmentManager = getSupportFragmentManager();
         PlaceLocation location = new PlaceLocation(lat, lon);
         SearchCategoryFragment searchCategoryFragment = SearchCategoryFragment.newInstance(location);
@@ -157,6 +177,9 @@ public class LauncherActivity extends AppCompatActivity implements GoogleApiClie
         }
     }
 
+    private void permissionsDenied() {
+        displayErrorMsg(getResources().getString(R.string.error_location_permission_denied));
+    }
 
     private void createGoogleApi() {
         LogUtil.d(TAG, "createGoogleApi");
