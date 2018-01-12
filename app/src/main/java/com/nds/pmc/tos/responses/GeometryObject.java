@@ -12,7 +12,7 @@ public class GeometryObject {
     @SerializedName("location")
     private LocationObject location;
     @SerializedName("viewport")
-    private List<LocationObject> locationObjects;
+    private ViewPortObject viewPortObject;
 
     public LocationObject getLocation() {
         return location;
@@ -22,12 +22,12 @@ public class GeometryObject {
         this.location = location;
     }
 
-    public List<LocationObject> getLocationObjects() {
-        return locationObjects;
+    public ViewPortObject getViewPortObject() {
+        return viewPortObject;
     }
 
-    public void setLocationObjects(List<LocationObject> locationObjects) {
-        this.locationObjects = locationObjects;
+    public void setViewPortObject(ViewPortObject viewPortObject) {
+        this.viewPortObject = viewPortObject;
     }
 
     @Override
@@ -37,14 +37,15 @@ public class GeometryObject {
 
         GeometryObject that = (GeometryObject) o;
 
-        if (!location.equals(that.location)) return false;
-        return locationObjects.equals(that.locationObjects);
+        if (location != null ? !location.equals(that.location) : that.location != null)
+            return false;
+        return viewPortObject != null ? viewPortObject.equals(that.viewPortObject) : that.viewPortObject == null;
     }
 
     @Override
     public int hashCode() {
-        int result = location.hashCode();
-        result = 31 * result + locationObjects.hashCode();
+        int result = location != null ? location.hashCode() : 0;
+        result = 31 * result + (viewPortObject != null ? viewPortObject.hashCode() : 0);
         return result;
     }
 
@@ -52,7 +53,7 @@ public class GeometryObject {
     public String toString() {
         return "GeometryObject{" +
                 "location=" + location +
-                ", locationObjects=" + locationObjects +
+                ", viewPortObject=" + viewPortObject +
                 '}';
     }
 }

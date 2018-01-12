@@ -34,7 +34,8 @@ public class SearchResponseConverter {
             SearchResult search = results.get(resultIndex);
             Place place = new Place(Double.toString(search.getGeometry().getLocation().getLat()),
                     Double.toString(search.getGeometry().getLocation().getLng()), search.getName());
-            place.setOpenNow(search.getOpeningHours().isOpenNow());
+            if(search.getOpeningHours()!=null)
+                place.setOpenNow(search.getOpeningHours().isOpenNow());
             place.setId(search.getPlaceId());
             place.setRating(search.getRating());
             place.setAddress(search.getVicinity());
