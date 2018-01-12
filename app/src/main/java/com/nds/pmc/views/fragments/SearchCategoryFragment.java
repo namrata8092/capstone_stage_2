@@ -22,9 +22,6 @@ import com.nds.pmc.views.adapters.CategoryAdapter;
  */
 
 public class SearchCategoryFragment extends Fragment implements AdapterView.OnItemClickListener{
-    private RecyclerView mSearchRecyclerView;
-    private GridLayoutManager mGridLayoutManager;
-    private CategoryAdapter mCategoryAdapter;
     private String[] categoryKey;
     private PlaceLocation placeLocation;
 
@@ -49,13 +46,16 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.search_categories_layout, container, false );
+        View rootView = inflater.inflate(R.layout.fragment_search_categories, container, false );
+
         categoryKey = getContext().getResources().getStringArray(R.array.category_key);
-        mSearchRecyclerView = (RecyclerView)rootView.findViewById(R.id.categoryRecyclerView);
-        mGridLayoutManager = new GridLayoutManager(getContext(), getResources().getInteger(R.integer.no_of_grid_cells));
-        mSearchRecyclerView.setLayoutManager(mGridLayoutManager);
-        mCategoryAdapter = new CategoryAdapter(getContext(), this);
-        mSearchRecyclerView.setAdapter(mCategoryAdapter);
+
+        RecyclerView searchRecyclerView = (RecyclerView)rootView.findViewById(R.id.categoryRecyclerView);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), getResources().getInteger(R.integer.no_of_grid_cells));
+        searchRecyclerView.setLayoutManager(gridLayoutManager);
+
+        CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(), this);
+        searchRecyclerView.setAdapter(categoryAdapter);
         return rootView;
     }
 
@@ -68,5 +68,11 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
         bundle.putParcelable(Constants.LOCATION_KEY, placeLocation);
         searchResultActivity.putExtras(bundle);
         startActivity(searchResultActivity);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(Constants.LOCATION_KEY, placeLocation);
+        super.onSaveInstanceState(outState);
     }
 }

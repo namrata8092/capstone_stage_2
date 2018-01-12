@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.nds.pmc.util.LogUtil;
 import com.nds.pmc.util.ValidationUtil;
 
 import org.json.JSONObject;
@@ -70,9 +71,11 @@ public class NetworkRequestManager {
             public void onResponse(String response) {
                 NetworkRequester requester = null;
                 if (wNetworkRequester != null) {
+                    LogUtil.d("Test","send req");
                     requester = wNetworkRequester.get();
                 }
                 if (requester != null && ValidationUtil.isValidString(response)) {
+                    LogUtil.d("Test","onSuccess called");
                     requester.onSuccess(response);
                 }
             }
@@ -85,14 +88,17 @@ public class NetworkRequestManager {
                 if (wNetworkRequester != null) {
                     requester = wNetworkRequester.get();
                 }
-                if (requester != null)
+                if (requester != null) {
+                    LogUtil.d("Test","onFailure called");
                     requester.onFailure(volleyError);
+                }
             }
         };
 
         Uri.Builder builder = Uri.parse(url).buildUpon();
 
         url = builder.build().toString();
+        LogUtil.d("Test","url "+url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
         addToRequestQueue(stringRequest, requestTag);
     }

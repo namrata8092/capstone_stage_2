@@ -16,7 +16,8 @@ public final class Constants {
     public static final String RANKBY_VALUE = "prominence";
     public static final String ACTION_SEARCH_CATEGORY_RESULT ="com.nds.pmc.action.search_category";
     public static final String EXTRA_SEARCH_CATEGORY_KEY = "search_category_key";
-    public static final String SEARCH_BUNDLE_KEY = "search_bundle";
+    public static final String SEARCH_RESULT_BUNDLE_KEY = "search_result_bundle";
+    public static final String PLACE_DETAIL_BUNDLE_KEY = "place_detail_bundle";
     public static final String ERROR_MSG_KEY = "error_key";
     public static final String SEARCH_REQUEST_TAG = "search_request_tag";
     public static final int REQ_PERMISSION = 1000;

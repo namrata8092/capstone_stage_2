@@ -58,6 +58,8 @@ public class LauncherActivity extends AppCompatActivity implements GoogleApiClie
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        mFragmentManager = getSupportFragmentManager();
+
         createGoogleApi();
         if (DeviceUtil.checkLocationPermissionAvailable(getApplicationContext())) {
             LogUtil.d(TAG, "checkPermission");
@@ -163,7 +165,6 @@ public class LauncherActivity extends AppCompatActivity implements GoogleApiClie
 
     private void displaySearchCategory(String lat, String lon) {
         mContainer.setVisibility(View.VISIBLE);
-        mFragmentManager = getSupportFragmentManager();
         PlaceLocation location = new PlaceLocation(lat, lon);
         SearchCategoryFragment searchCategoryFragment = SearchCategoryFragment.newInstance(location);
         mFragmentManager.beginTransaction().replace(R.id.container, searchCategoryFragment).commit();

@@ -67,7 +67,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
 
     private void displayErrorFragment(String errorMsg) {
         ErrorFragment errorFragment = ErrorFragment.newInstance(errorMsg);
-        mFragmentManager.beginTransaction().replace(R.id.main_container, errorFragment).commit();
+        mFragmentManager.beginTransaction().add(R.id.main_container, errorFragment).commit();
     }
 
     private void hideProgressBar() {
@@ -87,10 +87,11 @@ public class CategorySearchResultActivity extends AppCompatActivity {
 
         @Override
         public void onSuccess(String response) {
+            hideProgressBar();
             if(response!=null && !TextUtils.isEmpty(response)){
                 PlacesSearchResult result = SearchResponseConverter.getSearchResultModel(response);
                 SearchResultListFragment searchResultListFragment = SearchResultListFragment.newInstance(result);
-                mFragmentManager.beginTransaction().replace(R.id.main_container, searchResultListFragment).commit();
+                mFragmentManager.beginTransaction().add(R.id.main_container, searchResultListFragment).commit();
             }
         }
     };
