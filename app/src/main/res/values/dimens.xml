@@ -12,4 +12,5 @@
     <dimen name="large_font_size">16sp</dimen>
     <dimen name="vlarge_font_size">22sp</dimen>
     <dimen name="category_margin_zero">0dp</dimen>
+    <dimen name="poster_image_height">200dp</dimen>
 </resources>

@@ -58,7 +58,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
                     location.getLatitude(),
                     location.getLongitude(),
                     bundle.getString(Constants.EXTRA_SEARCH_CATEGORY_KEY),
-                    getResources().getString(R.string.API_KEY));
+                    getResources().getString(R.string.PLACES_API_KEY));
             showProgressBar();
             mNetworkRequestManager.createStringRequest(new WeakReference<NetworkRequester>(searchNetworkRequster), rm.createRequest(),
                     Constants.SEARCH_REQUEST_TAG);
@@ -67,7 +67,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
 
     private void displayErrorFragment(String errorMsg) {
         ErrorFragment errorFragment = ErrorFragment.newInstance(errorMsg);
-        mFragmentManager.beginTransaction().add(R.id.main_container, errorFragment).commit();
+        mFragmentManager.beginTransaction().replace(R.id.main_container, errorFragment).commit();
     }
 
     private void hideProgressBar() {
@@ -91,7 +91,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
             if(response!=null && !TextUtils.isEmpty(response)){
                 PlacesSearchResult result = SearchResponseConverter.getSearchResultModel(response);
                 SearchResultListFragment searchResultListFragment = SearchResultListFragment.newInstance(result);
-                mFragmentManager.beginTransaction().add(R.id.main_container, searchResultListFragment).commit();
+                mFragmentManager.beginTransaction().replace(R.id.main_container, searchResultListFragment).commit();
             }
         }
     };

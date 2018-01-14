@@ -32,10 +32,21 @@ public class SearchResponseConverter {
         List<Place> places = new ArrayList<>();
         for(int resultIndex = 0; resultIndex < results.size(); resultIndex++){
             SearchResult search = results.get(resultIndex);
-            Place place = new Place(Double.toString(search.getGeometry().getLocation().getLat()),
-                    Double.toString(search.getGeometry().getLocation().getLng()), search.getName());
-            if(search.getOpeningHours()!=null)
+            Place place = new Place(search.getGeometry().getLocation().getLat(),search.getGeometry().getLocation().getLng(), search.getName());
+            if(search.getOpeningHours()!=null){
+                place.setOpenNowDetails(true);
                 place.setOpenNow(search.getOpeningHours().isOpenNow());
+                if(search.getOpeningHours().getWeekdayText()!=null && !search.getOpeningHours().getWeekdayText().isEmpty()){
+                    place.setOpeningHours(true);
+                    place.setOpenAt(search.getOpeningHours().getWeekdayText().get(0));
+                    place.setCloseAt(search.getOpeningHours().getWeekdayText().get(1));
+                }else{
+                    place.setOpeningHours(false);
+                }
+            }else{
+                place.setOpenNowDetails(false);
+            }
+
             place.setId(search.getPlaceId());
             place.setRating(search.getRating());
             place.setAddress(search.getVicinity());

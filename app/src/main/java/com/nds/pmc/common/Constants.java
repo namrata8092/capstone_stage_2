@@ -15,6 +15,7 @@ public final class Constants {
     public static final String RADIUS_VALUE = "30000";
     public static final String RANKBY_VALUE = "prominence";
     public static final String ACTION_SEARCH_CATEGORY_RESULT ="com.nds.pmc.action.search_category";
+    public static final String ACTION_SEARCH_RESULT_DETAIL ="com.nds.pmc.action.search_result_details";
     public static final String EXTRA_SEARCH_CATEGORY_KEY = "search_category_key";
     public static final String SEARCH_RESULT_BUNDLE_KEY = "search_result_bundle";
     public static final String PLACE_DETAIL_BUNDLE_KEY = "place_detail_bundle";

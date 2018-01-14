@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView android:id="@+id/posterImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/poster_image_height"
+            android:layout_alignParentTop="true"
+            tools:background="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/placeTitle"
+            style="@style/detail_title" />
+
+        <TextView
+            android:id="@+id/placeAddress"
+            style="@style/detail_address" />
+
+        <RatingBar
+            android:id="@+id/resultRating"
+            style="@style/search_result_rating"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/openSymbol"
+            style="@style/open_now_symbol" />
+
+        <TextView
+            android:id="@+id/imageLink"
+            style="@style/detail_address" />
+
+        <LinearLayout
+            android:id="@+id/timingContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/openAt"
+                style="@style/timing_text"
+                android:layout_gravity="right|end"
+                android:gravity="right|end"
+                tools:text="Opens at" />
+
+            <TextView
+                android:id="@+id/closeAt"
+                style="@style/timing_text"
+                tools:text="Opens at" />
+        </LinearLayout>
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/placeLocation"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"></com.google.android.gms.maps.MapView>
+    </LinearLayout>
+</ScrollView>

@@ -10,29 +10,38 @@ import java.util.List;
  */
 
 public class Place implements Parcelable{
-    private final String latitude;
-    private final String longitude;
+    private final Double latitude;
+    private final Double longitude;
     private final String name;
     private boolean openNow;
     private String id;
     private double rating;
     private List<PhotoModel> photos;
     private String address;
-    public Place(String lat, String lon, String name){
+    private boolean openNowDetails;
+    private boolean openingHours;
+    private String openAt;
+    private String closeAt;
+
+    public Place(Double lat, Double lon, String name){
         this.latitude = lat;
         this.longitude = lon;
         this.name = name;
     }
 
     protected Place(Parcel in) {
-        latitude = in.readString();
-        longitude = in.readString();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
         name = in.readString();
         openNow = in.readByte() != 0;
         id = in.readString();
         rating = in.readDouble();
         photos = in.createTypedArrayList(PhotoModel.CREATOR);
         address = in.readString();
+        openNowDetails = in.readByte() != 0;
+        openingHours = in.readByte() != 0;
+        openAt = in.readString();
+        closeAt = in.readString();
     }
 
     public static final Creator<Place> CREATOR = new Creator<Place>() {
@@ -47,11 +56,11 @@ public class Place implements Parcelable{
         }
     };
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -99,6 +108,38 @@ public class Place implements Parcelable{
         this.address = address;
     }
 
+    public boolean isOpenNowDetails() {
+        return openNowDetails;
+    }
+
+    public void setOpenNowDetails(boolean openNowDetails) {
+        this.openNowDetails = openNowDetails;
+    }
+
+    public boolean isOpeningHours() {
+        return openingHours;
+    }
+
+    public void setOpeningHours(boolean openingHours) {
+        this.openingHours = openingHours;
+    }
+
+    public String getOpenAt() {
+        return openAt;
+    }
+
+    public void setOpenAt(String openAt) {
+        this.openAt = openAt;
+    }
+
+    public String getCloseAt() {
+        return closeAt;
+    }
+
+    public void setCloseAt(String closeAt) {
+        this.closeAt = closeAt;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -106,13 +147,17 @@ public class Place implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(latitude);
-        dest.writeString(longitude);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
         dest.writeString(name);
         dest.writeByte((byte) (openNow ? 1 : 0));
         dest.writeString(id);
         dest.writeDouble(rating);
         dest.writeTypedList(photos);
         dest.writeString(address);
+        dest.writeByte((byte) (openNowDetails ? 1 : 0));
+        dest.writeByte((byte) (openingHours ? 1 : 0));
+        dest.writeString(openAt);
+        dest.writeString(closeAt);
     }
 }
