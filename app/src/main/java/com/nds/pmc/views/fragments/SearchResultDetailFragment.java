@@ -1,9 +1,11 @@
 package com.nds.pmc.views.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,15 +31,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
 import com.nds.pmc.model.Place;
+import com.nds.pmc.services.FavoritePlaceUpdateListener;
+import com.nds.pmc.services.UpdateFavoritePlaceToDB;
 import com.nds.pmc.util.DeviceUtil;
 
 /**
  * Created by Namrata on 1/11/2018.
  */
 
-public class SearchResultDetailFragment extends Fragment implements OnMapReadyCallback {
+public class SearchResultDetailFragment extends Fragment implements OnMapReadyCallback, FavoritePlaceUpdateListener {
     private Place mPlace;
     private MapView mMapView;
+    private TextView mAddToFavorite;
+    private SharedPreferences mSharedPreferences;
 
     public static SearchResultDetailFragment newInstance(Place place) {
         SearchResultDetailFragment fragment = new SearchResultDetailFragment();
@@ -54,6 +61,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         } else {
             mPlace = getArguments().getParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY);
         }
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
     }
 
     @Nullable
@@ -61,8 +69,6 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search_detail, container, false);
-
-
         setPostImage(rootView);
 
         setPlaceTitleAddress(rootView);
@@ -71,7 +77,27 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
 
         setPlaceMap(rootView, savedInstanceState);
 
+        setFavoritePlace(rootView);
+
         return rootView;
+    }
+
+    private void setFavoritePlace(View rootView) {
+        mAddToFavorite = (TextView) rootView.findViewById(R.id.addToFavorite);
+
+        if(mSharedPreferences.getBoolean(mPlace.getId(), false)){
+            mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_on, 0);
+        }else{
+            mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_off, 0);
+        }
+        mAddToFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdateFavoritePlaceToDB updateFavoritePlaceToDB = new UpdateFavoritePlaceToDB(getActivity(),
+                        mPlace, SearchResultDetailFragment.this);
+                updateFavoritePlaceToDB.execute();
+            }
+        });
     }
 
     @SuppressLint("MissingPermission")
@@ -112,15 +138,15 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
 
     private void setPostImage(View rootView) {
         ImageView posterImage = (ImageView) rootView.findViewById(R.id.posterImage);
-        TextView imageLink = (TextView)rootView.findViewById(R.id.imageLink);
+        TextView imageLink = (TextView) rootView.findViewById(R.id.imageLink);
         if (mPlace.getPhotos() != null && !mPlace.getPhotos().isEmpty() && mPlace.getPhotos().get(0).getImageRaw() != null) {
             imageLink.setText(Html.fromHtml(mPlace.getPhotos().get(0).getMapLink()));
             String imageRaw = mPlace.getPhotos().get(0).getImageRaw();
-            try{
+            try {
                 byte[] byteArray = Base64.decode(imageRaw, Base64.DEFAULT);
                 Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                 posterImage.setImageBitmap(bmp);
-            }catch (Exception e){
+            } catch (Exception e) {
                 posterImage.setVisibility(View.GONE);
             }
         } else {
@@ -165,5 +191,26 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         MapsInitializer.initialize(this.getActivity());
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mPlace.getLatitude(), mPlace.getLongitude()), 10);
         googleMap.animateCamera(cameraUpdate);
+    }
+
+    @Override
+    public void onSuccess(final int status) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (status == Constants.ADDED_TO_FAVORITE) {
+                    mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_on, 0);
+                    mSharedPreferences.edit().putBoolean(mPlace.getId(), true).apply();
+                } else {
+                    mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_off, 0);
+                    mSharedPreferences.edit().putBoolean(mPlace.getId(), false).apply();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onFailure() {
+        Toast.makeText(getActivity(), "Can not add place to favorite", Toast.LENGTH_SHORT).show();
     }
 }

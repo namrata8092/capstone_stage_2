@@ -28,4 +28,6 @@ public final class Constants {
     public static final String KEY_LONGITUDE="longitude";
     public static final int UPDATE_INTERVAL = 1000;
     public static final int FASTEST_INTERVAL = 900;
+    public static final int REMOVED_FROM_FAVORITE = 0;
+    public static final int ADDED_TO_FAVORITE = 1;
 }

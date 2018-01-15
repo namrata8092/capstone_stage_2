@@ -77,7 +77,8 @@
     <string name="drawer_open">Drawer is opened</string>
     <string name="drawer_close">Drawer is closed</string>
     <string name="search_title" formatted="true">%1$s Around Me </string>
-    <string name="search_detail_title"formatted="true" >Detail about %1$s </string>
+    <string name="search_detail_title" formatted="true" >Detail about %1$s </string>
+    <string name="add_to_favorite">Add to favorite</string>
     <string-array name="navigation_option">
         <item>Share With</item>
         <item>Favorite</item>

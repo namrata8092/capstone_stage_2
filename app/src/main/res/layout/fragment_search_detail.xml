@@ -18,11 +18,13 @@
 
         <TextView
             android:id="@+id/placeTitle"
-            style="@style/detail_title" />
+            style="@style/detail_title"
+            tools:text="Sample title"/>
 
         <TextView
             android:id="@+id/placeAddress"
-            style="@style/detail_address" />
+            style="@style/detail_address"
+            tools:text="address"/>
 
         <RatingBar
             android:id="@+id/resultRating"
@@ -31,7 +33,8 @@
 
         <TextView
             android:id="@+id/openSymbol"
-            style="@style/open_now_symbol" />
+            style="@style/open_now_symbol"
+            tools:text="Open"/>
 
         <TextView
             android:id="@+id/imageLink"
@@ -56,6 +59,13 @@
                 style="@style/timing_text"
                 tools:text="Opens at" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/addToFavorite"
+            style="@style/favorite"
+            android:text="@string/add_to_favorite"
+            android:drawableRight="@drawable/favorite_off"
+            />
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/placeLocation"
