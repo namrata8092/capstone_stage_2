@@ -23,6 +23,7 @@ import com.nds.pmc.views.adapters.CategoryAdapter;
 
 public class SearchCategoryFragment extends Fragment implements AdapterView.OnItemClickListener{
     private String[] categoryKey;
+    private String[] categoryName;
     private PlaceLocation placeLocation;
 
     public static SearchCategoryFragment newInstance(PlaceLocation location){
@@ -49,7 +50,7 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
         View rootView = inflater.inflate(R.layout.fragment_search_categories, container, false );
 
         categoryKey = getContext().getResources().getStringArray(R.array.category_key);
-
+        categoryName = getContext().getResources().getStringArray(R.array.category_name);
         RecyclerView searchRecyclerView = (RecyclerView)rootView.findViewById(R.id.categoryRecyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), getResources().getInteger(R.integer.no_of_grid_cells));
         searchRecyclerView.setLayoutManager(gridLayoutManager);
@@ -65,6 +66,7 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
         searchResultActivity.setAction(Constants.ACTION_SEARCH_CATEGORY_RESULT);
         Bundle bundle = new Bundle();
         bundle.putString(Constants.EXTRA_SEARCH_CATEGORY_KEY, categoryKey[position]);
+        bundle.putString(Constants.EXTRA_SEARCH_CATEGORY_NAME, categoryName[position]);
         bundle.putParcelable(Constants.LOCATION_KEY, placeLocation);
         searchResultActivity.putExtras(bundle);
         startActivity(searchResultActivity);

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -47,12 +48,16 @@ public class CategorySearchResultActivity extends AppCompatActivity {
         mNetworkRequestManager = mPMCApplication.getNetworkRequestManager();
 
         setContentView(R.layout.activity_search_category_result);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mProgressBar = (ProgressBar) findViewById(R.id.progress);
         mFragmentManager = getSupportFragmentManager();
         if (!NetworkUtil.isDataNetworkAvailable(this)) {
             displayErrorFragment(getResources().getString(R.string.network_error));
         } else if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
+            String title = getString(R.string.search_title, bundle.getString(Constants.EXTRA_SEARCH_CATEGORY_NAME));
+            setTitle(title);
             location = bundle.getParcelable(Constants.LOCATION_KEY);
             final RequestWithParameters rm = new RequestWithParameters(
                     location.getLatitude(),
@@ -63,6 +68,16 @@ public class CategorySearchResultActivity extends AppCompatActivity {
             mNetworkRequestManager.createStringRequest(new WeakReference<NetworkRequester>(searchNetworkRequster), rm.createRequest(),
                     Constants.SEARCH_REQUEST_TAG);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void displayErrorFragment(String errorMsg) {
@@ -88,7 +103,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
         @Override
         public void onSuccess(String response) {
             hideProgressBar();
-            if(response!=null && !TextUtils.isEmpty(response)){
+            if (response != null && !TextUtils.isEmpty(response)) {
                 PlacesSearchResult result = SearchResponseConverter.getSearchResultModel(response);
                 SearchResultListFragment searchResultListFragment = SearchResultListFragment.newInstance(result);
                 mFragmentManager.beginTransaction().replace(R.id.main_container, searchResultListFragment).commit();

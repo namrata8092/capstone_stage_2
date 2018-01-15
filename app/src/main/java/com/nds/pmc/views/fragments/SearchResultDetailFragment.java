@@ -17,14 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nds.pmc.R;
@@ -104,17 +102,19 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         TextView placeTitle = (TextView) rootView.findViewById(R.id.placeTitle);
         TextView placeAddress = (TextView) rootView.findViewById(R.id.placeAddress);
         RatingBar resultRating = (RatingBar) rootView.findViewById(R.id.resultRating);
-        TextView imageLink = (TextView)rootView.findViewById(R.id.imageLink);
+
 
         placeTitle.setText(mPlace.getName());
         placeAddress.setText(DeviceUtil.getAddress(mPlace.getLongitude(), mPlace.getLatitude(), getContext()));
         resultRating.setRating((float) mPlace.getRating());
-        imageLink.setText(Html.fromHtml(mPlace.getPhotos().get(0).getMapLink()));
+
     }
 
     private void setPostImage(View rootView) {
         ImageView posterImage = (ImageView) rootView.findViewById(R.id.posterImage);
+        TextView imageLink = (TextView)rootView.findViewById(R.id.imageLink);
         if (mPlace.getPhotos() != null && !mPlace.getPhotos().isEmpty() && mPlace.getPhotos().get(0).getImageRaw() != null) {
+            imageLink.setText(Html.fromHtml(mPlace.getPhotos().get(0).getMapLink()));
             String imageRaw = mPlace.getPhotos().get(0).getImageRaw();
             try{
                 byte[] byteArray = Base64.decode(imageRaw, Base64.DEFAULT);
@@ -124,6 +124,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
                 posterImage.setVisibility(View.GONE);
             }
         } else {
+            imageLink.setVisibility(View.GONE);
             posterImage.setVisibility(View.GONE);
         }
 

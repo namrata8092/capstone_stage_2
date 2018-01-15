@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PlacesInMyCircle</string>
+    <string name="app_name">Places In My Circle</string>
     <string-array name="category_name">
         <item>Airport</item>
         <item>ATM</item>
@@ -73,5 +73,14 @@
     <string name="close_now">CLOSE</string>
     <string name="open_at">Open At : </string>
     <string name="close_at">Close At : </string>
-    <string name="MAPS_API_KEY">AIzaSyAGewuJ4Z_jlXpnfx6LVg0rt7_VVv8qshU</string>
+    <string name="menu_description">Click to Open Menu drawer</string>
+    <string name="drawer_open">Drawer is opened</string>
+    <string name="drawer_close">Drawer is closed</string>
+    <string name="search_title" formatted="true">%1$s Around Me </string>
+    <string name="search_detail_title"formatted="true" >Detail about %1$s </string>
+    <string-array name="navigation_option">
+        <item>Share With</item>
+        <item>Favorite</item>
+        <item>Rate App</item>
+    </string-array>
 </resources>
