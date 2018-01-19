@@ -11,29 +11,34 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
 import com.nds.pmc.model.PlaceLocation;
+import com.nds.pmc.views.fragments.FavoritePlaceListFragment;
 import com.nds.pmc.views.fragments.SearchCategoryFragment;
 
 /**
  * Created by Namrata on 10/17/2017.
  */
 
-public class LauncherActivity extends AppCompatActivity{
+public class LauncherActivity extends AppCompatActivity {
 
     private static final String TAG = LauncherActivity.class.getSimpleName();
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
+    private String[] navigationList;
+    private PlaceLocation mLocation;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
-
+        navigationList = getResources().getStringArray(R.array.navigation_option);
+        
         mDrawerLayout = (DrawerLayout)findViewById(R.id.pmcDrawer);
         mDrawerList = (ListView)findViewById(R.id.drawerList);
 
@@ -43,7 +48,7 @@ public class LauncherActivity extends AppCompatActivity{
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),"Item cliskced "+position, Toast.LENGTH_LONG).show();
+                replaceContainerAsPerNavOption(navigationList[position]);
                 mDrawerLayout.closeDrawer(GravityCompat.START);
             }
         });
@@ -63,9 +68,28 @@ public class LauncherActivity extends AppCompatActivity{
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        PlaceLocation location = getIntent().getParcelableExtra(Constants.LOCATION_KEY);
+        mLocation = getIntent().getParcelableExtra(Constants.LOCATION_KEY);
+        displayCategories(mLocation);        
+    }
+
+    private void displayCategories(PlaceLocation location) {
         SearchCategoryFragment searchCategoryFragment = SearchCategoryFragment.newInstance(location);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, searchCategoryFragment).commit();
+    }
+
+    private void replaceContainerAsPerNavOption(String option) {
+        if(option.contains("Categories")){
+            displayCategories(mLocation);
+        }else if(option.contains("Favorite")){
+            displayFavoritePlaces();
+        }else if(option.contains("Exit")){
+            finish();
+        }
+    }
+
+    private void displayFavoritePlaces() {
+        FavoritePlaceListFragment favoritePlaceListFragment = FavoritePlaceListFragment.newInstance();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, favoritePlaceListFragment).commit();
     }
 
     @Override

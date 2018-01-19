@@ -79,9 +79,13 @@
     <string name="search_title" formatted="true">%1$s Around Me </string>
     <string name="search_detail_title" formatted="true" >Detail about %1$s </string>
     <string name="add_to_favorite">Add to favorite</string>
+    <string name="no_favorite_place">There is no favorite place added</string>
+    <string name="preference_place_delete_key" translatable="false">delete_place</string>
     <string-array name="navigation_option">
-        <item>Share With</item>
         <item>Favorite</item>
+        <item>View Categories</item>
+        <item>Share With</item>
         <item>Rate App</item>
+        <item>Exit</item>
     </string-array>
 </resources>

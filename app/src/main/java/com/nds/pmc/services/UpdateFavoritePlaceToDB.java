@@ -3,10 +3,13 @@ package com.nds.pmc.services;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 
+import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
 import com.nds.pmc.dbo.PlaceContract;
 import com.nds.pmc.model.Place;
@@ -47,6 +50,9 @@ public class UpdateFavoritePlaceToDB extends AsyncTask {
 
             if (rowDeleted > 0) {
                 updateListener.onSuccess(Constants.REMOVED_FROM_FAVORITE);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+                SharedPreferences.Editor edit = preferences.edit();
+                edit.putBoolean(mContext.getString(R.string.preference_place_delete_key), true).commit();
             } else {
                 updateListener.onFailure();
             }

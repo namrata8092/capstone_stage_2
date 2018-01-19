@@ -26,9 +26,9 @@ public class PlaceDBHelper extends SQLiteOpenHelper {
                 + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_ID+" TEXT NOT NULL, "
                 + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_TITLE+" TEXT NOT NULL, "
                 + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_ADDRESS+" TEXT NOT NULL,"
-                + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING+" TEXT NOT NULL,"
-                + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LAT+" TEXT NOT NULL, "
-                + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON+" TEXT NOT NULL "+");";
+                + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING+" REAL NOT NULL,"
+                + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LAT+" REAL NOT NULL, "
+                + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON+" REAL NOT NULL "+");";
         db.execSQL(SQL_CREATE_TABLE);
     }
 
