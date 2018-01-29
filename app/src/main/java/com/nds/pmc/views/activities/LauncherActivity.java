@@ -1,6 +1,8 @@
 package com.nds.pmc.views.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
@@ -84,6 +87,39 @@ public class LauncherActivity extends AppCompatActivity {
             displayFavoritePlaces();
         }else if(option.contains("Exit")){
             finish();
+        }else if(option.contains("Share")){
+            shareAppDetails();
+        }else if(option.contains("Rate")){
+            rateApplication();
+        }
+    }
+
+    private void rateApplication() {
+        String packageName = getApplicationContext().getPackageName();
+        Intent playStoreIntent = new Intent();
+        playStoreIntent.setAction(Intent.ACTION_VIEW);
+        playStoreIntent.setData(Uri.parse("market://details?id=" + packageName));
+        if(playStoreIntent.resolveActivity(getPackageManager())!=null){
+            startActivity(playStoreIntent);
+        }else{
+            Intent rateUsBrowserIntent = new Intent();
+            rateUsBrowserIntent.setAction(Intent.ACTION_VIEW);
+            rateUsBrowserIntent.setData(Uri.parse("http://play.google.com/store/apps/details?id=" + packageName));
+            startActivity(rateUsBrowserIntent);
+        }
+    }
+
+    private void shareAppDetails() {
+        int applicationNameId = getApplicationContext().getApplicationInfo().labelRes;
+        final String appPackageName = getApplicationContext().getPackageName();
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(applicationNameId));
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_msg, appPackageName));
+        if(shareIntent.resolveActivity(getPackageManager())!=null){
+            startActivity(Intent.createChooser(shareIntent, "Share link:"));
+        }else{
+            Toast.makeText(getApplicationContext(),getString(R.string.no_sharing_app), Toast.LENGTH_LONG).show();
         }
     }
 

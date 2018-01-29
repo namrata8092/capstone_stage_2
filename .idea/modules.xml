@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\android_projects\capstone2\capstone_stage_2\app\app.iml" filepath="C:\android_projects\capstone2\capstone_stage_2\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/capstone_stage_2.iml" filepath="$PROJECT_DIR$/capstone_stage_2.iml" />
-      <module fileurl="file://C:\android_projects\capstone2\capstone_stage_2\capstone_stage_2.iml" filepath="C:\android_projects\capstone2\capstone_stage_2\capstone_stage_2.iml" />
     </modules>
   </component>
 </project>
