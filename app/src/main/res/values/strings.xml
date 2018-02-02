@@ -90,4 +90,5 @@
     </string-array>
     <string name="share_msg" formatted="true">Install this cool application: https://play.google.com/store/apps/details?id=%1s</string>
     <string name="no_sharing_app">No application to support sharing functionality.</string>
+    <string name="no_favorite">No favorite place or category found.</string>
 </resources>
