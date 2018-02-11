@@ -33,6 +33,7 @@ public class SearchResponseConverter {
         for(int resultIndex = 0; resultIndex < results.size(); resultIndex++){
             SearchResult search = results.get(resultIndex);
             Place place = new Place(search.getGeometry().getLocation().getLat(),search.getGeometry().getLocation().getLng(), search.getName());
+            place.setIconImage(search.getIcon());
             if(search.getOpeningHours()!=null){
                 place.setOpenNowDetails(true);
                 place.setOpenNow(search.getOpeningHours().isOpenNow());

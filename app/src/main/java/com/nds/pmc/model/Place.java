@@ -22,6 +22,7 @@ public class Place implements Parcelable{
     private boolean openingHours;
     private String openAt;
     private String closeAt;
+    private String iconImage;
 
     public Place(Double lat, Double lon, String name){
         this.latitude = lat;
@@ -42,6 +43,7 @@ public class Place implements Parcelable{
         openingHours = in.readByte() != 0;
         openAt = in.readString();
         closeAt = in.readString();
+        iconImage = in.readString();
     }
 
     public static final Creator<Place> CREATOR = new Creator<Place>() {
@@ -140,6 +142,14 @@ public class Place implements Parcelable{
         this.closeAt = closeAt;
     }
 
+    public String getIconImage() {
+        return iconImage;
+    }
+
+    public void setIconImage(String iconImage) {
+        this.iconImage = iconImage;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -159,5 +169,6 @@ public class Place implements Parcelable{
         dest.writeByte((byte) (openingHours ? 1 : 0));
         dest.writeString(openAt);
         dest.writeString(closeAt);
+        dest.writeString(iconImage);
     }
 }
