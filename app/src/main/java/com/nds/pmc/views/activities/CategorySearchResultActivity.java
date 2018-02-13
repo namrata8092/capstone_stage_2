@@ -1,6 +1,7 @@
 package com.nds.pmc.views.activities;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -16,11 +17,14 @@ import com.nds.pmc.common.Constants;
 import com.nds.pmc.common.NetworkRequestManager;
 import com.nds.pmc.common.NetworkRequester;
 import com.nds.pmc.converter.SearchResponseConverter;
+import com.nds.pmc.model.Place;
 import com.nds.pmc.model.PlaceLocation;
 import com.nds.pmc.model.PlacesSearchResult;
 import com.nds.pmc.tos.requests.RequestWithParameters;
+import com.nds.pmc.util.DeviceUtil;
 import com.nds.pmc.util.NetworkUtil;
 import com.nds.pmc.views.fragments.ErrorFragment;
+import com.nds.pmc.views.fragments.SearchResultDetailFragment;
 import com.nds.pmc.views.fragments.SearchResultListFragment;
 
 import java.lang.ref.WeakReference;
@@ -48,6 +52,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
         mNetworkRequestManager = mPMCApplication.getNetworkRequestManager();
 
         setContentView(R.layout.activity_search_category_result);
+        checkTwoPanelLayout();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mProgressBar = (ProgressBar) findViewById(R.id.progress);
@@ -70,6 +75,12 @@ public class CategorySearchResultActivity extends AppCompatActivity {
         }
     }
 
+    private void checkTwoPanelLayout() {
+        if (findViewById(R.id.container) != null) {
+            DeviceUtil.setTwoPanelLayout(true);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -82,6 +93,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
 
     private void displayErrorFragment(String errorMsg) {
         ErrorFragment errorFragment = ErrorFragment.newInstance(errorMsg);
+        findViewById(R.id.main_container).setVisibility(View.VISIBLE);
         mFragmentManager.beginTransaction().replace(R.id.main_container, errorFragment).commit();
     }
 
@@ -105,9 +117,31 @@ public class CategorySearchResultActivity extends AppCompatActivity {
             hideProgressBar();
             if (response != null && !TextUtils.isEmpty(response)) {
                 PlacesSearchResult result = SearchResponseConverter.getSearchResultModel(response);
-                SearchResultListFragment searchResultListFragment = SearchResultListFragment.newInstance(result);
-                mFragmentManager.beginTransaction().replace(R.id.main_container, searchResultListFragment).commit();
+                setLayoutBasedOnOrientation(result);
             }
         }
     };
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            DeviceUtil.setTwoPanelLayout(false);
+        }
+
+    }
+
+    private void setLayoutBasedOnOrientation(PlacesSearchResult result) {
+        SearchResultListFragment searchResultListFragment = SearchResultListFragment.newInstance(result);
+        if(!DeviceUtil.isTwoPanelLayout()){
+            findViewById(R.id.main_container).setVisibility(View.VISIBLE);
+            mFragmentManager.beginTransaction().replace(R.id.main_container, searchResultListFragment).commit();
+        }else{
+            findViewById(R.id.container).setVisibility(View.VISIBLE);
+            Place firstPlace = result.getPlaces().get(0);
+            mFragmentManager.beginTransaction().replace(R.id.list_container, searchResultListFragment).commit();
+            SearchResultDetailFragment searchResultDetailFragment = SearchResultDetailFragment.newInstance(firstPlace);
+            mFragmentManager.beginTransaction().replace(R.id.detail_container, searchResultDetailFragment).commit();
+        }
+    }
 }

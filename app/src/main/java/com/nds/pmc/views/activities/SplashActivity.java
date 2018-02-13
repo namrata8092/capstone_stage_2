@@ -129,12 +129,10 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
             lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             if (lastLocation != null) {
                 saveLocationOnDevice(lastLocation);
-                displaySearchCategory(Double.toString(lastLocation.getLatitude()), Double.toString(lastLocation.getLongitude()));
-                startLocationUpdates();
             } else {
                 displaySearchCategoryWithPreviouslySavedLocation();
-                startLocationUpdates();
             }
+            startLocationUpdates();
         } else DeviceUtil.requestLocationPermission(SplashActivity.this);
     }
 

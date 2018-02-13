@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
 import com.nds.pmc.model.PlacesSearchResult;
+import com.nds.pmc.util.DeviceUtil;
 import com.nds.pmc.views.adapters.SearchResultListAdapter;
 
 /**
@@ -66,9 +67,14 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent detailIntent = new Intent();
-        detailIntent.setAction(Constants.ACTION_SEARCH_RESULT_DETAIL);
-        detailIntent.putExtra(Constants.PLACE_DETAIL_BUNDLE_KEY, mPlaceSearchResult.getPlaces().get(position));
-        startActivity(detailIntent);
+        if(!DeviceUtil.isTwoPanelLayout()){
+            Intent detailIntent = new Intent();
+            detailIntent.setAction(Constants.ACTION_SEARCH_RESULT_DETAIL);
+            detailIntent.putExtra(Constants.PLACE_DETAIL_BUNDLE_KEY, mPlaceSearchResult.getPlaces().get(position));
+            startActivity(detailIntent);
+        }else{
+
+        }
+
     }
 }

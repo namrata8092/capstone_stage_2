@@ -24,6 +24,7 @@ import java.util.Locale;
  */
 
 public final class DeviceUtil {
+    public static boolean twoPanelLayout;
     private DeviceUtil(){}
     public static boolean checkLocationPermissionAvailable(Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
@@ -68,4 +69,11 @@ public final class DeviceUtil {
         return null;
     }
 
+    public static boolean isTwoPanelLayout() {
+        return twoPanelLayout;
+    }
+
+    public static void setTwoPanelLayout(boolean twoPanelLayout) {
+        DeviceUtil.twoPanelLayout = twoPanelLayout;
+    }
 }
