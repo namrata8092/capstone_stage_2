@@ -66,6 +66,7 @@ public class UpdateFavoritePlaceToDB extends AsyncTask {
             values.put(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LAT, mPlaceModel.getLatitude());
             values.put(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON, mPlaceModel.getLongitude());
             values.put(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING, mPlaceModel.getRating());
+            values.put(PlaceContract.PlaceEntry.COLUMN_NAME_CATEGORY_ICON, mPlaceModel.getIconImage());
 
             Uri insertedUri = mContext.getContentResolver().insert(PlaceContract.PlaceEntry.CONTENT_URI,values);
 

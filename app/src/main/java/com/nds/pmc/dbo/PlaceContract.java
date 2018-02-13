@@ -35,6 +35,7 @@ public final class PlaceContract {
         public static final String COLUMN_NAME_PLACE_RATING = "placeRating";
         public static final String COLUMN_NAME_PLACE_LAT = "placeLatitude";
         public static final String COLUMN_NAME_PLACE_LON = "placeLongitude";
+        public static final String COLUMN_NAME_CATEGORY_ICON = "categoryIcon";
 
         public static Uri buildSelectedPlaceUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);

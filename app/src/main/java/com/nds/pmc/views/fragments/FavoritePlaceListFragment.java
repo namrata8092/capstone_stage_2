@@ -52,7 +52,8 @@ public class FavoritePlaceListFragment extends Fragment implements SharedPrefere
             PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_ADDRESS,
             PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LAT,
             PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON,
-            PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING
+            PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING,
+            PlaceContract.PlaceEntry.COLUMN_NAME_CATEGORY_ICON
     };
     private SearchResultListAdapter placeListAdapter;
     private RecyclerView searchResultRecyclerView;
@@ -193,6 +194,7 @@ public class FavoritePlaceListFragment extends Fragment implements SharedPrefere
         int placeLatIndex = data.getColumnIndex(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LAT);
         int placeLonIndex = data.getColumnIndex(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON);
         int placeRatingIndex = data.getColumnIndex(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING);
+        int categoryIconIndex = data.getColumnIndex(PlaceContract.PlaceEntry.COLUMN_NAME_CATEGORY_ICON);
 
         if (data != null && data.getCount() > 0) {
             placeModelList = new ArrayList<>();
@@ -204,6 +206,7 @@ public class FavoritePlaceListFragment extends Fragment implements SharedPrefere
                     model.setAddress(data.getString(placeAddressIndex));
                     model.setId(data.getString(placeIDIndex));
                     model.setRating(data.getDouble(placeRatingIndex));
+                    model.setIconImage(data.getString(categoryIconIndex));
                     placeModelList.add(model);
                 }
             } catch (Exception e) {

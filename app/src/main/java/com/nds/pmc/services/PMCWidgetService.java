@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.support.annotation.Nullable;
 
 import com.nds.pmc.R;
+import com.nds.pmc.common.Constants;
 import com.nds.pmc.dbo.PlaceContract;
 import com.nds.pmc.model.Place;
 import com.nds.pmc.providers.PMCWidgetProvider;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class PMCWidgetService extends IntentService {
     private static final String TAG = "TEST"+PMCWidgetService.class.getSimpleName();
     private Context mContext;
-    private static final String ACTION_UPDATE_WIDGET = "com.nds.pmc.UPDATE_BAKING_RECIPE";
+
     private static final String[] FAV_PLACE_COLUMNS = {
             PlaceContract.PlaceEntry._ID,
             PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_ID,
@@ -31,12 +32,13 @@ public class PMCWidgetService extends IntentService {
             PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_ADDRESS,
             PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LAT,
             PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON,
-            PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING
+            PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING,
+            PlaceContract.PlaceEntry.COLUMN_NAME_CATEGORY_ICON
     };
 
     public static void startPMCWidgetService(Context context) {
         Intent intent = new Intent(context, PMCWidgetService.class);
-        intent.setAction(ACTION_UPDATE_WIDGET);
+        intent.setAction(Constants.ACTION_UPDATE_WIDGET);
         context.startService(intent);
 
     }
@@ -47,7 +49,7 @@ public class PMCWidgetService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        if (intent != null && ACTION_UPDATE_WIDGET.equals(intent.getAction())) {
+        if (intent != null && Constants.ACTION_UPDATE_WIDGET.equals(intent.getAction())) {
             mContext = getApplicationContext();
             Cursor cursor = mContext.getContentResolver().query(
                     PlaceContract.PlaceEntry.CONTENT_URI, FAV_PLACE_COLUMNS, null, null, null);
@@ -66,6 +68,7 @@ public class PMCWidgetService extends IntentService {
         int placeLatIndex = data.getColumnIndex(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LAT);
         int placeLonIndex = data.getColumnIndex(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON);
         int placeRatingIndex = data.getColumnIndex(PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING);
+        int categoryIconIndex = data.getColumnIndex(PlaceContract.PlaceEntry.COLUMN_NAME_CATEGORY_ICON);
 
         if (data != null && data.getCount() > 0) {
             placeModelList = new ArrayList<>();
@@ -77,6 +80,7 @@ public class PMCWidgetService extends IntentService {
                     model.setAddress(data.getString(placeAddressIndex));
                     model.setId(data.getString(placeIDIndex));
                     model.setRating(data.getDouble(placeRatingIndex));
+                    model.setIconImage(data.getString(categoryIconIndex));
                     placeModelList.add(model);
                 }
             } catch (Exception e) {

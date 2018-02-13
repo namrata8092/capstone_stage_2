@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 
 import com.nds.pmc.R;
+import com.nds.pmc.common.Constants;
 import com.nds.pmc.model.Place;
 import com.nds.pmc.services.PlaceRemoteViewService;
 import com.nds.pmc.util.LogUtil;
@@ -54,21 +55,24 @@ public class PMCWidgetProvider extends AppWidgetProvider {
         LogUtil.d(TAG,"getPlacesGridView");
         mPlaces = places;
         Place selectedPlace = mPlaces.get(PLACE_INDEX);
+        selectedPlace.setWidgetEntry(true);
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.widget_grid_cell);
         view.setTextViewText(R.id.placeName, selectedPlace.getName());
 //        view.setImageViewResource(R.id.categoryType, R.drawable.airport);
 
         Intent intent = new Intent(context, PlaceRemoteViewService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds);
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(PLACE_LIST, mPlaces);
-        intent.putExtra(PLACE_INDEX_KEY, PLACE_INDEX);
-        intent.putExtra(PLACE_BUNDLE, bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelableArrayList(PLACE_LIST, mPlaces);
+//        intent.putExtra(PLACE_INDEX_KEY, PLACE_INDEX);
+        intent.putExtra(Constants.PLACE_DETAIL_BUNDLE_KEY,selectedPlace);
         view.setRemoteAdapter( R.id.cellContainer, intent);
 
         Intent appIntent = new Intent(context, CategorySearchDetailActivity.class);
+        appIntent.setAction(Constants.ACTION_SEARCH_RESULT_DETAIL);
+        appIntent.putExtra(Constants.PLACE_DETAIL_BUNDLE_KEY,selectedPlace);
         PendingIntent appPendingIntent = PendingIntent.getActivity(context, 0, appIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        view.setPendingIntentTemplate(R.id.cellContainer, appPendingIntent);
+        view.setOnClickPendingIntent(R.id.cellContainer, appPendingIntent);
 
         return view;
     }

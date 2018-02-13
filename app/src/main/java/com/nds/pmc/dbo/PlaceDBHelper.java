@@ -13,7 +13,7 @@ public class PlaceDBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "place.db";
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public PlaceDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +28,8 @@ public class PlaceDBHelper extends SQLiteOpenHelper {
                 + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_ADDRESS+" TEXT NOT NULL,"
                 + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_RATING+" REAL NOT NULL,"
                 + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LAT+" REAL NOT NULL, "
-                + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON+" REAL NOT NULL "+");";
+                + PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_LON+" REAL NOT NULL, "
+                + PlaceContract.PlaceEntry.COLUMN_NAME_CATEGORY_ICON+" TEXT NOT NULL "+");";
         db.execSQL(SQL_CREATE_TABLE);
     }
 

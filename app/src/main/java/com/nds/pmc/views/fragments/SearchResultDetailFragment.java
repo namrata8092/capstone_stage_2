@@ -84,6 +84,10 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
 
     private void setFavoritePlace(View rootView) {
         mAddToFavorite = (TextView) rootView.findViewById(R.id.addToFavorite);
+        if(mPlace.isWidgetEntry()){
+            mAddToFavorite.setVisibility(View.GONE);
+            return;
+        }
 
         if(mSharedPreferences.getBoolean(mPlace.getId(), false)){
             mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_on, 0);
