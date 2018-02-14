@@ -21,6 +21,7 @@ public final class Constants {
     public static final String EXTRA_SEARCH_CATEGORY_KEY = "search_category_key";
     public static final String EXTRA_SEARCH_CATEGORY_NAME = "search_category_name";
     public static final String SEARCH_RESULT_BUNDLE_KEY = "search_result_bundle";
+    public static final String SELECTED_PLACE_INDEX_KEY = "selected_place_index";
     public static final String PLACE_DETAIL_BUNDLE_KEY = "place_detail_bundle";
     public static final String ERROR_MSG_KEY = "error_key";
     public static final String SEARCH_REQUEST_TAG = "search_request_tag";
@@ -31,4 +32,5 @@ public final class Constants {
     public static final int FASTEST_INTERVAL = 900;
     public static final int REMOVED_FROM_FAVORITE = 0;
     public static final int ADDED_TO_FAVORITE = 1;
+    public static final int DISPLAY_PLACE_DETAIL_MSG = 0;
 }
