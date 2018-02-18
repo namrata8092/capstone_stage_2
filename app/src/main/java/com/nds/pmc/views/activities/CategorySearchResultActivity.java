@@ -59,14 +59,18 @@ public class CategorySearchResultActivity extends AppCompatActivity {
             String title = getString(R.string.search_title, bundle.getString(Constants.EXTRA_SEARCH_CATEGORY_NAME));
             setTitle(title);
             location = bundle.getParcelable(Constants.LOCATION_KEY);
-            final RequestWithParameters rm = new RequestWithParameters(
-                    location.getLatitude(),
-                    location.getLongitude(),
-                    bundle.getString(Constants.EXTRA_SEARCH_CATEGORY_KEY),
-                    getResources().getString(R.string.PLACES_API_KEY));
-            showProgressBar();
-            mNetworkRequestManager.createStringRequest(new WeakReference<NetworkRequester>(searchNetworkRequster), rm.createRequest(),
-                    Constants.SEARCH_REQUEST_TAG);
+            if(location!=null){
+                final RequestWithParameters rm = new RequestWithParameters(
+                        location.getLatitude(),
+                        location.getLongitude(),
+                        bundle.getString(Constants.EXTRA_SEARCH_CATEGORY_KEY),
+                        getResources().getString(R.string.PLACES_API_KEY));
+                showProgressBar();
+                mNetworkRequestManager.createStringRequest(new WeakReference<NetworkRequester>(searchNetworkRequster), rm.createRequest(),
+                        Constants.SEARCH_REQUEST_TAG);
+            }else{
+                return;
+            }
         }
     }
 
@@ -82,8 +86,8 @@ public class CategorySearchResultActivity extends AppCompatActivity {
 
     private void displayErrorFragment(String errorMsg) {
         ErrorFragment errorFragment = ErrorFragment.newInstance(errorMsg);
-        findViewById(R.id.main_container).setVisibility(View.VISIBLE);
-        mFragmentManager.beginTransaction().replace(R.id.main_container, errorFragment).commit();
+        findViewById(R.id.container).setVisibility(View.VISIBLE);
+        mFragmentManager.beginTransaction().replace(R.id.container, errorFragment).commit();
     }
 
     private void hideProgressBar() {
@@ -106,9 +110,9 @@ public class CategorySearchResultActivity extends AppCompatActivity {
             hideProgressBar();
             if (response != null && !TextUtils.isEmpty(response)) {
                 PlacesSearchResult result = SearchResponseConverter.getSearchResultModel(response);
-                findViewById(R.id.main_container).setVisibility(View.VISIBLE);
+                findViewById(R.id.container).setVisibility(View.VISIBLE);
                 SearchResultListFragment searchResultListFragment = SearchResultListFragment.newInstance(result);
-                mFragmentManager.beginTransaction().replace(R.id.main_container, searchResultListFragment).commit();
+                mFragmentManager.beginTransaction().replace(R.id.container, searchResultListFragment).commit();
             }
         }
     };

@@ -6,7 +6,7 @@ import android.widget.RemoteViewsService;
 import com.nds.pmc.widget.PlaceRemoteViewFactory;
 
 /**
- * Created by c0shan7 on 2/6/2018.
+ * Created by Namrata Shah on 2/6/2018.
  */
 
 public class PlaceRemoteViewService extends RemoteViewsService {

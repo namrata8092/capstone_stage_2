@@ -54,7 +54,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        mContainer = (FrameLayout)findViewById(R.id.container);
+        mContainer = (FrameLayout)findViewById(R.id.mainContainer);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 

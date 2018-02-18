@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by c0shan7 on 1/15/2018.
+ * Created by Namrata Shah on 1/15/2018.
  */
 
 public class FavoritePlaceListFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, AdapterView.OnItemClickListener {

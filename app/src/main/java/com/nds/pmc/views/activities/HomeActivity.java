@@ -25,9 +25,9 @@ import com.nds.pmc.views.fragments.SearchCategoryFragment;
  * Created by Namrata on 10/17/2017.
  */
 
-public class LauncherActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
-    private static final String TAG = LauncherActivity.class.getSimpleName();
+    private static final String TAG = HomeActivity.class.getSimpleName();
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;

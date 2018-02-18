@@ -39,7 +39,7 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         if(savedInstanceState!=null && savedInstanceState.containsKey(Constants.LOCATION_KEY)){
             placeLocation = savedInstanceState.getParcelable(Constants.LOCATION_KEY);
-        }else{
+        }else if(getArguments()!=null){
             placeLocation = getArguments().getParcelable(Constants.LOCATION_KEY);
         }
     }

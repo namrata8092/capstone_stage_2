@@ -12,7 +12,7 @@ import com.nds.pmc.model.Place;
 import java.util.List;
 
 /**
- * Created by c0shan7 on 2/6/2018.
+ * Created by Namrata Shah on 2/6/2018.
  */
 
 public class PlaceRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory {

@@ -58,7 +58,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null && savedInstanceState.containsKey(Constants.PLACE_DETAIL_BUNDLE_KEY)) {
             mPlace = savedInstanceState.getParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY);
-        } else {
+        } else if(getArguments()!=null){
             mPlace = getArguments().getParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY);
         }
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -69,16 +69,17 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search_detail, container, false);
-        setPostImage(rootView);
+        if(mPlace!=null) {
+            setPostImage(rootView);
 
-        setPlaceTitleAddress(rootView);
+            setPlaceTitleAddress(rootView);
 
-        setPlaceOperationHours(rootView);
+            setPlaceOperationHours(rootView);
 
-        setPlaceMap(rootView, savedInstanceState);
+            setPlaceMap(rootView, savedInstanceState);
 
-        setFavoritePlace(rootView);
-
+            setFavoritePlace(rootView);
+        }
         return rootView;
     }
 
@@ -168,20 +169,23 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
 
     @Override
     public void onResume() {
-        mMapView.onResume();
+        if(mMapView!=null)
+            mMapView.onResume();
         super.onResume();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mMapView.onDestroy();
+        if(mMapView!=null)
+            mMapView.onDestroy();
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mMapView.onLowMemory();
+        if(mMapView!=null)
+            mMapView.onLowMemory();
     }
 
     @SuppressLint("MissingPermission")
