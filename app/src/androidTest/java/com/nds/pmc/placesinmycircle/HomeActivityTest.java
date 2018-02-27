@@ -33,10 +33,6 @@ public class HomeActivityTest {
                 allOf(withId(R.id.container)));
         frameLayout.perform(click());
 
-//        ViewInteraction drawerList = onView(
-//                allOf(withId(R.id.drawerList), isDisplayed()));
-//        drawerList.perform(click());
-
         pressBack();
     }
 

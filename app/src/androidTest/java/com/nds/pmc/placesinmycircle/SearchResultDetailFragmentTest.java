@@ -20,7 +20,7 @@ public class SearchResultDetailFragmentTest {
     public FragmentTestRule<SearchResultDetailFragment> mFragmentTestRule = new FragmentTestRule<>(SearchResultDetailFragment.class);
 
     @Test
-    public void display_error_fragment() {
+    public void display_search_place_detail_fragment() {
         mFragmentTestRule.launchActivity(null);
         onView(withId(R.id.posterImage)).check(matches(isDisplayed()));
         onView(withId(R.id.placeTitle)).check(matches(isDisplayed()));
