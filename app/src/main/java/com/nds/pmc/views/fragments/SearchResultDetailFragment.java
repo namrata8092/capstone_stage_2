@@ -2,15 +2,12 @@ package com.nds.pmc.views.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +17,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,6 +32,7 @@ import com.nds.pmc.model.Place;
 import com.nds.pmc.services.FavoritePlaceUpdateListener;
 import com.nds.pmc.services.UpdateFavoritePlaceToDB;
 import com.nds.pmc.util.DeviceUtil;
+import com.nds.pmc.util.LogUtil;
 
 /**
  * Created by Namrata on 1/11/2018.
@@ -147,18 +146,19 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         if (mPlace.getPhotos() != null && !mPlace.getPhotos().isEmpty() && mPlace.getPhotos().get(0).getImageRaw() != null) {
             imageLink.setText(Html.fromHtml(mPlace.getPhotos().get(0).getMapLink()));
             String imageRaw = mPlace.getPhotos().get(0).getImageRaw();
-            try {
-                byte[] byteArray = Base64.decode(imageRaw, Base64.DEFAULT);
-                Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                posterImage.setImageBitmap(bmp);
-            } catch (Exception e) {
-                posterImage.setVisibility(View.GONE);
+            String url = null;
+            if (imageRaw != null) {
+                url = Constants.IMAGE_BASE_URL + imageRaw + "&key="+getResources().getString(R.string.PLACES_API_KEY);
+                LogUtil.d("Test","url -->" +url);
+            } else {
+                url = mPlace.getIconImage();
             }
+            Glide.with(getContext()).load(url).crossFade().fitCenter().into(posterImage);
+
         } else {
             imageLink.setVisibility(View.GONE);
             posterImage.setVisibility(View.GONE);
         }
-
     }
 
     @Override

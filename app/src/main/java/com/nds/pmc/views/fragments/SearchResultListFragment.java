@@ -47,21 +47,23 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
         super.onCreate(savedInstanceState);
         if(savedInstanceState!=null && savedInstanceState.containsKey(Constants.SEARCH_RESULT_BUNDLE_KEY)){
             mPlaceSearchResult = savedInstanceState.getParcelable(Constants.SEARCH_RESULT_BUNDLE_KEY);
-        }else{
+        }else if(getArguments()!=null){
             mPlaceSearchResult = getArguments().getParcelable(Constants.SEARCH_RESULT_BUNDLE_KEY);
         }
         if(savedInstanceState!=null && savedInstanceState.containsKey(Constants.SELECTED_PLACE_INDEX_KEY)){
             mSelectedPlaceIndex = savedInstanceState.getInt(Constants.SELECTED_PLACE_INDEX_KEY);
         }
-        mPlaces = mPlaceSearchResult.getPlaces();
-        mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == Constants.DISPLAY_PLACE_DETAIL_MSG && !mPlaces.isEmpty()) {
-                    displayDetailFragment(mPlaces.get(mSelectedPlaceIndex));
+        if(mPlaceSearchResult!=null){
+            mPlaces = mPlaceSearchResult.getPlaces();
+            mHandler = new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    if (msg.what == Constants.DISPLAY_PLACE_DETAIL_MSG && !mPlaces.isEmpty()) {
+                        displayDetailFragment(mPlaces.get(mSelectedPlaceIndex));
+                    }
                 }
-            }
-        };
+            };
+        }
     }
 
     @Nullable
@@ -78,7 +80,7 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
                 getContext(), mPlaces, this);
         searchResultRecyclerView.setAdapter(searchResultListAdapter);
 
-        if(DeviceUtil.isTwoPanelLayout() && mPlaces.size() > 0){
+        if(DeviceUtil.isTwoPanelLayout() && mPlaces != null && mPlaces.size() > 0){
             mHandler.sendEmptyMessage(Constants.DISPLAY_PLACE_DETAIL_MSG);
         }
         return rootView;

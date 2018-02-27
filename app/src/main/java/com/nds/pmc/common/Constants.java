@@ -33,4 +33,5 @@ public final class Constants {
     public static final int REMOVED_FROM_FAVORITE = 0;
     public static final int ADDED_TO_FAVORITE = 1;
     public static final int DISPLAY_PLACE_DETAIL_MSG = 0;
+    public static final String IMAGE_BASE_URL = "https://maps.googleapis.com/maps/api/place/photo?maxheight=220&photoreference=";
 }
