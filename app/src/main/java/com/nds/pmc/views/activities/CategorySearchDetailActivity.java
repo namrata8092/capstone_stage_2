@@ -24,7 +24,7 @@ public class CategorySearchDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_detail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mPlace = getIntent().getParcelableExtra(Constants.PLACE_DETAIL_BUNDLE_KEY);
+        mPlace = getIntent().getParcelableExtra(Constants.PLACE_BUNDLE_KEY);
         if(mPlace!=null){
             String title = getString(R.string.search_detail_title, mPlace.getName());
             setTitle(title);

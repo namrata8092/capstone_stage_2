@@ -36,10 +36,23 @@ public final class DeviceUtil {
     public static void requestLocationPermission(Activity context) {
         ActivityCompat.requestPermissions( context,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                Constants.REQ_PERMISSION
+                Constants.REQ_LOCATION_PERMISSION
         );
     }
 
+
+    public static boolean checkCallPermissionAvailable(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+            return true;
+        return ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED ;
+    }
+
+    public static void requestCallPermission(Activity context) {
+        ActivityCompat.requestPermissions( context,
+                new String[]{Manifest.permission.CALL_PHONE},
+                Constants.REQ_LOCATION_PERMISSION
+        );
+    }
     public static boolean isLocationEnabled(Context context) {
         int locationMode = 0;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

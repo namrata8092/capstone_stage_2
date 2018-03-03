@@ -1,0 +1,229 @@
+{
+  "html_attributions" : [],
+  "result" : {
+    "address_components" : [
+      {
+        "long_name" : "1170",
+        "short_name" : "1170",
+        "types" : [ "street_number" ]
+      },
+      {
+        "long_name" : "Spring Street",
+        "short_name" : "Spring St",
+        "types" : [ "route" ]
+      },
+      {
+        "long_name" : "Elizabeth",
+        "short_name" : "Elizabeth",
+        "types" : [ "locality", "political" ]
+      },
+      {
+        "long_name" : "Essex County",
+        "short_name" : "Essex County",
+        "types" : [ "administrative_area_level_2", "political" ]
+      },
+      {
+        "long_name" : "New Jersey",
+        "short_name" : "NJ",
+        "types" : [ "administrative_area_level_1", "political" ]
+      },
+      {
+        "long_name" : "United States",
+        "short_name" : "US",
+        "types" : [ "country", "political" ]
+      },
+      {
+        "long_name" : "07201",
+        "short_name" : "07201",
+        "types" : [ "postal_code" ]
+      }
+    ],
+    "adr_address" : "\u003cspan class=\"street-address\"\u003e1170 Spring St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eElizabeth\u003c/span\u003e, \u003cspan class=\"region\"\u003eNJ\u003c/span\u003e \u003cspan class=\"postal-code\"\u003e07201\u003c/span\u003e, \u003cspan class=\"country-name\"\u003eUSA\u003c/span\u003e",
+    "formatted_address" : "1170 Spring St, Elizabeth, NJ 07201, USA",
+    "formatted_phone_number" : "(908) 351-3900",
+    "geometry" : {
+      "location" : {
+        "lat" : 40.68719189999999,
+        "lng" : -74.19374599999999
+      },
+      "viewport" : {
+        "northeast" : {
+          "lat" : 40.6885349302915,
+          "lng" : -74.19205861970849
+        },
+        "southwest" : {
+          "lat" : 40.6858369697085,
+          "lng" : -74.19475658029151
+        }
+      }
+    },
+    "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+    "id" : "a0db668f3ca011b0962422d41ea3b72a19398377",
+    "international_phone_number" : "+1 908-351-3900",
+    "name" : "Hilton Newark Airport",
+    "opening_hours" : {
+      "open_now" : true,
+      "periods" : [
+        {
+          "open" : {
+            "day" : 0,
+            "time" : "0000"
+          }
+        }
+      ],
+      "weekday_text" : [
+        "Monday: Open 24 hours",
+        "Tuesday: Open 24 hours",
+        "Wednesday: Open 24 hours",
+        "Thursday: Open 24 hours",
+        "Friday: Open 24 hours",
+        "Saturday: Open 24 hours",
+        "Sunday: Open 24 hours"
+      ]
+    },
+    "photos" : [
+      {
+        "height" : 1000,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/114484976805955148996/photos\"\u003eHilton Newark Airport\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAADzPpu5in-tOL-ArAiBcs--PVCe6ahZNFxg93WWOOo8fvZn5DceYYcMMICKtuHilinZsnDq147V8CxATmJkvgSUOfzUwskRQ2I-O9pG-vHoXgwjcoAOXkCTVHQKTVrWs7EhCRj8W4jYXOqfmuKUlIPmLnGhRC-iH5CH8LuXtAObiDMLlXAIpgNQ",
+        "width" : 1341
+      },
+      {
+        "height" : 1200,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/114484976805955148996/photos\"\u003eHilton Newark Airport\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAUnY6El_2enEJMAy0F-9rIXbAnG4L7tX_LQFCPjt4FVpZxegIWcS0bk0LSVUZw_q0OrE7my7LfSHmrDxpwTBMjCOduXcq5iehCdPO0PrKBAbCM4e2I9KgCyXTodgXLpmvEhAxeWEZorg4BSUMi1x2WzGgGhSWUrpHea0kY5Ag_7Zet42O0OCwfQ",
+        "width" : 2048
+      },
+      {
+        "height" : 359,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/114484976805955148996/photos\"\u003eHilton Newark Airport\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAxZtoBb2haRkiqU_gdQq1zM2jiHH7tbeAdU2Bbb714FnEtafX8BwkpeODu66qXO43xAcEXiejnSR_48qpcXmahDSW_GudkkkJ3djWOcpVolD8uTJf34pzQrYQxwjn_dU9EhAAYqq41-5B5Fyd7G9r8FFXGhS4ZheqILZsLEpaOKaCZ8JAmTMhCg",
+        "width" : 675
+      },
+      {
+        "height" : 4048,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/116396021024611789723/photos\"\u003eKenneth Wong\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAiHAhMgPAcO5XkpeG7lgAL9idGL4KtZyn51DDseo79wZApymxOPDhSJpYuN4yolGb9OyN7EvEQiMpMeZ5c7mKXVNX33i4HQE1wx-sbmUkUs_Aub0PI78l34T-d_uQfiT-EhCmMe5azCA228pFK01LthO-GhQDNiwYk1dkEUF0yHmor2jUCiBqcQ",
+        "width" : 3036
+      },
+      {
+        "height" : 359,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/114484976805955148996/photos\"\u003eHilton Newark Airport\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAw9nW2Y-sNjKa30W4OqG9jGcNlUazT1kYIjgKChrECfGlXmrO6TQrq8XRURQ57CegRv--_3dPVl1CFobbSkwJhn8X8egIWbceRw9iBoaKFNZ3HxA0b3QCAT_iKhPCt9OzEhCCRRByYG7aPW3m52NdkJI9GhTB4lweCgutH1ywMKIw0JkzXeLQCA",
+        "width" : 675
+      },
+      {
+        "height" : 981,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/114484976805955148996/photos\"\u003eHilton Newark Airport\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAROCe4BnJLVD0mGI2B2QcfakDtPMxEmd6Hn9Dx_68LI4qRzBz3MGzPRMCKHtdlLm3QJlCRQYuzbYX6RCCHmr3iRQz76zo3p3B5kXnNAOEOMH-euZzaWSb1tVI_SQswS1XEhCAwWYTtb9EdyJMBQQPNFspGhQ79ZkItYwk8M57x4OlPB_Y7ITE7g",
+        "width" : 1500
+      },
+      {
+        "height" : 359,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/114484976805955148996/photos\"\u003eHilton Newark Airport\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAADZPr-z1HPQPd5Q3HE6drPqWXyq9hDMNtcYoNaIB9AmDt8Pe4ye8gV0FdwXsrk0qgL1Gv1aTBMaID7jKHo-ou-5VkwN7552HJPJGNnXkJ3YsdZiwQTZpXfIroi59bLlUqEhDJlfBy64MvRo1CFZzJ0OfiGhQi4Reka9jjYw6Wc2I4KTRErw9qbA",
+        "width" : 675
+      },
+      {
+        "height" : 1050,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/114484976805955148996/photos\"\u003eHilton Newark Airport\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAA6eyTRFiWOcr9PqCK35tcXQeiu6IQKCtzrjBBzLs2zBE8qxW3AxF5-HMYcEwb807-zv3E0mwmUPOdG8Gg3fnmeJX7kVbM-wiJZLeYyW9pSjob5QKQs9fof3v7amYG0xw7EhCvsVOER4nutEWYERm-O1SaGhTpltZ8NFAjotvVLhFt2Qc43ztySw",
+        "width" : 1500
+      },
+      {
+        "height" : 933,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/114484976805955148996/photos\"\u003eHilton Newark Airport\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAC0xbdwxWLCL0qZdkrJt0Hpsav3Vl06wMex07hbn8tleZY0DStKP-shmWCf8oo-S6kvbH4tmMX4LB2cYCWWqtmzOeUtJ83qOZjrvSWDCGSGiyFlQZojyhNrKwjeeUUUEEEhD1MZokgySBVPEhnsdZLX07GhTFUy1hLZ6A1BH6fdDMbUfBWed2tg",
+        "width" : 1400
+      },
+      {
+        "height" : 3036,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/111571983583811656426/photos\"\u003eJason Tang\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAApF0AsQzHxc4huXGpCA2pEO7gIJJngrJJGfqmBVAsL36o4KsO8PFxluGK6nRkHoWxM_NgQIwJLYfvF2fr51EAU2Wlhk3YljzXcEHeFPRbz5EgVQ20oEjlmhMTgWdzIwAyEhCw8ohxgq8_YBYNc7HlOrCLGhTemtaShUuAxNrSs4i0UJE57toL0Q",
+        "width" : 4048
+      }
+    ],
+    "place_id" : "ChIJQ_SvvOpSwokRffhKuMFRj9Q",
+    "rating" : 3.9,
+    "reference" : "CmRSAAAAKSTPMrna7IrNiRjiOZZZ5HkTLf5njY0LdEPBE_sM1Ia2urMCf2ddg7fO0fqj-kWRW4bw7psuaYzUSjUw4oKcDDWLh8bcNcBSGJ0Z3QlTuDlNb85iQJKsc9eCfxeL8_ZWEhDXEoA1m0722L-AvccQR1c7GhQlIIzIKagYjIoLowAYTR9XiYfanQ",
+    "reviews" : [
+      {
+        "author_name" : "Nagham Aukra",
+        "author_url" : "https://www.google.com/maps/contrib/103677989715735527712/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh4.googleusercontent.com/-aaVxwKsrego/AAAAAAAAAAI/AAAAAAAAW6Y/LNyxxsSZk0Y/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+        "rating" : 5,
+        "relative_time_description" : "a month ago",
+        "text" : "Didn't stay at the hotel but used their garage for long term parking when I was traveling. Kept my car secured in underground garage and was very affordable. The reception desk staff were super friendly. They also have a shuttle to and from Newark airport running every 20 minutes.",
+        "time" : 1516417366
+      },
+      {
+        "author_name" : "Craig Nixon",
+        "author_url" : "https://www.google.com/maps/contrib/106814239327710780311/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh3.googleusercontent.com/-ga62b_bcrfU/AAAAAAAAAAI/AAAAAAAADHM/xNp5ibP8IHc/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+        "rating" : 4,
+        "relative_time_description" : "2 months ago",
+        "text" : "Good airport hotel. As with most hotels very close to the airport, there aren't many food options. That's where a good hotel bar/restaurant comes in handy. Their bar serves a GREAT burger. Beers were cold... What more do you want. Plus the rooms were comfy with slight styling queues to modernized them. Good stay.",
+        "time" : 1513283525
+      },
+      {
+        "author_name" : "Claire Lemiski",
+        "author_url" : "https://www.google.com/maps/contrib/115886754988654682551/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh6.googleusercontent.com/-ldS9Mm_inKk/AAAAAAAAAAI/AAAAAAAAEZ4/4rcw1vXaj8s/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+        "rating" : 4,
+        "relative_time_description" : "3 weeks ago",
+        "text" : "Stay here semi-regularly for work. Rooms are clean. Staff are friendly. Great breakfast buffet with both hot and cold foods. Shuttle to airport comes every 20 min and from there it is easy to take the train downtown.",
+        "time" : 1517703645
+      },
+      {
+        "author_name" : "Kenneth Wong",
+        "author_url" : "https://www.google.com/maps/contrib/116396021024611789723/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh3.googleusercontent.com/-JRaTDC6lqEQ/AAAAAAAAAAI/AAAAAAAACB0/PUUJSBQewrg/s128-c0x00000000-cc-rp-mo-ba6/photo.jpg",
+        "rating" : 4,
+        "relative_time_description" : "2 months ago",
+        "text" : "12/15 update:\nStill great place to stay. Beds are comfortable.\n\n10/5/17 Update:\nRooms on the 10th floor for Hilton honors members seem to be refreshed. Beds are comfortable. Gym is pretty good with new dumbbell sets. Treadmills are very good. Pool looked nice and well maintained. Direct TV had 40 channels to choose from.\n\nRestaurant has good craft beer options. Burger was top notch. \n\nOriginal post:\nRooms are a bit old and could use some freshening up.\n\nThey do have a decent restaurant on site.",
+        "time" : 1513337094
+      },
+      {
+        "author_name" : "Nathan Turner",
+        "author_url" : "https://www.google.com/maps/contrib/113897230968704464509/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh5.googleusercontent.com/-80t2xrK0Mvo/AAAAAAAAAAI/AAAAAAAAAA8/9IpcDVfBomM/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+        "rating" : 5,
+        "relative_time_description" : "2 weeks ago",
+        "text" : "Wonderful staff! They were very attentive and helpful in every way. Great location and easy to get to make this a great hotel.",
+        "time" : 1518410045
+      }
+    ],
+    "scope" : "GOOGLE",
+    "types" : [ "parking", "lodging", "point_of_interest", "establishment" ],
+    "url" : "https://maps.google.com/?cid=15316550750172805245",
+    "utc_offset" : -300,
+    "vicinity" : "1170 Spring Street, Elizabeth",
+    "website" : "http://www3.hilton.com/en/hotels/new-jersey/hilton-newark-airport-EWRAHHH/index.html"
+  },
+  "status" : "OK"
+}

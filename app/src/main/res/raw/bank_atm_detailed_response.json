@@ -1,0 +1,206 @@
+{
+  "html_attributions" : [],
+  "result" : {
+    "address_components" : [
+      {
+        "long_name" : "1520",
+        "short_name" : "1520",
+        "types" : [ "street_number" ]
+      },
+      {
+        "long_name" : "U.S. 206",
+        "short_name" : "US-206",
+        "types" : [ "route" ]
+      },
+      {
+        "long_name" : "Bedminster Township",
+        "short_name" : "Bedminster Township",
+        "types" : [ "locality", "political" ]
+      },
+      {
+        "long_name" : "Somerset County",
+        "short_name" : "Somerset County",
+        "types" : [ "administrative_area_level_2", "political" ]
+      },
+      {
+        "long_name" : "New Jersey",
+        "short_name" : "NJ",
+        "types" : [ "administrative_area_level_1", "political" ]
+      },
+      {
+        "long_name" : "United States",
+        "short_name" : "US",
+        "types" : [ "country", "political" ]
+      },
+      {
+        "long_name" : "07921",
+        "short_name" : "07921",
+        "types" : [ "postal_code" ]
+      },
+      {
+        "long_name" : "2566",
+        "short_name" : "2566",
+        "types" : [ "postal_code_suffix" ]
+      }
+    ],
+    "adr_address" : "\u003cspan class=\"street-address\"\u003e1520 US-206\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBedminster Township\u003c/span\u003e, \u003cspan class=\"region\"\u003eNJ\u003c/span\u003e \u003cspan class=\"postal-code\"\u003e07921-2566\u003c/span\u003e, \u003cspan class=\"country-name\"\u003eUSA\u003c/span\u003e",
+    "formatted_address" : "1520 US-206, Bedminster Township, NJ 07921, USA",
+    "formatted_phone_number" : "(908) 860-7237",
+    "geometry" : {
+      "location" : {
+        "lat" : 40.6798895,
+        "lng" : -74.6497634
+      },
+      "viewport" : {
+        "northeast" : {
+          "lat" : 40.6812835802915,
+          "lng" : -74.6484553697085
+        },
+        "southwest" : {
+          "lat" : 40.6785856197085,
+          "lng" : -74.65115333029151
+        }
+      }
+    },
+    "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+    "id" : "02ba59ade24098a55b10f6d10e926dee0cc52e65",
+    "international_phone_number" : "+1 908-860-7237",
+    "name" : "Affinity Federal Credit Union",
+    "opening_hours" : {
+      "open_now" : true,
+      "periods" : [
+        {
+          "close" : {
+            "day" : 1,
+            "time" : "1700"
+          },
+          "open" : {
+            "day" : 1,
+            "time" : "0900"
+          }
+        },
+        {
+          "close" : {
+            "day" : 2,
+            "time" : "1700"
+          },
+          "open" : {
+            "day" : 2,
+            "time" : "0900"
+          }
+        },
+        {
+          "close" : {
+            "day" : 3,
+            "time" : "1700"
+          },
+          "open" : {
+            "day" : 3,
+            "time" : "0900"
+          }
+        },
+        {
+          "close" : {
+            "day" : 4,
+            "time" : "1700"
+          },
+          "open" : {
+            "day" : 4,
+            "time" : "0900"
+          }
+        },
+        {
+          "close" : {
+            "day" : 5,
+            "time" : "1700"
+          },
+          "open" : {
+            "day" : 5,
+            "time" : "0900"
+          }
+        },
+        {
+          "close" : {
+            "day" : 6,
+            "time" : "1300"
+          },
+          "open" : {
+            "day" : 6,
+            "time" : "0900"
+          }
+        }
+      ],
+      "weekday_text" : [
+        "Monday: 9:00 AM – 5:00 PM",
+        "Tuesday: 9:00 AM – 5:00 PM",
+        "Wednesday: 9:00 AM – 5:00 PM",
+        "Thursday: 9:00 AM – 5:00 PM",
+        "Friday: 9:00 AM – 5:00 PM",
+        "Saturday: 9:00 AM – 1:00 PM",
+        "Sunday: Closed"
+      ]
+    },
+    "place_id" : "ChIJt_nLWmeWw4kRSX5jNXqcy_o",
+    "rating" : 4.6,
+    "reference" : "CmRSAAAALaWQnUPjtDp18e7SUKkE4MqH5ifUMAqQy9LAzegJJWgMhREzJZ_JqbU2Kn2FrKXw5bqcN-A9plOBMyENdY4e9Tvw2KmRedXec0xFjTE3_8luswHnYOCclo7D9TkLkO8qEhDWor37SNWAsVJIe0qfBG0DGhTTBwvMzppH2djOaPolB8lnWVUViQ",
+    "reviews" : [
+      {
+        "author_name" : "Tracey Wynn",
+        "author_url" : "https://www.google.com/maps/contrib/113781137858330143500/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh3.googleusercontent.com/-vqBv8-tqUi0/AAAAAAAAAAI/AAAAAAAAByE/GLIP3yrHNfw/s128-c0x00000000-cc-rp-mo/photo.jpg",
+        "rating" : 4,
+        "relative_time_description" : "3 weeks ago",
+        "text" : "The New Brunswick office is very polite and efficient. The parking is disgusting. The hours need to include a late night somewhere in the area.",
+        "time" : 1517419517
+      },
+      {
+        "author_name" : "Jack B",
+        "author_url" : "https://www.google.com/maps/contrib/110778406057671975685/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh5.googleusercontent.com/-vl0MWn4d0hE/AAAAAAAAAAI/AAAAAAAAANI/qmHgMe0zZF0/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+        "rating" : 5,
+        "relative_time_description" : "7 months ago",
+        "text" : "The staff here is very helpful, knowledgeable and polite. I can't recommend the bedminster Affinity branch enough!",
+        "time" : 1500644947
+      },
+      {
+        "author_name" : "Joe Albertini",
+        "author_url" : "https://www.google.com/maps/contrib/103000543878482263132/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh5.googleusercontent.com/-beR4WQFU5uQ/AAAAAAAAAAI/AAAAAAAAAAA/AGi4gfwzGKct8acbuyYhfIn8kcRJWTGz4A/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+        "rating" : 4,
+        "relative_time_description" : "a year ago",
+        "text" : "Good local bank that is getting better all the time. I just wish they had better commercials and marketing because it makes you embarrassed to be a member.",
+        "time" : 1465067913
+      },
+      {
+        "author_name" : "Davis M",
+        "author_url" : "https://www.google.com/maps/contrib/114318733595375266839/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh4.googleusercontent.com/-IilNoJYURJs/AAAAAAAAAAI/AAAAAAAAAAA/AGi4gfwusXkhgVaH2GRag0e4HRjnGO-IpA/s128-c0x00000000-cc-rp-mo/photo.jpg",
+        "rating" : 5,
+        "relative_time_description" : "2 weeks ago",
+        "text" : "",
+        "time" : 1518045910
+      },
+      {
+        "author_name" : "franchesca lucas",
+        "author_url" : "https://www.google.com/maps/contrib/103388545662911134707/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh3.googleusercontent.com/-YEjWqV4NK7A/AAAAAAAAAAI/AAAAAAAACsk/q-tIQ4yOhio/s128-c0x00000000-cc-rp-mo/photo.jpg",
+        "rating" : 5,
+        "relative_time_description" : "a year ago",
+        "text" : "",
+        "time" : 1479232128
+      }
+    ],
+    "scope" : "GOOGLE",
+    "types" : [ "atm", "finance", "point_of_interest", "establishment" ],
+    "url" : "https://maps.google.com/?cid=18071709978449903177",
+    "utc_offset" : -300,
+    "vicinity" : "1520 U.S. 206, Bedminster Township",
+    "website" : "https://www.affinityfcu.com/"
+  },
+  "status" : "OK"
+}

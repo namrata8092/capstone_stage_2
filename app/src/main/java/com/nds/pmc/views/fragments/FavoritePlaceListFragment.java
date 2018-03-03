@@ -166,7 +166,7 @@ public class FavoritePlaceListFragment extends Fragment implements SharedPrefere
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent detailIntent = new Intent();
         detailIntent.setAction(Constants.ACTION_SEARCH_RESULT_DETAIL);
-        detailIntent.putExtra(Constants.PLACE_DETAIL_BUNDLE_KEY, mFavoritePlaceList.get(position));
+        detailIntent.putExtra(Constants.PLACE_BUNDLE_KEY, mFavoritePlaceList.get(position));
         startActivity(detailIntent);
     }
 

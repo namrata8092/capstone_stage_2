@@ -68,6 +68,7 @@
     <string name="zero_search_result">Sorry there is no result found for this category.</string>
     <string name="error_location_off_no_saved_location">No location data found, please try again with location on.</string>
     <string name="error_location_permission_denied">Location permission is denied</string>
+    <string name="error_call_permission_denied">Call permission is denied</string>
     <string name="error_detail_result">Sorry there is no detail available for this place.</string>
     <string name="open_now">OPEN</string>
     <string name="close_now">CLOSE</string>
@@ -91,4 +92,7 @@
     <string name="share_msg" formatted="true">Install this cool application: https://play.google.com/store/apps/details?id=%1s</string>
     <string name="no_sharing_app">No application to support sharing functionality.</string>
     <string name="no_favorite">No favorite place or category found.</string>
+    <string name="no_application_error">No application found to handle this action.</string>
+    <string name="reviews">Reviews</string>
 </resources>
+

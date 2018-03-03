@@ -1,7 +1,6 @@
 package com.nds.pmc.views.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,4 +71,6 @@ public class SearchResultListAdapter extends RecyclerView.Adapter<SearchResultLi
             mClickListener.onItemClick(null, v, getAdapterPosition(), v.getId());
         }
     }
+
+
 }

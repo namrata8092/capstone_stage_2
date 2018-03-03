@@ -1,0 +1,274 @@
+{
+  "html_attributions" : [],
+  "result" : {
+    "address_components" : [
+      {
+        "long_name" : "452",
+        "short_name" : "452",
+        "types" : [ "street_number" ]
+      },
+      {
+        "long_name" : "Union Avenue",
+        "short_name" : "Union Ave",
+        "types" : [ "route" ]
+      },
+      {
+        "long_name" : "Bridgewater",
+        "short_name" : "Bridgewater",
+        "types" : [ "locality", "political" ]
+      },
+      {
+        "long_name" : "Somerset County",
+        "short_name" : "Somerset County",
+        "types" : [ "administrative_area_level_2", "political" ]
+      },
+      {
+        "long_name" : "New Jersey",
+        "short_name" : "NJ",
+        "types" : [ "administrative_area_level_1", "political" ]
+      },
+      {
+        "long_name" : "United States",
+        "short_name" : "US",
+        "types" : [ "country", "political" ]
+      },
+      {
+        "long_name" : "08807",
+        "short_name" : "08807",
+        "types" : [ "postal_code" ]
+      },
+      {
+        "long_name" : "3171",
+        "short_name" : "3171",
+        "types" : [ "postal_code_suffix" ]
+      }
+    ],
+    "adr_address" : "\u003cspan class=\"street-address\"\u003e452 Union Ave\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBridgewater\u003c/span\u003e, \u003cspan class=\"region\"\u003eNJ\u003c/span\u003e \u003cspan class=\"postal-code\"\u003e08807-3171\u003c/span\u003e, \u003cspan class=\"country-name\"\u003eUSA\u003c/span\u003e",
+    "formatted_address" : "452 Union Ave, Bridgewater, NJ 08807, USA",
+    "formatted_phone_number" : "(908) 927-9982",
+    "geometry" : {
+      "location" : {
+        "lat" : 40.5690312,
+        "lng" : -74.5755346
+      },
+      "viewport" : {
+        "northeast" : {
+          "lat" : 40.5705659802915,
+          "lng" : -74.57415366970849
+        },
+        "southwest" : {
+          "lat" : 40.5678680197085,
+          "lng" : -74.57685163029151
+        }
+      }
+    },
+    "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bank_dollar-71.png",
+    "id" : "090e144a037c64f26593ce28fc57d5070afaef36",
+    "international_phone_number" : "+1 908-927-9982",
+    "name" : "TD Bank",
+    "opening_hours" : {
+      "open_now" : true,
+      "periods" : [
+        {
+          "close" : {
+            "day" : 0,
+            "time" : "1500"
+          },
+          "open" : {
+            "day" : 0,
+            "time" : "1100"
+          }
+        },
+        {
+          "close" : {
+            "day" : 1,
+            "time" : "1700"
+          },
+          "open" : {
+            "day" : 1,
+            "time" : "0830"
+          }
+        },
+        {
+          "close" : {
+            "day" : 2,
+            "time" : "1700"
+          },
+          "open" : {
+            "day" : 2,
+            "time" : "0830"
+          }
+        },
+        {
+          "close" : {
+            "day" : 3,
+            "time" : "1700"
+          },
+          "open" : {
+            "day" : 3,
+            "time" : "0830"
+          }
+        },
+        {
+          "close" : {
+            "day" : 4,
+            "time" : "1900"
+          },
+          "open" : {
+            "day" : 4,
+            "time" : "0830"
+          }
+        },
+        {
+          "close" : {
+            "day" : 5,
+            "time" : "2000"
+          },
+          "open" : {
+            "day" : 5,
+            "time" : "0830"
+          }
+        },
+        {
+          "close" : {
+            "day" : 6,
+            "time" : "1500"
+          },
+          "open" : {
+            "day" : 6,
+            "time" : "0900"
+          }
+        }
+      ],
+      "weekday_text" : [
+        "Monday: 8:30 AM – 5:00 PM",
+        "Tuesday: 8:30 AM – 5:00 PM",
+        "Wednesday: 8:30 AM – 5:00 PM",
+        "Thursday: 8:30 AM – 7:00 PM",
+        "Friday: 8:30 AM – 8:00 PM",
+        "Saturday: 9:00 AM – 3:00 PM",
+        "Sunday: 11:00 AM – 3:00 PM"
+      ]
+    },
+    "photos" : [
+      {
+        "height" : 731,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/115507822679372745807/photos\"\u003eWilliam Kerwin\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAn1vQYkgPshqOJ_XcdvHKFUhWWqXtzrtECr58omeysNyP3xg8u-U75t0zhHgG3SF9LD57qNqYXRc-yDaVH0IUyKZid8uoF4u98fZsx6SNdkBvX6eUzVZE19FqOVMLM-_1EhAAbWMxb-ITLw3GM1a4eh-UGhQtq1fYqx8jHD5XhU178pzur54Rmw",
+        "width" : 966
+      },
+      {
+        "height" : 4032,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/100977787671095852487/photos\"\u003eBekzod Ahmedov\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAA4MQGxjqq3tcuDuGsHq5eDQlAXn5iCSODFjYHkF6WoNPdPmQULV80hb73hoGrSnvdZZZ4pW8U3XZKVKIqGR8fqQBTRll_kPUoZ2bFZ0sL2HV2t-2lRE5h79EDOalD5xU4EhA9TZEEoZsKBoW4PiioTCqtGhTPwOdrMbQin2UZCMLrxfLW4fuVFA",
+        "width" : 3024
+      },
+      {
+        "height" : 4032,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/100977787671095852487/photos\"\u003eBekzod Ahmedov\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAy61ArPlJgvmXEoutKtrOYVDIw8gSgv5LpTG-Rzwlscxi3y7AR3RxWiPuYgLHvv7wvAcJLZudJk0uKxav5laZml29mB9lG97STDgrwiNvRfRIMxI_oUQ3DqNpyyWK42hCEhAer6_POQQa0PRwBXf9Uy1dGhSrZOPG5AXTioI_BQJApBCBQjRNlw",
+        "width" : 3024
+      },
+      {
+        "height" : 4032,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/100977787671095852487/photos\"\u003eBekzod Ahmedov\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAg4X03tMYiUNeNHh0gdfWFktUUrUkSqMmW6ogaxkQNX8bVHh5cj1fcLuCFEHh1Lf8QUY42TY9N61WlrhDIYaf_LYq7tJ-YeEYiy6CrV2IDE2REwlgTGkQUcYSMznIghS4EhBExPCSVRbvCey3UXOffqtqGhSh9K5H3hexv1z-RdXFl_v28kv_XA",
+        "width" : 3024
+      },
+      {
+        "height" : 3401,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/100977787671095852487/photos\"\u003eBekzod Ahmedov\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAoJxLIMGmcgBNXtDvD_-8D8z9tKf_EfzASaoLApJ892agQECQXeyst4T9gdTPJOmOTheGsQTrNWmwBJqLoez_KkRBLCniT4XSAoyRTZ-pu3eHVVcbKvJIMhgbfGrLcHrlEhCzEl29NR64M5MCuWxI-jJRGhTDOEvDCkzlSOzUkEyMZ-BpjA2DHw",
+        "width" : 2551
+      },
+      {
+        "height" : 4032,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/100977787671095852487/photos\"\u003eBekzod Ahmedov\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAxAxpjCrJKA67S5CJz_e4xddEa1PN46rZcHAKw302ojkJMwo_n6Vq8baO3NafLYmQ1mANgPSic93BEyuwDnM16Bqeak7PRSRltGNGK8IfZb8OnwoUrpWZop0P5HkyivBnEhDWBYKzDWhhsC_O08ocGd4bGhSkodF3rGHi61d4G2EUVTVuIQd-BA",
+        "width" : 3024
+      },
+      {
+        "height" : 840,
+        "html_attributions" : [
+          "\u003ca href=\"https://maps.google.com/maps/contrib/101659608787036095705/photos\"\u003eTD Bank\u003c/a\u003e"
+        ],
+        "photo_reference" : "CmRaAAAAr_j9SyI1EZhwSBUfhnSRoxzVyMQsMFodXmFbGUfl5cwJ5d7HjGWpSVGztHvmGgyV-0opXu9z8LfvB-yLaPDQ1x7TQRV6Xlv7HELYMa_aXiFQzBIy0nLNizDcbloNQWf3EhALcGdFJsMzO8fuQzwBlWqcGhQ2OX6CJowGOjNXZdFYb81PAXoZ1Q",
+        "width" : 840
+      }
+    ],
+    "place_id" : "ChIJo8hV9PG_w4kRJy_RU-JWjxA",
+    "rating" : 2.6,
+    "reference" : "CmRRAAAA2y1idZgoZwK3QNxJcnixlIgH6pvXZbMkGNDMGfpQ4QLm-CrU6RaSXRgJDegZonkVHa5fceSIGS4tTU28Y43AbCkIXrqoHygxVYrEvsdNCVrH3YfthMFYaYQs17VOlCDpEhAEFx0UOvXWNIp5j4o5UmveGhQ-DrrlO2E8a-y47gBER9--U4YcLw",
+    "reviews" : [
+      {
+        "author_name" : "Eileen Schroeder",
+        "author_url" : "https://www.google.com/maps/contrib/105138812977219335374/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh4.googleusercontent.com/-ZQuElyGi4Rg/AAAAAAAAAAI/AAAAAAAAAAA/ACSILjUghMl97OSN-rH9htrK2-fUyUm-Iw/s128-c0x00000000-cc-rp-mo/photo.jpg",
+        "rating" : 3,
+        "relative_time_description" : "a year ago",
+        "text" : "I like the bank for there hrs! The tellers are great. The thing that really ticked me off was when they did away with the end lane. Which was the only drive up lane my truck would fit in to put in a drive up ATM!!! They already have an ATM inside the front door before you go in the lobby. Why do they need another? Now I can't use the drive up windows at all when the lobby closes because people complained about having to get out of their cars to use the ATM. They should've put the drive up ATM in a middle lane so bigger vehicles could use the drive up. ",
+        "time" : 1486210940
+      },
+      {
+        "author_name" : "waratah234",
+        "author_url" : "https://www.google.com/maps/contrib/110918801037224043476/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh5.googleusercontent.com/-9THyzIQAkMY/AAAAAAAAAAI/AAAAAAAAAAA/ACSILjW0W5P2nRsX0T2J-vn3Zkqy7VelGA/s128-c0x00000000-cc-rp-mo/photo.jpg",
+        "rating" : 1,
+        "relative_time_description" : "6 months ago",
+        "text" : "Beware the weekend staff behind the counter. They acted a little too cavalier handling cash and were quick to dismiss calculating mistakes. ASK FOR A RECEIPT.",
+        "time" : 1502648086
+      },
+      {
+        "author_name" : "Eileen H",
+        "author_url" : "https://www.google.com/maps/contrib/110597775248510174634/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh4.googleusercontent.com/-0Dd-Bz3yoIU/AAAAAAAAAAI/AAAAAAAANRM/oPho2MgqBhU/s128-c0x00000000-cc-rp-mo/photo.jpg",
+        "rating" : 5,
+        "relative_time_description" : "a year ago",
+        "text" : "Was at the Bridgewater,  NJ branch tonight and the manager there was so sweet! She went out of her way to assist me. This review can't express the gratitude I'm feeling!",
+        "time" : 1479865040
+      },
+      {
+        "author_name" : "Melissa Kammerer",
+        "author_url" : "https://www.google.com/maps/contrib/107996703279162845333/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh5.googleusercontent.com/-UJnaqk4_IaY/AAAAAAAAAAI/AAAAAAAAAD8/gdZBoJGCYno/s128-c0x00000000-cc-rp-mo/photo.jpg",
+        "rating" : 1,
+        "relative_time_description" : "a year ago",
+        "text" : "How come no matter what time of the day I come to the drive thru ATM I can never deposit cash into my account????",
+        "time" : 1478801694
+      },
+      {
+        "author_name" : "Tom Manf's",
+        "author_url" : "https://www.google.com/maps/contrib/107310784804409009330/reviews",
+        "language" : "en",
+        "profile_photo_url" : "https://lh4.googleusercontent.com/-Vv5bGys6E_w/AAAAAAAAAAI/AAAAAAAAQnI/lUI9A7mz9zM/s128-c0x00000000-cc-rp-mo/photo.jpg",
+        "rating" : 2,
+        "relative_time_description" : "2 years ago",
+        "text" : "I LIKE the fact that they are open sundays ..... thats where the good ends ..... ive made deposits where the money didnt go into my account right away, until i checked and complained they told me the teller wrote the wrong account #'s on the deposit, its happened a few times. You shouldnt need to have to watch a bank so closely. ",
+        "time" : 1433368322
+      }
+    ],
+    "scope" : "GOOGLE",
+    "types" : [ "bank", "atm", "finance", "point_of_interest", "establishment" ],
+    "url" : "https://maps.google.com/?cid=1193267956345286439",
+    "utc_offset" : -300,
+    "vicinity" : "452 Union Avenue, Bridgewater",
+    "website" : "https://www.tdbank.com/net/absearch/LocationDetails.aspx?branchID=40256"
+  },
+  "status" : "OK"
+}

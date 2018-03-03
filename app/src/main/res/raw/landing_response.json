@@ -1,0 +1,654 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CqQCHgEAAMC6lznKStz5JRjkGiDYxX8pG0iALAAPjt3KEJFB-BCO3qqdqe0RJhcrtu6GcnS60v0-IY3K8Bn-hCUAfL-FmyeDdjl6IDxnFcnJsT6JBxGiEQT2-WTBigRYYOyJfon5aTgrJRujatn2VuEBC1RemD7VEnsg0idvIJ0kH4DRWagfLv_EWoGDEMds1aQhHENDXjiNDS9ZRYK2p349NO-wUd0be-PraVbwO-c4xL-UAEsoPrFDXLGIRFndeEWosILquLQ3Qs9pODWu5LWfBU81n87MZBiu6fcbCzEStJm1rEOkrkj5I4HAD3wMhUZFJIfDq_3AsUUqSqfjpJ_zTpJrhUdVOR3-dyI5knemvClpBNBWCp6ZNJC9z53CMiNu4hqA8hIQ_AObIXaPMXGkA_AlXtk-7hoUfgTGm0CtKRsUfplziAWKDkHmDiw",
+  "results": [
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.567986,
+          "lng": -74.681282
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5695197802915,
+            "lng": -74.68004626970848
+          },
+          "southwest": {
+            "lat": 40.5668218197085,
+            "lng": -74.68274423029149
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "06cfa18816ec9cedec06347835d5906e218ce73c",
+      "name": "Trans-Bridge Bus, Branchburg Park and Ride",
+      "place_id": "ChIJQxdyzFbrw4kRK8VJxFDoTpE",
+      "rating": 4,
+      "reference": "CmRSAAAAodi0nPOxxyfBLA9SjuW9Va6wyyP-6mUcDmvEmQlnmo6ROQ4leoTNz4xc9YFjv_yIXUAKSeaeIc1BB2rOEeEHvJdBfmImqvN4qR0qMCc0Z4yCIWixvmvNN7qnLarGglltEhBnZVf1Akag4APpuksdw2VKGhSZAYdp3X-tPSDBkV99G3WZ_vOs1Q",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "1077 U.S. 202, Branchburg"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.5263026,
+          "lng": -74.46119639999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5277768802915,
+            "lng": -74.45979236970848
+          },
+          "southwest": {
+            "lat": 40.5250789197085,
+            "lng": -74.46249033029149
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "3cd20fbbf7835fb28da59f77463533952eb9811d",
+      "name": "Rutgers Science Bus Parking",
+      "place_id": "ChIJgwu2HXPHw4kRrYE1_UYCDIU",
+      "reference": "CmRSAAAAYYqIfMt9CvRilG3c9H258IBVOdG-0Xg_YbzoyP9qeJghzkNCYCDSX6dBhtR6AS6RhjqCWEwIr8EczzKvCUsIE946CZYNY7XygC1pQf2mjcyGHFFvh0-fC9-x12nQX5KpEhAdUxtfhmBrFItz2_VIxWfFGhQ-sK38PcsltdX1PC2KMB11TEFUCA",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "183 Davidson Road, Piscataway Township"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.678829,
+          "lng": -74.412401
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.6801779802915,
+            "lng": -74.4110520197085
+          },
+          "southwest": {
+            "lat": 40.6774800197085,
+            "lng": -74.41374998029151
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "e5cb41ccaa49b50e4eaf3efdff14b842a2ad6209",
+      "name": "Summit Medical Group",
+      "photos": [
+        {
+          "height": 1836,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110348227580065280474/photos\">Illsoo Kim</a>"
+          ],
+          "photo_reference": "CmRaAAAA4i0ERNSpoOQ9XNCBc_JwDpJ6o-n_AMX11p-m-gN4Nmqb6eNq44j10DP0VkaYb8tKYUip9kCpuC7VqwOvmv5YY8I8ZpSTqvetZrggUku9lC1MWr-3ezIeGNxv67Cq-Z7uEhCCLLIw7NhCiOD9D5T6dXz0GhSZoFtfNq4fA8T1lf_5nwLt7fEHDA",
+          "width": 3264
+        }
+      ],
+      "place_id": "ChIJH2uGMaK6w4kRJNz7_3yLaEU",
+      "rating": 5,
+      "reference": "CmRRAAAAwRy3OZoOIYhr6JADjcU1MFaedwFKNOukRo1CmxdIPIKYJ9_aIv58ejlkWC-PJXjXq77HYx9o73zgEHBjoLOqmmP03fCIdgoRQsSw0oBv9eiJG90pYvZ0mQTn7wptJ81kEhBRnec7-8yMesXo-dH6ictPGhRT42hSs51xTCP93X6ElDupoWMxHg",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.55772,
+          "lng": -74.351063
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.55906898029149,
+            "lng": -74.34971401970849
+          },
+          "southwest": {
+            "lat": 40.55637101970849,
+            "lng": -74.3524119802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "1d1cf22650c81ab6d3dc315b2fe9b798a9c59a65",
+      "name": "JFK Medical Center",
+      "place_id": "ChIJVZorQU62w4kRZvAWg4X4r58",
+      "rating": 1,
+      "reference": "CmRSAAAAaBPemqt3YM09BK_eWgk38viWss9pTKKp3hcsiIvl7NpKHKGHGiXT8GxKtBdeejb5fYf7GISoAnoqVrCqgSyOCmx7EDD6y21tynrZYdHhqYMPdDVvdWM4x7s-aAy4NTxiEhA4rW0AVlSk5GsheE7q-2CtGhR1_eAQeIxd0VObolpzhH2DF7eA9w",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.557887,
+          "lng": -74.3507084
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5592359802915,
+            "lng": -74.34935941970849
+          },
+          "southwest": {
+            "lat": 40.5565380197085,
+            "lng": -74.3520573802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "1228c90d41003a8a4108ce63f7633df083f0d642",
+      "name": "JFK Medical Center",
+      "place_id": "ChIJyZIaOE62w4kRphUMDupwW1c",
+      "rating": 5,
+      "reference": "CmRRAAAAjcQwYQVROmNzNL-Rb1reH2SXkRSzSpHOGFkKFVP1p17cTd4FbYH7bF73PMKssf9gZjUTgq8JwUUh5cbdU9oeXkuNUXl3f4WMkYW2FdyBqsYc3v80b-260MCFrQwzojS_EhAue9VMOe6SwpbBfmk-a7uAGhSjrECb4KJtbxVxxVRav-633CtVhA",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.75853,
+          "lng": -74.414823
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.7598789802915,
+            "lng": -74.4134740197085
+          },
+          "southwest": {
+            "lat": 40.7571810197085,
+            "lng": -74.41617198029151
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "c71c5eb8dca9e3edbcbdef1be291d55b2dc62e4f",
+      "name": "Rt-124 at Central Ave",
+      "place_id": "ChIJEUsl__Klw4kRTjOKommAdn8",
+      "rating": 5,
+      "reference": "CmRRAAAAU3Vw2B0R3dv7RJmzqRyvMD0bmR3awICplHwUY3bLfHqv27lzRmbXY-cOqdjA_D7ENrJPv28xMrblI6S9OZpvO8o_Npt_i35TpZETXMyRF-1hvCNE2X2xf5SZ0XAvnR8gEhDkOLsyCqn7NQ2WIpFCwPG2GhRy-V7WqcBwLWqw8UcrG5avqwmNnw",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.53035819999999,
+          "lng": -74.3212377
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5317410302915,
+            "lng": -74.3198748697085
+          },
+          "southwest": {
+            "lat": 40.5290430697085,
+            "lng": -74.3225728302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "87caea082efb740903979ae8c51fc82756214da2",
+      "name": "NJ Transit Bus Stop for 813",
+      "place_id": "ChIJt3LCggS2w4kRloA4jFtCMbI",
+      "rating": 3,
+      "reference": "CmRSAAAAAH6a2tZOjpTsNiuc3esI0TRx_hTkx2mEBOw6o8mwGKcywgtTC0P97uR35nx8bN5pkr3bf6g1HYujdq1w93bpjswB9ESiaokMx7c8JkpWQA0T5__lEG3ZZQi8Jh8D_hZzEhAlTvM0NP22_i0WxyQbsEMxGhT1eE9CYBjUtkrz442S0eU2RpI9HQ",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "707 Amboy Avenue, Edison"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.47759039999999,
+          "lng": -74.3090773
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.4790880802915,
+            "lng": -74.30769221970849
+          },
+          "southwest": {
+            "lat": 40.4763901197085,
+            "lng": -74.31039018029149
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "c76f346a2754c6c61f55cc3cbabb34d05369116d",
+      "name": "Academy bus stop",
+      "photos": [
+        {
+          "height": 3120,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102420405458267460009/photos\">Jay Pipaliya</a>"
+          ],
+          "photo_reference": "CmRaAAAAcApACCKCDj8xGb-u20MdxIuMAYrFA_NfunmbKx-qkcJ9K96sRavdjxzmXuA4U8BlC9Ev7F9IpVdFEOmOH7lFpcF-rM2sa1Iz1voafwLtMe9mJXwefcNV_zoH45zT9eA-EhDPFP1T1svNZmxe2SsDpSu1GhQ7zhWjknlaloPtd48oMyhlFG0KiA",
+          "width": 4160
+        }
+      ],
+      "place_id": "ChIJb9hSYNbLw4kRKimeBOUBo5A",
+      "rating": 5,
+      "reference": "CmRSAAAA3S-SOprDHe1CYcVbe6L78I78sn7B8UE6MHomRuwV38ZKU67km4DImJ_zjwmbpBN9BWGdrxqNWkt6c0uTr5mUlEH8Hjcp9q_-1PFnrtHihaXSvGH1BFf49uWHK-XVEG6mEhDKftAHyaxCuI6g1FX_BM2BGhTj7SDvi0bwDo0Evr4SlXQT9NcPGQ",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "Main Street, Parlin"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.83238,
+          "lng": -74.516831
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.8337289802915,
+            "lng": -74.51548201970849
+          },
+          "southwest": {
+            "lat": 40.8310310197085,
+            "lng": -74.5181799802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "975abdd191eb0391d8f19d4d4f2bf02c214ef518",
+      "name": "Hill Complex Off Morris View Dr",
+      "place_id": "ChIJI798LNmgw4kRO-l0norwRqY",
+      "reference": "CmRSAAAAJ6V7RWVpnTQV09MJGjH1VLHyxkgwv9NIoDQT_RlPCy4ID-hQWnoUsq2l5AWc13j-TsKDEiHeusduYtfVWDQs-9ubzU7Hcc7LJ5XpcqQsGUCYjYl02TqqakH1aCpeebMFEhCxgvBk7s2Or7y0yKrtWntMGhRhwug5m3UcFfF4NT7uNf5HAGiQjw",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.57089800000001,
+          "lng": -74.619693
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.57224698029151,
+            "lng": -74.61834401970849
+          },
+          "southwest": {
+            "lat": 40.56954901970851,
+            "lng": -74.62104198029151
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "1163bbcc5a1a58d7234f4e384cb17558b084a4ee",
+      "name": "West End Ave at Mountain Ave",
+      "place_id": "ChIJHZBxKzSVw4kRF7mDb1T1bIU",
+      "reference": "CmRSAAAABHBH8Grtz6rKssflPHaF_YkyyK2uMkTDU81INTK6cK3cO_5KIqolLbxkGytzhoMpS8G-HXi6sS_nP6J-7x05_79o22vsW_y6I-nwhRVeepAsXDyQyTpndv0usL_OiIYPEhCQEnPLeIPPQFyHWliBr5SVGhS8PgjbJvr8Cb397FiclUS1gVJW-g",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.57075799999999,
+          "lng": -74.619632
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.57210698029149,
+            "lng": -74.61828301970849
+          },
+          "southwest": {
+            "lat": 40.56940901970849,
+            "lng": -74.6209809802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "6df2d98362c8d95607cb34aa5af165df5417f2d9",
+      "name": "West End Ave at Mountain Ave",
+      "place_id": "ChIJO4y_LDSVw4kRsBywLOYqZHw",
+      "reference": "CmRRAAAAIxEJKRqoN7psm1kbunQeXmaIoEnJigyFFqAYnCQkEmuPsctSv0rOezHaSmCIikM2oWSepS7vNq5PmUi8o-z85QTxc_IgNgvFPx8WTNT8Ob6BXV9j6ftOWyWHs8lINXR7EhATGfhLeHXBjj1GoixMApN1GhQVmNADCHySzKZFhlAEjM_WWbjJyA",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.567587,
+          "lng": -74.60985099999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.56893598029149,
+            "lng": -74.6085020197085
+          },
+          "southwest": {
+            "lat": 40.5662380197085,
+            "lng": -74.6111999802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "321a7e02e4d8190a187e992ba2ab61a59cde8ee8",
+      "name": "Main St at Grove St",
+      "place_id": "ChIJWxB2Y0yVw4kRxqVxw7xq36E",
+      "reference": "CmRSAAAAVMbT8tfMfCBwAY0I2MTgfCRj2dSZ3_aWbC_G8bikJsXVIPC6SjxR3f8qF3mbdZW666elYRPIsK5bqHRuNTNNPJf0aFgBYD5IA6go6a7WKxLb6xzjOWZvcW2PgKq4Iqr-EhBlM4ejG-MQEUQzME5oudTuGhQNZfumjyLiHa0leN54q4I4xIGXeQ",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.567138,
+          "lng": -74.60910299999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5684869802915,
+            "lng": -74.6077540197085
+          },
+          "southwest": {
+            "lat": 40.5657890197085,
+            "lng": -74.6104519802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "8b6e832a2c2702023f04e90af67ac0d5292666a3",
+      "name": "Main St at Grove St",
+      "place_id": "ChIJ4SGh9UyVw4kRfad3qjUl8Do",
+      "reference": "CmRRAAAAVb0eSq2LZNbcKS8qSTtHP6Qra8ytYzHBHWvnRLzKgNBJKfG5NvhvKftrwBmmY0GM9xDQJYZ5xH9JTGD0O9caF_q6GDD51fAuwIwWz3kO2sUWjiTVMxCo9LWRJclBkVQOEhCUAWK72l4VEtod38NP8aIWGhSaAZwkFg0kcMbHeXa_2yeBKkZV6w",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.56949700000001,
+          "lng": -74.602563
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5708459802915,
+            "lng": -74.60121401970851
+          },
+          "southwest": {
+            "lat": 40.5681480197085,
+            "lng": -74.60391198029151
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "12edc64b7d9127b950f778a25150786ed786e9bc",
+      "name": "N Gaston Ave at E Cliff St",
+      "place_id": "ChIJ6QzbmlGVw4kRkgtict3ksyc",
+      "reference": "CmRRAAAA5KpmlyUrnhYQ3WSOnNQoKEO2mtkW1GkI26ttTDjOS8IVRbirC4sEW9iklLWG-3-XZOyygmGvbCNpsZirEBVS-TWOMYCzh7TRB5BIt9m6HB1pICaLOkqY1l2R4RLo8HolEhDHkLvsekcRFM-88K6ZqxpcGhRCpVSGHeWiLSBDXNru5Dw0XxR3mA",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.569289,
+          "lng": -74.602492
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.57063798029149,
+            "lng": -74.60114301970849
+          },
+          "southwest": {
+            "lat": 40.56794001970849,
+            "lng": -74.60384098029151
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "72dee237bdd0aa3db201b8bc58c6ecdb8bd83ff2",
+      "name": "N Gaston Ave at E Cliff St",
+      "place_id": "ChIJyar5hFGVw4kROI3mF4s0el4",
+      "reference": "CmRRAAAAwJXx9v5ge58hgcZDSEsTGFFyfhRycHBKx27YQDFgdnypQod2oNWYzNthedC5lCIQJuKP5y75pK7FZGBg2yV0F4b1TV44RoTPc3Aiur8PaeZLNJs1TuocmsdnMFnVlaLyEhAv2Ql8iAVQ07MuJ2MOAZ3RGhQVjXUvqlQ2ABt0OQzLaAELVRrUUA",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.569467,
+          "lng": -74.57543199999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.57081598029149,
+            "lng": -74.5740830197085
+          },
+          "southwest": {
+            "lat": 40.56811801970849,
+            "lng": -74.5767809802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "ad80c35caee1e9c67f5b1ccca8246656215ff017",
+      "name": "Union Ave & Finderne Ave",
+      "place_id": "ChIJC2zVHPK_w4kR87cCeRheu7U",
+      "reference": "CmRSAAAA6LETPcBq609SYt9pIXpf6UQy-X8FhOWwn7WpkBZn7U7oVL6ZoIVw5esqN_GDBFgZ0ckyLwPn69WCqmpnjEz5JtIvflsc60XNSXBddcDswF8UNbSeJmIjlgtyZ7fA2c1OEhCYlbho4VsVRXqwnZHBg2LQGhRy3GR927xx43YqASh5d61ULY4PNA",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.569319,
+          "lng": -74.57537099999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5706679802915,
+            "lng": -74.5740220197085
+          },
+          "southwest": {
+            "lat": 40.5679700197085,
+            "lng": -74.5767199802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "ca480f67448a9622f3bce9c4713f425ce15e401a",
+      "name": "Union Ave at Finderne Ave",
+      "place_id": "ChIJx2L2HPK_w4kRPMPLvG0Q2gI",
+      "reference": "CmRRAAAA-3pOv3L5Vgg0w1EIHWSywuzW4Lukh_4BcXAVsXwVts4J1-0VPKNq6YBrAFY9pwmiN2Stm7zfxkhAjNKyPkDhG73dy_96P5XChaEnvYRuyZTOTLARwDOxYNohm_5bBn3_EhAdHxmEMZu8EtWjjBqCZiGKGhSWd8mcAcUo63yO0y1JeaMQOtZKVg",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.575359,
+          "lng": -74.551672
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.57670798029149,
+            "lng": -74.5503230197085
+          },
+          "southwest": {
+            "lat": 40.5740100197085,
+            "lng": -74.5530209802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "1ace7763f1d51c8019eca6fe184fdc1437319f7c",
+      "name": "Rt-22 at Thompson Ave#",
+      "place_id": "ChIJ00z6Np-_w4kRu05asEvYK3I",
+      "reference": "CmRRAAAAGsZx4_B67reiPrciq9qLqxwx9RTKw8nPPf7EL5tEy68c7kxY8FwSRUrCK4a_2Ju3ain-rlkA6KcqZiYwnMRPZkoZ-RtDKnlKeLb142_0zLJJtzaSv4-QH7LxfWMaPpQIEhAYyd1nF1VmjF6kwH7Pv57vGhTFghePY3Q757roT6lRfv0PlbecqA",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.57517,
+          "lng": -74.551153
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5765189802915,
+            "lng": -74.54980401970849
+          },
+          "southwest": {
+            "lat": 40.5738210197085,
+            "lng": -74.55250198029151
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "6d6e7e2243896d7627ed6b751b0aaa24a2e3a7bb",
+      "name": "Rt-22 at Thompson Ave#",
+      "place_id": "ChIJGyRZOZ-_w4kRCF4bjDmMalE",
+      "reference": "CmRRAAAAfvRQwFiR8CY9blIZfqt2Mg3A8mZ0aX2wHu7i-coA4el1Rywp0EjSEu9iEEeUs7qAe4FbiBo2Ct2Fnd-iPfH3MeidVBqJTzvOvbxp1BIKJk8xaFPgqqPb59nc648HIai_EhDI1oV4KUQnEXMjNhCIOJuiGhRFtRqy3eROzsI8TTIj9Q5G6icSGg",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 40.567968,
+          "lng": -74.55130299999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.5693169802915,
+            "lng": -74.5499540197085
+          },
+          "southwest": {
+            "lat": 40.5666190197085,
+            "lng": -74.5526519802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+      "id": "20f104d522fd9fb1e376a58294691a211a931df5",
+      "name": "Union Ave at Tea St",
+      "place_id": "ChIJ_S9zvZy_w4kRwt-UvbKkkOY",
+      "reference": "CmRSAAAAU6OOWbN57FO9ql9U_MTTdb7EYE_mqmqKZ7pW4_e0UmGPnoIoDphducJox6xwqsExOgCZgUWTL8g0wr8xEPqGg1KQHSDXbuP0CatmRBhxSVTIW1kQ7qsFzx1SLLosZv3kEhD9UzYg4lwMrhFmZyFyVqQfGhT_Cnq--Gxc-xcetRVP6EBZP25GYw",
+      "scope": "GOOGLE",
+      "types": [
+        "bus_station",
+        "transit_station",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "United States"
+    }
+  ],
+  "status": "OK"
+}

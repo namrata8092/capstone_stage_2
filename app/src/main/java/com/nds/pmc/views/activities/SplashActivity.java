@@ -104,7 +104,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
-            case Constants.REQ_PERMISSION: {
+            case Constants.REQ_LOCATION_PERMISSION: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     LogUtil.d(TAG, "PERMISSION_GRANTED");

@@ -132,7 +132,7 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
     private void displayDetailActivity(Place place) {
         Intent detailIntent = new Intent();
         detailIntent.setAction(Constants.ACTION_SEARCH_RESULT_DETAIL);
-        detailIntent.putExtra(Constants.PLACE_DETAIL_BUNDLE_KEY, place);
+        detailIntent.putExtra(Constants.PLACE_BUNDLE_KEY, place);
         startActivity(detailIntent);
     }
 }

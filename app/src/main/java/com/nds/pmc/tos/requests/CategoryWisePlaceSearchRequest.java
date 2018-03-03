@@ -8,13 +8,13 @@ import com.nds.pmc.common.Constants;
  * Created by Namrata on 11/9/2017.
  */
 
-public class RequestWithParameters {
+public class CategoryWisePlaceSearchRequest {
     private final String latitude;
     private final String longitude;
     private final String placeType;
     private final String apiKey;
 
-    public RequestWithParameters(String lat, String lon, String types, String key){
+    public CategoryWisePlaceSearchRequest(String lat, String lon, String types, String key){
         this.latitude = lat;
         this.longitude = lon;
         this.placeType = types;

@@ -8,11 +8,13 @@ import java.util.List;
  * Created by Namrata on 11/12/2017.
  */
 
-public class HourObject {
+public class OpeningHourObject {
     @SerializedName("open_now")
     private boolean openNow;
     @SerializedName("weekday_text")
     private List<String> weekdayText;
+    @SerializedName("periods")
+    private List<PeriodObject> periods;
 
     public boolean isOpenNow() {
         return openNow;
@@ -30,29 +32,40 @@ public class HourObject {
         this.weekdayText = weekdayText;
     }
 
+    public List<PeriodObject> getPeriods() {
+        return periods;
+    }
+
+    public void setPeriods(List<PeriodObject> periods) {
+        this.periods = periods;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        HourObject that = (HourObject) o;
+        OpeningHourObject that = (OpeningHourObject) o;
 
         if (openNow != that.openNow) return false;
-        return weekdayText.equals(that.weekdayText);
+        if (!weekdayText.equals(that.weekdayText)) return false;
+        return periods.equals(that.periods);
     }
 
     @Override
     public int hashCode() {
         int result = (openNow ? 1 : 0);
         result = 31 * result + weekdayText.hashCode();
+        result = 31 * result + periods.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return "HourObject{" +
+        return "OpeningHourObject{" +
                 "openNow=" + openNow +
                 ", weekdayText=" + weekdayText +
+                ", periods=" + periods +
                 '}';
     }
 }

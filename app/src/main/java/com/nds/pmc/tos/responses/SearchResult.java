@@ -30,7 +30,7 @@ public class SearchResult {
     @SerializedName("types")
     private List<String> types;
     @SerializedName("opening_hours")
-    private HourObject openingHours;
+    private OpeningHourObject openingHours;
     @SerializedName("photos")
     private List<PhotoObject> photos;
 
@@ -114,11 +114,11 @@ public class SearchResult {
         this.types = types;
     }
 
-    public HourObject getOpeningHours() {
+    public OpeningHourObject getOpeningHours() {
         return openingHours;
     }
 
-    public void setOpeningHours(HourObject openingHours) {
+    public void setOpeningHours(OpeningHourObject openingHours) {
         this.openingHours = openingHours;
     }
 

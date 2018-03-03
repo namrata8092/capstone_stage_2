@@ -18,7 +18,7 @@ import com.nds.pmc.common.NetworkRequester;
 import com.nds.pmc.converter.SearchResponseConverter;
 import com.nds.pmc.model.PlaceLocation;
 import com.nds.pmc.model.PlacesSearchResult;
-import com.nds.pmc.tos.requests.RequestWithParameters;
+import com.nds.pmc.tos.requests.CategoryWisePlaceSearchRequest;
 import com.nds.pmc.util.NetworkUtil;
 import com.nds.pmc.views.fragments.ErrorFragment;
 import com.nds.pmc.views.fragments.SearchResultListFragment;
@@ -60,7 +60,7 @@ public class CategorySearchResultActivity extends AppCompatActivity {
             setTitle(title);
             location = bundle.getParcelable(Constants.LOCATION_KEY);
             if(location!=null){
-                final RequestWithParameters rm = new RequestWithParameters(
+                final CategoryWisePlaceSearchRequest rm = new CategoryWisePlaceSearchRequest(
                         location.getLatitude(),
                         location.getLongitude(),
                         bundle.getString(Constants.EXTRA_SEARCH_CATEGORY_KEY),

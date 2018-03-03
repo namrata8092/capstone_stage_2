@@ -1,0 +1,79 @@
+{
+  "html_attributions" : [],
+  "result" : {
+    "address_components" : [
+      {
+        "long_name" : "United States",
+        "short_name" : "US",
+        "types" : [ "country", "political" ]
+      },
+      {
+        "long_name" : "Madison",
+        "short_name" : "Madison",
+        "types" : [ "locality", "political" ]
+      },
+      {
+        "long_name" : "Morris County",
+        "short_name" : "Morris County",
+        "types" : [ "administrative_area_level_2", "political" ]
+      },
+      {
+        "long_name" : "New Jersey",
+        "short_name" : "NJ",
+        "types" : [ "administrative_area_level_1", "political" ]
+      },
+      {
+        "long_name" : "07940",
+        "short_name" : "07940",
+        "types" : [ "postal_code" ]
+      }
+    ],
+    "adr_address" : "\u003cspan class=\"locality\"\u003eMadison\u003c/span\u003e, \u003cspan class=\"region\"\u003eNJ\u003c/span\u003e \u003cspan class=\"postal-code\"\u003e07940\u003c/span\u003e, \u003cspan class=\"country-name\"\u003eUSA\u003c/span\u003e",
+    "formatted_address" : "Madison, NJ 07940, USA",
+    "geometry" : {
+      "location" : {
+        "lat" : 40.75853,
+        "lng" : -74.414823
+      },
+      "viewport" : {
+        "northeast" : {
+          "lat" : 40.7598789802915,
+          "lng" : -74.4134740197085
+        },
+        "southwest" : {
+          "lat" : 40.7571810197085,
+          "lng" : -74.41617198029151
+        }
+      }
+    },
+    "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+    "id" : "c71c5eb8dca9e3edbcbdef1be291d55b2dc62e4f",
+    "name" : "Rt-124 at Central Ave",
+    "place_id" : "ChIJEUsl__Klw4kRTjOKommAdn8",
+    "rating" : 5,
+    "reference" : "CmRRAAAA5agHSMhONEBLjqp7TZsv7NIHD9u5G-pmms_NHJ13xUGUdq_nNO5bAZb5P0E734fLn_5M10teUwkiiu-wquD2cccOVwuEjdubLfzQ2RJGVDjFBZ6bcReMnyaBp7fwanduEhBDpycxVuXs3VtilfxFciSrGhSQM89ubZmoKJLT-Zv1Iiorg-kSSA",
+    "reviews" : [
+      {
+        "author_name" : "Viviana Bermudez",
+        "author_url" : "https://www.google.com/maps/contrib/108491507046225115165/reviews",
+        "language" : "es",
+        "profile_photo_url" : "https://lh4.googleusercontent.com/-IfTdA858yLw/AAAAAAAAAAI/AAAAAAAAADg/IQ0fQfll93Y/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+        "rating" : 5,
+        "relative_time_description" : "11 months ago",
+        "text" : "Agradable y seguro",
+        "time" : 1490788640
+      }
+    ],
+    "scope" : "GOOGLE",
+    "types" : [
+      "bus_station",
+      "transit_station",
+      "point_of_interest",
+      "establishment"
+    ],
+    "url" : "https://maps.google.com/?cid=9184669681255592782",
+    "utc_offset" : -300,
+    "vicinity" : "United States"
+  },
+  "status" : "OK"
+}

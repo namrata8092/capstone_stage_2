@@ -6,70 +6,117 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView android:id="@+id/posterImage"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/poster_image_height"
-            android:layout_alignParentTop="true"
-            tools:background="@mipmap/ic_launcher" />
-
-        <TextView
-            android:id="@+id/placeTitle"
-            style="@style/detail_title"
-            tools:text="Sample title"/>
-
-        <TextView
-            android:id="@+id/placeAddress"
-            style="@style/detail_address"
-            tools:text="address"/>
-
-        <RatingBar
-            android:id="@+id/resultRating"
-            style="@style/search_result_rating"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:id="@+id/openSymbol"
-            style="@style/open_now_symbol"
-            tools:text="Open"/>
-
-        <TextView
-            android:id="@+id/imageLink"
-            style="@style/detail_address" />
-
         <LinearLayout
-            android:id="@+id/timingContainer"
+            android:id="@+id/progressContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/openAt"
-                style="@style/timing_text"
-                android:layout_gravity="right|end"
-                android:gravity="right|end"
-                tools:text="Opens at" />
-
-            <TextView
-                android:id="@+id/closeAt"
-                style="@style/timing_text"
-                tools:text="Opens at" />
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="@dimen/progressbar_size"
+                android:layout_height="@dimen/progressbar_size"
+                android:layout_centerInParent="true" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/addToFavorite"
-            style="@style/favorite"
-            android:text="@string/add_to_favorite"
-            android:drawableRight="@drawable/favorite_off"
-            />
-
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/placeLocation"
+        <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="200dp"></com.google.android.gms.maps.MapView>
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/detailContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/posterImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/poster_image_height"
+                android:layout_alignParentTop="true"
+                tools:background="@mipmap/ic_launcher"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/reviews"
+                style="@style/detail_address"
+                android:clickable="true"
+                android:visibility="gone"/>
+
+            <android.support.v7.widget.RecyclerView android:id="@+id/reviewList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/placeTitle"
+                style="@style/detail_title"
+                android:textColor="@color/colorAccent"
+                tools:text="Sample title" />
+
+            <TextView
+                android:id="@+id/placeAddress"
+                style="@style/detail_address"
+                android:textColor="@color/colorPrimary"
+                tools:text="address" />
+
+            <TextView
+                android:id="@+id/phoneNumber"
+                style="@style/phone_website_address"
+                tools:text="28275855353"
+                android:drawableLeft="@drawable/call"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/website"
+                style="@style/phone_website_address"
+                tools:text="www.google.com"
+                android:drawableLeft="@drawable/website"
+                android:visibility="gone"/>
+
+            <RatingBar
+                android:id="@+id/resultRating"
+                style="@style/search_detail_rating" />
+
+            <TextView
+                android:id="@+id/openSymbol"
+                style="@style/open_now_symbol"
+                tools:text="Open" />
+
+            <TextView
+                android:id="@+id/weeklyTiming"
+                style="@style/timing_text"
+                android:visibility="gone"
+                tools:text="Opens at" />
+
+            <TextView
+                android:id="@+id/imageLink"
+                style="@style/detail_address"
+                android:clickable="true"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/addToFavorite"
+                style="@style/favorite"
+                android:drawableRight="@drawable/favorite_off"
+                android:text="@string/add_to_favorite" />
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/placeLocation"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></com.google.android.gms.maps.MapView>
+
+
+        </LinearLayout>
     </LinearLayout>
+
 </ScrollView>

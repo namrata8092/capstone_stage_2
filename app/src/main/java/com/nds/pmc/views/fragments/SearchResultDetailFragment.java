@@ -1,13 +1,22 @@
 package com.nds.pmc.views.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,13 +35,24 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.nds.pmc.PMCApplication;
 import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
+import com.nds.pmc.common.NetworkRequestManager;
+import com.nds.pmc.common.NetworkRequester;
+import com.nds.pmc.converter.SearchDetailResponseConverter;
 import com.nds.pmc.model.Place;
+import com.nds.pmc.model.PlaceDetails;
 import com.nds.pmc.services.FavoritePlaceUpdateListener;
 import com.nds.pmc.services.UpdateFavoritePlaceToDB;
+import com.nds.pmc.tos.requests.PlaceDetailRequest;
+import com.nds.pmc.tos.requests.PosterPhotoRequest;
 import com.nds.pmc.util.DeviceUtil;
 import com.nds.pmc.util.LogUtil;
+import com.nds.pmc.util.NetworkUtil;
+import com.nds.pmc.views.adapters.ReviewListAdapter;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Created by Namrata on 1/11/2018.
@@ -43,11 +63,19 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     private MapView mMapView;
     private TextView mAddToFavorite;
     private SharedPreferences mSharedPreferences;
+    private PMCApplication mPMCApplication;
+    private NetworkRequestManager mNetworkRequestManager;
+    private View mRootView;
+    private LinearLayout mProgressBarContainer;
+    private LinearLayout mDetailContainer;
+    private PlaceDetails mPlaceDetails;
+    private String contactNumber;
+    private static boolean reviewsOpened = false;
 
     public static SearchResultDetailFragment newInstance(Place place) {
         SearchResultDetailFragment fragment = new SearchResultDetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY, place);
+        bundle.putParcelable(Constants.PLACE_BUNDLE_KEY, place);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -55,12 +83,35 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.PLACE_DETAIL_BUNDLE_KEY)) {
-            mPlace = savedInstanceState.getParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY);
-        } else if(getArguments()!=null){
-            mPlace = getArguments().getParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY);
+        if(savedInstanceState!=null){
+            if (savedInstanceState.containsKey(Constants.PLACE_BUNDLE_KEY)) {
+                mPlace = savedInstanceState.getParcelable(Constants.PLACE_BUNDLE_KEY);
+            }
+            if (savedInstanceState.containsKey(Constants.PLACE_DETAIL_BUNDLE_KEY)) {
+                mPlaceDetails = savedInstanceState.getParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY);
+            }
+        }else if (getArguments() != null) {
+            mPlace = getArguments().getParcelable(Constants.PLACE_BUNDLE_KEY);
         }
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        mPMCApplication = (PMCApplication) getActivity().getApplication();
+        mNetworkRequestManager = mPMCApplication.getNetworkRequestManager();
+    }
+
+    private void displayErrorFragment(String errorMsg) {
+        ErrorFragment errorFragment = ErrorFragment.newInstance(errorMsg);
+        getActivity().findViewById(R.id.container).setVisibility(View.VISIBLE);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, errorFragment).commit();
+    }
+
+    private void hideProgressBar() {
+        mProgressBarContainer.setVisibility(View.GONE);
+    }
+
+    private void showProgressBar() {
+        mProgressBarContainer.setVisibility(View.VISIBLE);
     }
 
     @Nullable
@@ -68,30 +119,33 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search_detail, container, false);
-        if(mPlace!=null) {
-            setPostImage(rootView);
-
-            setPlaceTitleAddress(rootView);
-
-            setPlaceOperationHours(rootView);
-
-            setPlaceMap(rootView, savedInstanceState);
-
-            setFavoritePlace(rootView);
+        mRootView = rootView;
+        setPlaceMap(mRootView, savedInstanceState);
+        mProgressBarContainer = (LinearLayout) rootView.findViewById(R.id.progressContainer);
+        mDetailContainer = (LinearLayout) rootView.findViewById(R.id.detailContainer);
+        if (!NetworkUtil.isDataNetworkAvailable(getContext())) {
+            displayErrorFragment(getResources().getString(R.string.network_error));
+        } else {
+            PlaceDetailRequest placeDetailRequest = new PlaceDetailRequest(mPlace.getId(), getResources().getString(R.string.PLACES_API_KEY));
+            String req = placeDetailRequest.createRequest();
+            LogUtil.d("Test", "detail request " + req);
+            showProgressBar();
+            mNetworkRequestManager.createStringRequest(new WeakReference<NetworkRequester>(searchNetworkRequster), placeDetailRequest.createRequest(),
+                    Constants.SEARCH_REQUEST_TAG);
         }
         return rootView;
     }
 
     private void setFavoritePlace(View rootView) {
         mAddToFavorite = (TextView) rootView.findViewById(R.id.addToFavorite);
-        if(mPlace.isWidgetEntry()){
+        if (mPlace.isWidgetEntry()) {
             mAddToFavorite.setVisibility(View.GONE);
             return;
         }
 
-        if(mSharedPreferences.getBoolean(mPlace.getId(), false)){
+        if (mSharedPreferences.getBoolean(mPlace.getId(), false)) {
             mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_on, 0);
-        }else{
+        } else {
             mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_off, 0);
         }
         mAddToFavorite.setOnClickListener(new View.OnClickListener() {
@@ -113,19 +167,15 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
 
     private void setPlaceOperationHours(View rootView) {
         TextView openSymbol = (TextView) rootView.findViewById(R.id.openSymbol);
-        LinearLayout hourContainer = (LinearLayout) rootView.findViewById(R.id.timingContainer);
-        TextView openAt = (TextView) rootView.findViewById(R.id.openAt);
-        TextView closeAt = (TextView) rootView.findViewById(R.id.closeAt);
-        if (mPlace.isOpenNowDetails()) {
+        TextView weeklyTiming = (TextView) rootView.findViewById(R.id.weeklyTiming);
+        if (mPlaceDetails.isOpen()) {
             openSymbol.setText(mPlace.isOpenNow() ? getString(R.string.open_now) : getString(R.string.close_now));
-            if (mPlace.isOpeningHours()) {
-                openAt.setText(getString(R.string.open_at) + mPlace.getOpenAt());
-                closeAt.setText(getString(R.string.close_at) + mPlace.getCloseAt());
-            } else
-                hourContainer.setVisibility(View.GONE);
         } else
             openSymbol.setVisibility(View.GONE);
-
+        if (mPlaceDetails.getWeeklyTiming() != null) {
+            weeklyTiming.setText(mPlaceDetails.getWeeklyTiming());
+            weeklyTiming.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setPlaceTitleAddress(View rootView) {
@@ -133,37 +183,170 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         TextView placeAddress = (TextView) rootView.findViewById(R.id.placeAddress);
         RatingBar resultRating = (RatingBar) rootView.findViewById(R.id.resultRating);
 
+        placeTitle.setText(mPlaceDetails.getPlaceName());
+        placeAddress.setText(mPlaceDetails.getPlaceAddress());
+        resultRating.setRating((float) mPlaceDetails.getRating());
 
-        placeTitle.setText(mPlace.getName());
-        placeAddress.setText(DeviceUtil.getAddress(mPlace.getLongitude(), mPlace.getLatitude(), getContext()));
-        resultRating.setRating((float) mPlace.getRating());
+    }
 
+    private void setPlacePhoneNumber(View rootView) {
+        TextView phoneNumber = (TextView) rootView.findViewById(R.id.phoneNumber);
+        if (mPlaceDetails.getPhoneNumber() != null) {
+            contactNumber = mPlaceDetails.getPhoneNumber();
+            phoneNumber.setVisibility(View.VISIBLE);
+            phoneNumber.setText(contactNumber);
+            phoneNumber.setPaintFlags(phoneNumber.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            phoneNumber.setContentDescription("Contact number is " + contactNumber);
+            phoneNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (DeviceUtil.checkCallPermissionAvailable(getActivity())) {
+                        placeCall(contactNumber);
+                        return;
+                    }else
+                        DeviceUtil.requestCallPermission(getActivity());
+
+                }
+            });
+        }
+    }
+
+    private void placeCall(String contactNumber){
+        Intent dialNumberIntent = new Intent(Intent.ACTION_CALL);
+        dialNumberIntent.setData(Uri.parse(Constants.TELEPHONE_SCHEMA + contactNumber));
+        dialNumberIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (dialNumberIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            getActivity().startActivity(dialNumberIntent);
+        }else{
+            Toast.makeText(getContext(),getString(R.string.no_application_error), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Constants.REQ_CALL_PERMISSION: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    placeCall(contactNumber);
+                } else {
+                    displayErrorFragment(getString(R.string.error_call_permission_denied));
+                }
+                break;
+            }
+        }
+    }
+
+    private void setPlaceWebsite(View rootView) {
+        TextView website = (TextView) rootView.findViewById(R.id.website);
+        if(mPlaceDetails.getWebSiteUrl()!=null){
+            String url = mPlaceDetails.getWebSiteUrl();
+            website.setVisibility(View.VISIBLE);
+            website.setText(url);
+            website.setPaintFlags(website.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            website.setContentDescription("Website address is "+url);
+            website.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
+                    webSiteIntent.setData(Uri.parse(url));
+                    webSiteIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (webSiteIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                        getActivity().startActivity(webSiteIntent);
+                    }else{
+                        Toast.makeText(getContext(),"", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private NetworkRequester searchNetworkRequster = new NetworkRequester() {
+        @Override
+        public void onFailure(Throwable error) {
+            hideProgressBar();
+            displayErrorFragment(getResources().getString(R.string.network_error));
+        }
+
+        @Override
+        public void onSuccess(String response) {
+            hideProgressBar();
+            if (response != null && !TextUtils.isEmpty(response)) {
+                mPlaceDetails = SearchDetailResponseConverter.getSearchDetailResultModel(response);
+                mDetailContainer.setVisibility(View.VISIBLE);
+                if(mPlaceDetails!=null) {
+                    setPostImage(mRootView);
+
+                    setPlaceTitleAddress(mRootView);
+
+                    setPlaceOperationHours(mRootView);
+
+                    setPlacePhoneNumber(mRootView);
+
+                    setPlaceWebsite(mRootView);
+
+                    setFavoritePlace(mRootView);
+
+                    setPlaceReviews(mRootView);
+                }
+            }
+        }
+    };
+
+    private void setPlaceReviews(View mRootView) {
+        TextView reviewListText = (TextView) mRootView.findViewById(R.id.reviews);
+        RecyclerView reviewList = (RecyclerView)mRootView.findViewById(R.id.reviewList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        reviewList.setLayoutManager(linearLayoutManager);
+
+
+        if(mPlaceDetails.getReviewDetailList()!=null && !mPlaceDetails.getReviewDetailList().isEmpty()){
+            reviewListText.setVisibility(View.VISIBLE);
+            reviewListText.setText(getString(R.string.reviews));
+            ReviewListAdapter reviewListAdapter = new ReviewListAdapter(getContext(), mPlaceDetails.getReviewDetailList());
+            reviewList.setAdapter(reviewListAdapter);
+            reviewListText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(reviewsOpened){
+                        reviewsOpened = false;
+                        reviewList.setVisibility(View.GONE);
+                    }else{
+                        reviewsOpened = true;
+                        reviewList.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
     }
 
     private void setPostImage(View rootView) {
         ImageView posterImage = (ImageView) rootView.findViewById(R.id.posterImage);
         TextView imageLink = (TextView) rootView.findViewById(R.id.imageLink);
-        if (mPlace.getPhotos() != null && !mPlace.getPhotos().isEmpty() && mPlace.getPhotos().get(0).getImageRaw() != null) {
+        if(mPlace.getPhotos()!=null && mPlace.getPhotos().get(0).getMapLink()!=null){
+            imageLink.setMovementMethod(LinkMovementMethod.getInstance());
             imageLink.setText(Html.fromHtml(mPlace.getPhotos().get(0).getMapLink()));
-            String imageRaw = mPlace.getPhotos().get(0).getImageRaw();
-            String url = null;
-            if (imageRaw != null) {
-                url = Constants.IMAGE_BASE_URL + imageRaw + "&key="+getResources().getString(R.string.PLACES_API_KEY);
-                LogUtil.d("Test","url -->" +url);
-            } else {
-                url = mPlace.getIconImage();
-            }
-            Glide.with(getContext()).load(url).crossFade().fitCenter().into(posterImage);
-
+        }
+        String url = null;
+        if (mPlaceDetails.getPhotoList() != null && !mPlaceDetails.getPhotoList().isEmpty()) {
+            PosterPhotoRequest posterPhotoRequest = new PosterPhotoRequest(mPlaceDetails.getPhotoList().get(0), getResources().getString(R.string.PLACES_API_KEY));
+            posterPhotoRequest.setImgHeight("200");
+            url = posterPhotoRequest.createRequestWithHeight();
         } else {
-            imageLink.setVisibility(View.GONE);
-            posterImage.setVisibility(View.GONE);
+            url = mPlaceDetails.getPhotoUrl();
+        }
+        if(url!=null){
+            LogUtil.d("Test", "url -->" + url);
+            posterImage.setVisibility(View.VISIBLE);
+            Glide.with(getContext()).load(url).placeholder(R.drawable.loading).error(R.drawable.error).into(posterImage);
         }
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY, mPlace);
+        outState.putParcelable(Constants.PLACE_BUNDLE_KEY, mPlace);
+        outState.putParcelable(Constants.PLACE_DETAIL_BUNDLE_KEY, mPlaceDetails);
         super.onSaveInstanceState(outState);
     }
 

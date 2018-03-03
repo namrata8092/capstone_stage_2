@@ -87,12 +87,12 @@ public class PMCWidgetProvider extends AppWidgetProvider {
 //        Bundle bundle = new Bundle();
 //        bundle.putParcelableArrayList(PLACE_LIST, mPlaces);
 //        intent.putExtra(PLACE_INDEX_KEY, PLACE_INDEX);
-        intent.putExtra(Constants.PLACE_DETAIL_BUNDLE_KEY,selectedPlace);
+        intent.putExtra(Constants.PLACE_BUNDLE_KEY,selectedPlace);
         view.setRemoteAdapter( R.id.cellContainer, intent);
 
         Intent appIntent = new Intent(context, CategorySearchDetailActivity.class);
         appIntent.setAction(Constants.ACTION_SEARCH_RESULT_DETAIL);
-        appIntent.putExtra(Constants.PLACE_DETAIL_BUNDLE_KEY,selectedPlace);
+        appIntent.putExtra(Constants.PLACE_BUNDLE_KEY,selectedPlace);
         PendingIntent appPendingIntent = PendingIntent.getActivity(context, 0, appIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         view.setOnClickPendingIntent(R.id.cellContainer, appPendingIntent);
 
