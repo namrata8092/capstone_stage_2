@@ -11,14 +11,16 @@
 
     <RelativeLayout android:id="@+id/container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:transitionName="@string/shared_transition_name_from_category_to_list">
     <ImageView
         android:id="@+id/categoryIcon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/categoryName"
         android:layout_margin="@dimen/category_icon_layout_margin"
-        tools:background="@drawable/university" />
+        tools:background="@drawable/university"
+        />
 
     <TextView
         android:id="@+id/categoryName"

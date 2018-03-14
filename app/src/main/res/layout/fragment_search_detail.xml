@@ -48,7 +48,8 @@
                     android:layout_height="@dimen/poster_image_height"
                     android:layout_alignParentTop="true"
                     tools:background="@mipmap/ic_launcher"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    android:transitionName="@string/shared_transition_name_from_list_to_detail"/>
 
 
             </RelativeLayout>

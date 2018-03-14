@@ -94,5 +94,7 @@
     <string name="no_favorite">No favorite place or category found.</string>
     <string name="no_application_error">No application found to handle this action.</string>
     <string name="reviews">Reviews</string>
+    <string name="shared_transition_name_from_list_to_detail">titleTransition</string>
+    <string name="shared_transition_name_from_category_to_list">gridTransition</string>
 </resources>
 

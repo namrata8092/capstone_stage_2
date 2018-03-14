@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -69,7 +70,9 @@ public class SearchCategoryFragment extends Fragment implements AdapterView.OnIt
         bundle.putString(Constants.EXTRA_SEARCH_CATEGORY_NAME, categoryName[position]);
         bundle.putParcelable(Constants.LOCATION_KEY, placeLocation);
         searchResultActivity.putExtras(bundle);
-        startActivity(searchResultActivity);
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                view.findViewById(R.id.container), getString(R.string.shared_transition_name_from_category_to_list));
+        startActivity(searchResultActivity, activityOptionsCompat.toBundle());
     }
 
     @Override

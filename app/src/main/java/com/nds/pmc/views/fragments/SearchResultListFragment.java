@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,7 +34,7 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
     private List<Place> mPlaces;
     private int mSelectedPlaceIndex = 0;
     private Handler mHandler;
-
+    private View mRootView;
     public static SearchResultListFragment newInstance(PlacesSearchResult result){
         SearchResultListFragment fragment = new SearchResultListFragment();
         Bundle bundle = new Bundle();
@@ -83,6 +84,7 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
         if(DeviceUtil.isTwoPanelLayout() && mPlaces != null && mPlaces.size() > 0){
             mHandler.sendEmptyMessage(Constants.DISPLAY_PLACE_DETAIL_MSG);
         }
+        mRootView = rootView;
         return rootView;
     }
 
@@ -133,6 +135,7 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
         Intent detailIntent = new Intent();
         detailIntent.setAction(Constants.ACTION_SEARCH_RESULT_DETAIL);
         detailIntent.putExtra(Constants.PLACE_BUNDLE_KEY, place);
-        startActivity(detailIntent);
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), mRootView.findViewById(R.id.title), getString(R.string.shared_transition_name_from_list_to_detail));
+        startActivity(detailIntent, activityOptionsCompat.toBundle());
     }
 }

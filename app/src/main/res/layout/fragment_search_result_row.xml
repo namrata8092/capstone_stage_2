@@ -12,12 +12,14 @@
     <LinearLayout android:id="@+id/row_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:transitionName="@string/shared_transition_name_from_category_to_list">
 
         <TextView
             android:id="@+id/title"
             style="@style/search_result_title"
-            tools:text="result" />
+            tools:text="result"
+            android:transitionName="@string/shared_transition_name_from_list_to_detail"/>
 
         <RatingBar
             android:id="@+id/result_rating"
