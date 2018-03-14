@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -61,7 +63,7 @@ import java.lang.ref.WeakReference;
 public class SearchResultDetailFragment extends Fragment implements OnMapReadyCallback, FavoritePlaceUpdateListener {
     private Place mPlace;
     private MapView mMapView;
-    private TextView mAddToFavorite;
+    private ImageView mAddToFavorite;
     private SharedPreferences mSharedPreferences;
     private PMCApplication mPMCApplication;
     private NetworkRequestManager mNetworkRequestManager;
@@ -137,17 +139,18 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     }
 
     private void setFavoritePlace(View rootView) {
-        mAddToFavorite = (TextView) rootView.findViewById(R.id.addToFavorite);
+        mAddToFavorite = (ImageView) rootView.findViewById(R.id.addToFavorite);
         if (mPlace.isWidgetEntry()) {
             mAddToFavorite.setVisibility(View.GONE);
             return;
         }
 
         if (mSharedPreferences.getBoolean(mPlace.getId(), false)) {
-            mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_on, 0);
+            setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_on));
         } else {
-            mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_off, 0);
+            setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_off));
         }
+
         mAddToFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +159,13 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
                 updateFavoritePlaceToDB.execute();
             }
         });
+    }
+
+    private void setFavoriteIcon(Drawable drawable) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mAddToFavorite.setBackground(drawable);
+        }else
+            mAddToFavorite.setImageDrawable(drawable);
     }
 
     @SuppressLint("MissingPermission")
@@ -190,12 +200,10 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     }
 
     private void setPlacePhoneNumber(View rootView) {
-        TextView phoneNumber = (TextView) rootView.findViewById(R.id.phoneNumber);
+        ImageView phoneNumber = (ImageView) rootView.findViewById(R.id.phoneNumber);
         if (mPlaceDetails.getPhoneNumber() != null) {
             contactNumber = mPlaceDetails.getPhoneNumber();
             phoneNumber.setVisibility(View.VISIBLE);
-            phoneNumber.setText(contactNumber);
-            phoneNumber.setPaintFlags(phoneNumber.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             phoneNumber.setContentDescription("Contact number is " + contactNumber);
             phoneNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -239,26 +247,29 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     }
 
     private void setPlaceWebsite(View rootView) {
-        TextView website = (TextView) rootView.findViewById(R.id.website);
+        ImageView website = (ImageView) rootView.findViewById(R.id.website);
         if(mPlaceDetails.getWebSiteUrl()!=null){
-            String url = mPlaceDetails.getWebSiteUrl();
+            final String url = mPlaceDetails.getWebSiteUrl();
             website.setVisibility(View.VISIBLE);
-            website.setText(url);
-            website.setPaintFlags(website.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             website.setContentDescription("Website address is "+url);
             website.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
-                    webSiteIntent.setData(Uri.parse(url));
-                    webSiteIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    if (webSiteIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        getActivity().startActivity(webSiteIntent);
-                    }else{
-                        Toast.makeText(getContext(),"", Toast.LENGTH_LONG).show();
-                    }
+                    openUrlInBrowser(url);
                 }
             });
+        }
+    }
+
+    private void openUrlInBrowser(String url) {
+        Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
+        webSiteIntent.setData(Uri.parse(url));
+        webSiteIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (webSiteIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+
+            getActivity().startActivity(webSiteIntent);
+        }else{
+            Toast.makeText(getContext(),"", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -310,10 +321,12 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
                 @Override
                 public void onClick(View v) {
                     if(reviewsOpened){
+                        reviewListText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up, 0);
                         reviewsOpened = false;
                         reviewList.setVisibility(View.GONE);
                     }else{
                         reviewsOpened = true;
+                        reviewListText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down, 0);
                         reviewList.setVisibility(View.VISIBLE);
                     }
                 }
@@ -323,10 +336,15 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
 
     private void setPostImage(View rootView) {
         ImageView posterImage = (ImageView) rootView.findViewById(R.id.posterImage);
-        TextView imageLink = (TextView) rootView.findViewById(R.id.imageLink);
+        ImageView imageLink = (ImageView) rootView.findViewById(R.id.imageLink);
         if(mPlace.getPhotos()!=null && mPlace.getPhotos().get(0).getMapLink()!=null){
-            imageLink.setMovementMethod(LinkMovementMethod.getInstance());
-            imageLink.setText(Html.fromHtml(mPlace.getPhotos().get(0).getMapLink()));
+            imageLink.setVisibility(View.VISIBLE);
+            imageLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openUrlInBrowser(mPlace.getPhotos().get(0).getMapLink());
+                }
+            });
         }
         String url = null;
         if (mPlaceDetails.getPhotoList() != null && !mPlaceDetails.getPhotoList().isEmpty()) {
@@ -390,10 +408,10 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
             @Override
             public void run() {
                 if (status == Constants.ADDED_TO_FAVORITE) {
-                    mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_on, 0);
+                    setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_on));
                     mSharedPreferences.edit().putBoolean(mPlace.getId(), true).apply();
                 } else {
-                    mAddToFavorite.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.favorite_off, 0);
+                    setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_off));
                     mSharedPreferences.edit().putBoolean(mPlace.getId(), false).apply();
                 }
             }

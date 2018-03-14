@@ -23,11 +23,11 @@ public class FavoritePlaceListFragmentTest {
     public FragmentTestRule<FavoritePlaceListFragment> mFragmentTestRule = new FragmentTestRule<>(FavoritePlaceListFragment.class);
 
     @Test
-    public void display_error_fragment() {
+    public void display_favorite_place_list_fragment() {
         mFragmentTestRule.launchActivity(null);
-        onView(withId(R.id.progress)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.noPlace)).check(matches(isDisplayed()));
-        onView(withId(R.id.searchResultRecyclerView)).check(matches(not(isDisplayed())));
+//        onView(withId(R.id.progress)).check(matches(not(isDisplayed())));
+//        onView(withId(R.id.noPlace)).check(matches(isDisplayed()));
+        onView(withId(R.id.searchResultRecyclerView)).check(matches((isDisplayed())));
     }
 
 }

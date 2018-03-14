@@ -28,10 +28,13 @@ public class SearchResultDetailFragmentTest {
         onView(withId(R.id.resultRating)).check(matches(isDisplayed()));
         onView(withId(R.id.openSymbol)).check(matches(isDisplayed()));
         onView(withId(R.id.imageLink)).check(matches(isDisplayed()));
-        onView(withId(R.id.openAt)).check(matches(isDisplayed()));
-        onView(withId(R.id.closeAt)).check(matches(isDisplayed()));
+        onView(withId(R.id.weeklyTiming)).check(matches(isDisplayed()));
+        onView(withId(R.id.reviews)).check(matches(isDisplayed()));
+        onView(withId(R.id.reviewList)).check(matches(isDisplayed()));
         onView(withId(R.id.addToFavorite)).check(matches(isDisplayed()));
         onView(withId(R.id.placeLocation)).check(matches(isDisplayed()));
+        onView(withId(R.id.phoneNumber)).check(matches(isDisplayed()));
+        onView(withId(R.id.website)).check(matches(isDisplayed()));
 
     }
 }
