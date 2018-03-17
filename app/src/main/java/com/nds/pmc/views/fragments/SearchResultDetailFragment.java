@@ -286,7 +286,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
             if (response != null && !TextUtils.isEmpty(response)) {
                 mPlaceDetails = SearchDetailResponseConverter.getSearchDetailResultModel(response);
                 mDetailContainer.setVisibility(View.VISIBLE);
-                if(mPlaceDetails!=null) {
+                if(mPlaceDetails!=null && isAdded() && getActivity() != null) {
                     setPostImage(mRootView);
 
                     setPlaceTitleAddress(mRootView);
