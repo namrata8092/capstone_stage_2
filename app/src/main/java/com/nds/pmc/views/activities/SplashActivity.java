@@ -26,6 +26,7 @@ import com.nds.pmc.common.Constants;
 import com.nds.pmc.model.PlaceLocation;
 import com.nds.pmc.util.DeviceUtil;
 import com.nds.pmc.util.LogUtil;
+import com.nds.pmc.util.NetworkUtil;
 import com.nds.pmc.views.fragments.ErrorFragment;
 
 /**
@@ -60,27 +61,31 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
 
         mFragmentManager = getSupportFragmentManager();
 
-        createGoogleApi();
-        if (DeviceUtil.checkLocationPermissionAvailable(getApplicationContext())) {
-            LogUtil.d(TAG, "checkPermission");
-            if (DeviceUtil.isLocationEnabled(this)) {
-                mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-                mFusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                            @Override
-                            public void onSuccess(Location location) {
-                                if (location != null) {
-                                    saveLocationOnDevice(location);
-                                    displaySearchCategory(Double.toString(location.getLatitude()), Double.toString(location.getLongitude()));
+        if (!NetworkUtil.isDataNetworkAvailable(this)) {
+            displayErrorMsg(getResources().getString(R.string.network_error));
+        }else{
+            createGoogleApi();
+            if (DeviceUtil.checkLocationPermissionAvailable(getApplicationContext())) {
+                LogUtil.d(TAG, "checkPermission");
+                if (DeviceUtil.isLocationEnabled(this)) {
+                    mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+                    mFusedLocationClient.getLastLocation()
+                            .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                                @Override
+                                public void onSuccess(Location location) {
+                                    if (location != null) {
+                                        saveLocationOnDevice(location);
+                                        displaySearchCategory(Double.toString(location.getLatitude()), Double.toString(location.getLongitude()));
+                                    }
                                 }
-                            }
-                        });
+                            });
+                } else {
+                    displaySearchCategoryWithPreviouslySavedLocation();
+                }
             } else {
-                displaySearchCategoryWithPreviouslySavedLocation();
+                LogUtil.d(TAG, "askPermission");
+                DeviceUtil.requestLocationPermission(SplashActivity.this);
             }
-        } else {
-            LogUtil.d(TAG, "askPermission");
-            DeviceUtil.requestLocationPermission(SplashActivity.this);
         }
     }
 
@@ -175,7 +180,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         mContainer.setVisibility(View.VISIBLE);
         ErrorFragment errorFragment = ErrorFragment.newInstance(errorMsg);
         if (!isFinishing()) {
-            mFragmentManager.beginTransaction().replace(R.id.container, errorFragment).commit();
+            mFragmentManager.beginTransaction().replace(R.id.mainContainer, errorFragment).commit();
         }
     }
 
