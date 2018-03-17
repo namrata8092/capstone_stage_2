@@ -122,12 +122,12 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search_detail, container, false);
         mRootView = rootView;
-        setPlaceMap(mRootView, savedInstanceState);
         mProgressBarContainer = (LinearLayout) rootView.findViewById(R.id.progressContainer);
         mDetailContainer = (LinearLayout) rootView.findViewById(R.id.detailContainer);
         if (!NetworkUtil.isDataNetworkAvailable(getContext())) {
             displayErrorFragment(getResources().getString(R.string.network_error));
-        } else {
+        } else if(mPlace != null){
+            setPlaceMap(mRootView, savedInstanceState);
             PlaceDetailRequest placeDetailRequest = new PlaceDetailRequest(mPlace.getId(), getResources().getString(R.string.PLACES_API_KEY));
             String req = placeDetailRequest.createRequest();
             LogUtil.d("Test", "detail request " + req);
@@ -399,14 +399,16 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.addMarker(new MarkerOptions()
-                .anchor(0.0f, 1.0f)
-                .position(new LatLng(mPlace.getLatitude(), mPlace.getLongitude())));
-        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-        googleMap.setMyLocationEnabled(true);
-        MapsInitializer.initialize(this.getActivity());
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mPlace.getLatitude(), mPlace.getLongitude()), 10);
-        googleMap.animateCamera(cameraUpdate);
+        if(mPlace!=null && getActivity()!=null){
+            googleMap.addMarker(new MarkerOptions()
+                    .anchor(0.0f, 1.0f)
+                    .position(new LatLng(mPlace.getLatitude(), mPlace.getLongitude())));
+            googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+            googleMap.setMyLocationEnabled(true);
+            MapsInitializer.initialize(this.getActivity());
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mPlace.getLatitude(), mPlace.getLongitude()), 10);
+            googleMap.animateCamera(cameraUpdate);
+        }
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Created by c0shan7 on 3/1/2018.
+ * Created by Namrata Shah on 3/1/2018.
  */
 
 public class SearchDetailResponseConverter {
