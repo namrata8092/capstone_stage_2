@@ -266,10 +266,9 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         webSiteIntent.setData(Uri.parse(url));
         webSiteIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (webSiteIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-
             getActivity().startActivity(webSiteIntent);
         }else{
-            Toast.makeText(getContext(),"", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),getResources().getString(R.string.no_application_error), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -338,11 +337,12 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         ImageView posterImage = (ImageView) rootView.findViewById(R.id.posterImage);
         ImageView imageLink = (ImageView) rootView.findViewById(R.id.imageLink);
         if(mPlace.getPhotos()!=null && mPlace.getPhotos().get(0).getMapLink()!=null){
+            String mapLink = extractUrlFromLink(mPlace.getPhotos().get(0).getMapLink());
             imageLink.setVisibility(View.VISIBLE);
             imageLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openUrlInBrowser(mPlace.getPhotos().get(0).getMapLink());
+                    openUrlInBrowser(mapLink);
                 }
             });
         }
@@ -359,6 +359,13 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
             posterImage.setVisibility(View.VISIBLE);
             Glide.with(getContext()).load(url).placeholder(R.drawable.loading).error(R.drawable.error).into(posterImage);
         }
+    }
+
+    private String extractUrlFromLink(String mapLink) {
+        mapLink = mapLink.replace("<a href=\"","");
+        int endIndex = mapLink.indexOf("\">");
+        mapLink = mapLink.substring(0,endIndex-1);
+        return mapLink;
     }
 
     @Override
@@ -420,6 +427,6 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
 
     @Override
     public void onFailure() {
-        Toast.makeText(getActivity(), "Can not add place to favorite", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), getResources().getString(R.string.adding_favorite_error), Toast.LENGTH_SHORT).show();
     }
 }
