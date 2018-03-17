@@ -79,6 +79,8 @@
                 android:id="@+id/weeklyTiming"
                 style="@style/timing_text"
                 android:visibility="gone"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 tools:text="Opens at" />
 
             <TextView

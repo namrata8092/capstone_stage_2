@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="@dimen/progressbar_size"
+        android:layout_height="@dimen/progressbar_size"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+    <LinearLayout
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10">
+    <TextView
+        android:id="@+id/noPlace"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searchResultRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:layout_weight="3"/>
+        <FrameLayout
+            android:id="@+id/detail_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"/>
+    </LinearLayout>
+</LinearLayout>
