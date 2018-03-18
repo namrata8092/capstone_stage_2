@@ -1,21 +1,36 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+-optimizationpasses 5
+-dontpreverify
+-repackageclasses ''
+-allowaccessmodification
+#-optimizations !code/simplification/arithmetic
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+-useuniqueclassmembernames
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+-dontwarn android.os.**
+-dontwarn com.android.internal.**
+-dontwarn android.support.**
+-dontwarn com.google.android.**
+-dontwarn android.content.pm.**
+-dontwarn android.net.**
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+-keep public class com.github.bumptech.glide.**
+-keep class com.github.bumptech.glide.**{
+    *;
+}
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+-keepattributes Signature
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.** { *; }
+-keep class com.google.gson.examples.android.model.** { *; }
+
+-keep class com.android.volley.**{
+    *;
+}
+-keepclassmembers public class **.R$* {
+    public static <fields>;
+}
+
+-keepclassmembers class * implements android.os.Parcelable {
+    static ** CREATOR;
+}
