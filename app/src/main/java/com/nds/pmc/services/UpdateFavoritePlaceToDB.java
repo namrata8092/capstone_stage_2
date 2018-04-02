@@ -52,7 +52,7 @@ public class UpdateFavoritePlaceToDB extends AsyncTask {
                 updateListener.onSuccess(Constants.REMOVED_FROM_FAVORITE);
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
                 SharedPreferences.Editor edit = preferences.edit();
-                edit.putBoolean(mContext.getString(R.string.preference_place_delete_key), true).commit();
+                edit.putBoolean(mContext.getString(R.string.preference_place_delete_key), true).apply();
             } else {
                 updateListener.onFailure();
             }

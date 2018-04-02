@@ -23,7 +23,8 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
-            tools:background="@mipmap/ic_launcher_round" />
+            tools:background="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/reader_text_category_icon"/>
     </LinearLayout>
 
 </RelativeLayout>

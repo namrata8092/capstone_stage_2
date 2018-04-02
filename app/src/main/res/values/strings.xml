@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Places In My Circle</string>
     <string-array name="category_name">
         <item>Airport</item>
@@ -97,5 +97,14 @@
     <string name="reviews">Reviews</string>
     <string name="shared_transition_name_from_list_to_detail">titleTransition</string>
     <string name="shared_transition_name_from_category_to_list">gridTransition</string>
+    <string name="reader_text_reviewer_photo" tools:ignore="ExtraTranslation"> photo</string>
+    <string name="reader_text_poster" tools:ignore="ExtraTranslation">Poster of </string>
+    <string name="reader_text_image_link" tools:ignore="ExtraTranslation">Image link for </string>
+    <string name="reader_text_contact_number" tools:ignore="ExtraTranslation">Contact number is </string>
+    <string name="reader_text_website_address" tools:ignore="ExtraTranslation">Website address is </string>
+    <string name="reader_text_favorite_on" tools:ignore="ExtraTranslation">is set to favorite</string>
+    <string name="reader_text_favorite_off" tools:ignore="ExtraTranslation">is not set to favorite</string>
+    <string name="reader_text_app_icon" tools:ignore="ExtraTranslation">Places in my circle widget</string>
+    <string name="reader_text_category_icon" tools:ignore="ExtraTranslation">category icon</string>
 </resources>
 

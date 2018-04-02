@@ -5,5 +5,6 @@
     <ImageView android:id="@+id/pmcIcon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:src="@mipmap/ic_launcher_round"
+        android:contentDescription="@string/reader_text_app_icon"/>
 </LinearLayout>

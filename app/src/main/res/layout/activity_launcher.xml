@@ -4,7 +4,7 @@
     android:id="@+id/pmcDrawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="start|left"
+    android:layout_gravity="start"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 

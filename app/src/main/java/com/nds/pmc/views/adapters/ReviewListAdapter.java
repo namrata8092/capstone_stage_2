@@ -46,6 +46,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Re
         holder.mReviewText.setText(review.getReviewText());
         holder.mRating.setRating((float) review.getRating());
         Glide.with(mContext).load(review.getReviewerPhotoRawData()).placeholder(R.drawable.loading).error(R.drawable.error).into(holder.mReviewerPhoto);
+        holder.mReviewerPhoto.setContentDescription(review.getReviewerName()+R.string.reader_text_reviewer_photo);
     }
 
     @Override

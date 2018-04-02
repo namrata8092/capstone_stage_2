@@ -201,8 +201,8 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
 
     private void saveLocationOnDevice(Location location) {
         LogUtil.d(TAG, "saveLocationOnDevice");
-        mSharedPreferences.edit().putString(Constants.KEY_LATITUDE, Double.toString(location.getLatitude())).commit();
-        mSharedPreferences.edit().putString(Constants.KEY_LONGITUDE, Double.toString(location.getLongitude())).commit();
+        mSharedPreferences.edit().putString(Constants.KEY_LATITUDE, Double.toString(location.getLatitude())).apply();
+        mSharedPreferences.edit().putString(Constants.KEY_LONGITUDE, Double.toString(location.getLongitude())).apply();
     }
 
 

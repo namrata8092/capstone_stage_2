@@ -49,6 +49,7 @@
                     android:layout_alignParentTop="true"
                     tools:background="@mipmap/ic_launcher"
                     android:visibility="gone"
+                    android:contentDescription="@string/reader_text_poster"
                     android:transitionName="@string/shared_transition_name_from_list_to_detail"/>
 
 
@@ -87,7 +88,8 @@
                 android:id="@+id/reviews"
                 style="@style/detail_address"
                 android:clickable="true"
-                android:drawableRight="@drawable/up"
+                android:focusable="true"
+                android:drawableEnd="@drawable/up"
                 android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView android:id="@+id/reviewList"
@@ -106,28 +108,36 @@
                 <ImageView
                     android:id="@+id/phoneNumber"
                     style="@style/phone_website_address"
+                    android:focusable="true"
                     android:clickable="true"
                     android:background="@drawable/call"
+                    android:contentDescription="@string/reader_text_contact_number"
                     android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/website"
                     style="@style/phone_website_address"
+                    android:focusable="true"
                     android:clickable="true"
                     android:background="@drawable/website"
+                    android:contentDescription="@string/reader_text_website_address"
                     android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/imageLink"
                     style="@style/phone_website_address"
+                    android:focusable="true"
                     android:clickable="true"
                     android:background="@drawable/photo"
+                    android:contentDescription="@string/reader_text_image_link"
                     android:visibility="gone"/>
                 <ImageView
                     android:id="@+id/addToFavorite"
                     style="@style/phone_website_address"
                     android:clickable="true"
-                    android:background="@drawable/favorite_off"/>
+                    android:focusable="true"
+                    android:background="@drawable/favorite_off"
+                    android:contentDescription="@string/reader_text_favorite_off"/>
             </LinearLayout>
 
 

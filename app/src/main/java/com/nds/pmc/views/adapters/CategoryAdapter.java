@@ -41,6 +41,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         holder.categoryName.setText(categoryName[position]);
         holder.categoryIcon.setImageResource(categoryIcon.getResourceId(position, -1));
+        holder.categoryIcon.setContentDescription(categoryName[position]+R.string.reader_text_category_icon);
     }
 
     @Override

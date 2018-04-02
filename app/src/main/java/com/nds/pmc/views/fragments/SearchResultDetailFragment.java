@@ -147,8 +147,10 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
 
         if (mSharedPreferences.getBoolean(mPlace.getId(), false)) {
             setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_on));
+            mAddToFavorite.setContentDescription(mPlace.getName()+R.string.reader_text_favorite_on);
         } else {
             setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_off));
+            mAddToFavorite.setContentDescription(mPlace.getName()+R.string.reader_text_favorite_off);
         }
 
         mAddToFavorite.setOnClickListener(new View.OnClickListener() {
@@ -204,7 +206,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         if (mPlaceDetails.getPhoneNumber() != null) {
             contactNumber = mPlaceDetails.getPhoneNumber();
             phoneNumber.setVisibility(View.VISIBLE);
-            phoneNumber.setContentDescription("Contact number is " + contactNumber);
+            phoneNumber.setContentDescription(R.string.reader_text_contact_number+contactNumber);
             phoneNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -251,7 +253,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         if(mPlaceDetails.getWebSiteUrl()!=null){
             final String url = mPlaceDetails.getWebSiteUrl();
             website.setVisibility(View.VISIBLE);
-            website.setContentDescription("Website address is "+url);
+            website.setContentDescription(R.string.reader_text_website_address+url);
             website.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -339,6 +341,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         if(mPlace.getPhotos()!=null && mPlace.getPhotos().get(0).getMapLink()!=null){
             String mapLink = extractUrlFromLink(mPlace.getPhotos().get(0).getMapLink());
             imageLink.setVisibility(View.VISIBLE);
+            imageLink.setContentDescription(R.string.reader_text_image_link+mPlace.getName());
             imageLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -357,6 +360,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         if(url!=null){
             LogUtil.d("Test", "url -->" + url);
             posterImage.setVisibility(View.VISIBLE);
+            posterImage.setContentDescription(R.string.reader_text_poster+mPlace.getName());
             Glide.with(getContext()).load(url).placeholder(R.drawable.loading).error(R.drawable.error).into(posterImage);
         }
     }

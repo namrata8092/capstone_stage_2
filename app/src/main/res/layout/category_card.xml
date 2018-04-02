@@ -20,6 +20,7 @@
         android:layout_below="@+id/categoryName"
         android:layout_margin="@dimen/category_icon_layout_margin"
         tools:background="@drawable/university"
+        android:contentDescription="@string/reader_text_category_icon"
         />
 
     <TextView

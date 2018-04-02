@@ -74,8 +74,6 @@ public class PMCWidgetProvider extends AppWidgetProvider {
                 Glide.with(mContext.getApplicationContext()).load(selectedPlace.getIconImage())
                         .asBitmap()
                         .into(appWidgetTarget);
-
-
                 pushWidgetUpdate(mContext, view);
             }
         });
