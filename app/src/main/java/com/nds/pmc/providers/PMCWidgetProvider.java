@@ -9,8 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.RemoteViews;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.AppWidgetTarget;
 import com.nds.pmc.R;
@@ -19,10 +20,7 @@ import com.nds.pmc.model.Place;
 import com.nds.pmc.services.PlaceRemoteViewService;
 import com.nds.pmc.util.LogUtil;
 import com.nds.pmc.views.activities.CategorySearchDetailActivity;
-
 import java.util.ArrayList;
-
-import static com.google.android.gms.internal.zzagr.runOnUiThread;
 import static com.nds.pmc.services.PMCWidgetService.startPMCWidgetService;
 
 /**
@@ -68,7 +66,9 @@ public class PMCWidgetProvider extends AppWidgetProvider {
         view.setTextViewText(R.id.placeName, selectedPlace.getName());
         final AppWidgetTarget appWidgetTarget = new AppWidgetTarget( context, view, R.id.categoryType, appWidgetIds);
 
-        runOnUiThread(new Runnable() {
+
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
                 Glide.with(mContext.getApplicationContext()).load(selectedPlace.getIconImage())
@@ -76,15 +76,12 @@ public class PMCWidgetProvider extends AppWidgetProvider {
                         .into(appWidgetTarget);
                 pushWidgetUpdate(mContext, view);
             }
-        });
-
+        };
+        mainHandler.post(myRunnable);
 
 
         Intent intent = new Intent(context, PlaceRemoteViewService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds);
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelableArrayList(PLACE_LIST, mPlaces);
-//        intent.putExtra(PLACE_INDEX_KEY, PLACE_INDEX);
         intent.putExtra(Constants.PLACE_BUNDLE_KEY,selectedPlace);
         view.setRemoteAdapter( R.id.cellContainer, intent);
 
