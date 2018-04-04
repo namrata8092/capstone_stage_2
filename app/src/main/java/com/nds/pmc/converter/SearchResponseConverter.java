@@ -17,7 +17,7 @@ import java.util.List;
 
 public class SearchResponseConverter {
 
-    public SearchResponseConverter(){}
+    private SearchResponseConverter(){}
 
     public static PlacesSearchResult getSearchResultModel(String response){
         BaseResponse baseResponse = JSONSerializeHelper.deserializeObject(BaseResponse.class, response);
