@@ -1,11 +1,13 @@
 package com.nds.pmc.services;
 
 import android.app.IntentService;
+import android.app.Notification;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.support.annotation.Nullable;
 
 import com.nds.pmc.R;
@@ -25,6 +27,12 @@ public class PMCWidgetService extends IntentService {
     private static final String TAG = "TEST"+PMCWidgetService.class.getSimpleName();
     private Context mContext;
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        startForeground(1,new Notification());
+    }
+
     private static final String[] FAV_PLACE_COLUMNS = {
             PlaceContract.PlaceEntry._ID,
             PlaceContract.PlaceEntry.COLUMN_NAME_PLACE_ID,
@@ -39,7 +47,11 @@ public class PMCWidgetService extends IntentService {
     public static void startPMCWidgetService(Context context) {
         Intent intent = new Intent(context, PMCWidgetService.class);
         intent.setAction(Constants.ACTION_UPDATE_WIDGET);
-        context.startService(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
 
     }
 
