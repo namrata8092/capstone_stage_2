@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String[] navigationList;
     private PlaceLocation mLocation;
-
+    private int currentDrawerSelection = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                currentDrawerSelection = position;
                 replaceContainerAsPerNavOption(navigationList[position]);
                 mDrawerLayout.closeDrawer(GravityCompat.START);
             }
@@ -72,7 +73,11 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerToggle.syncState();
 
         mLocation = getIntent().getParcelableExtra(Constants.LOCATION_KEY);
-        displayCategories(mLocation);        
+        if(savedInstanceState!=null && savedInstanceState.containsKey(Constants.DRAWER_INDEX)){
+            currentDrawerSelection = savedInstanceState.getInt(Constants.DRAWER_INDEX);
+            replaceContainerAsPerNavOption(navigationList[currentDrawerSelection]);
+        }else
+            displayCategories(mLocation);
     }
 
     private void displayCategories(PlaceLocation location) {
@@ -147,4 +152,9 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(Constants.DRAWER_INDEX, currentDrawerSelection);
+        super.onSaveInstanceState(outState);
+    }
 }

@@ -23,6 +23,7 @@ public final class Constants {
     public static final String SEARCH_RESULT_BUNDLE_KEY = "search_result_bundle";
     public static final String SELECTED_PLACE_INDEX_KEY = "selected_place_index";
     public static final String PLACE_BUNDLE_KEY = "place_bundle";
+    public static final String FAVORITE_PLACES_BUNDLE_KEY = "favorite_places_bundle";
     public static final String PLACE_DETAIL_BUNDLE_KEY = "place_detail_bundle";
     public static final String ERROR_MSG_KEY = "error_key";
     public static final String SEARCH_REQUEST_TAG = "search_request_tag";
@@ -43,4 +44,5 @@ public final class Constants {
     public static final String PLACE_ID_KEY = "placeid";
     public static final String OK_STATUS = "OK";
     public static final String TELEPHONE_SCHEMA = "tel:";
+    public static final String DRAWER_INDEX = "drawerIndex";
 }
