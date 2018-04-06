@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
 import com.nds.pmc.model.PlaceLocation;
+import com.nds.pmc.util.DeviceUtil;
 import com.nds.pmc.views.fragments.FavoritePlaceListFragment;
 import com.nds.pmc.views.fragments.SearchCategoryFragment;
 
@@ -137,6 +138,9 @@ public class HomeActivity extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            DeviceUtil.setTwoPanelLayout(false);
+        }
     }
 
     @Override

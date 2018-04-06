@@ -65,6 +65,10 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
                 }
             };
         }
+
+        if(DeviceUtil.isTwoPanelLayout() && mPlaces != null && mPlaces.size() > 0){
+            mHandler.sendEmptyMessage(Constants.DISPLAY_PLACE_DETAIL_MSG);
+        }
     }
 
     @Nullable
@@ -72,7 +76,7 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search_result, container, false );
-        checkTwoPanelLayout(rootView);
+        DeviceUtil.checkAndSetTwoPanelLayout(rootView);
         RecyclerView searchResultRecyclerView = (RecyclerView)rootView.findViewById(R.id.searchResultRecyclerView);
         LinearLayoutManager gridLayoutManager = new LinearLayoutManager(getContext());
         searchResultRecyclerView.setLayoutManager(gridLayoutManager);
@@ -81,9 +85,6 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
                 getContext(), mPlaces, this);
         searchResultRecyclerView.setAdapter(searchResultListAdapter);
 
-        if(DeviceUtil.isTwoPanelLayout() && mPlaces != null && mPlaces.size() > 0){
-            mHandler.sendEmptyMessage(Constants.DISPLAY_PLACE_DETAIL_MSG);
-        }
         mRootView = rootView;
         return rootView;
     }
@@ -117,12 +118,6 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
             displayDetailActivity(place);
         }else{
             displayDetailFragment(place);
-        }
-    }
-
-    private void checkTwoPanelLayout(View rootView) {
-        if (rootView.findViewById(R.id.detail_container) != null) {
-            DeviceUtil.setTwoPanelLayout(true);
         }
     }
 

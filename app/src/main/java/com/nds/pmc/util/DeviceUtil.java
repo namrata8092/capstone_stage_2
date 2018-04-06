@@ -11,8 +11,10 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
+import com.nds.pmc.R;
 import com.nds.pmc.common.Constants;
 
 import java.io.IOException;
@@ -88,5 +90,12 @@ public final class DeviceUtil {
 
     public static void setTwoPanelLayout(boolean twoPanelLayout) {
         DeviceUtil.twoPanelLayout = twoPanelLayout;
+    }
+
+    public static void checkAndSetTwoPanelLayout(View rootView) {
+        if (rootView.findViewById(R.id.detail_container) != null)
+            setTwoPanelLayout(true);
+        else
+            setTwoPanelLayout(false);
     }
 }

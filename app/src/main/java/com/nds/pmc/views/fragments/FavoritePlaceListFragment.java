@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -85,63 +86,68 @@ public class FavoritePlaceListFragment extends Fragment implements SharedPrefere
         super.onCreate(savedInstanceState);
         mContext = getContext();
         mPlacesPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        mFavoritePlaceFromDBLoaderListener = new LoaderManager.LoaderCallbacks<Cursor>() {
-            @Override
-            public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-                return new AsyncTaskLoader<Cursor>(mContext) {
-                    Cursor favoritePlaceCursor = null;
 
-                    @Override
-                    protected void onStartLoading() {
-                        displayProgressBar();
-                        if (favoritePlaceCursor != null) {
-                            deliverResult(favoritePlaceCursor);
-                        } else {
-                            forceLoad();
-                        }
-                    }
-
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-                    @Override
-                    public Cursor loadInBackground() {
-                        try {
-                            return mContext.getContentResolver().query(
-                                    PlaceContract.PlaceEntry.CONTENT_URI, FAV_PLACE_COLUMNS, null, null, null);
-                        } catch (Exception e) {
-                            hideProgressBar();
-                            return null;
-                        }
-                    }
-                };
+        if(savedInstanceState!=null) {
+            if (savedInstanceState.containsKey(Constants.SELECTED_PLACE_INDEX_KEY)) {
+                mSelectedPlaceIndex = savedInstanceState.getInt(Constants.SELECTED_PLACE_INDEX_KEY);
             }
+            if(savedInstanceState.containsKey(Constants.FAVORITE_PLACES_BUNDLE_KEY))
+                mFavoritePlaceList = savedInstanceState.getParcelableArrayList(Constants.FAVORITE_PLACES_BUNDLE_KEY);
+        }else{
+            mFavoritePlaceFromDBLoaderListener = new LoaderManager.LoaderCallbacks<Cursor>() {
+                @Override
+                public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+                    return new AsyncTaskLoader<Cursor>(mContext) {
+                        Cursor favoritePlaceCursor = null;
 
-            @Override
-            public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-                hideProgressBar();
-                mFavoritePlaceList = getDataFromCursor(data);
-                if (mFavoritePlaceList == null) {
-                    mErrorMsgTV.setText(getResources().getString(R.string.no_favorite_place));
-                    mErrorMsgTV.setVisibility(View.VISIBLE);
-                    searchResultRecyclerView.setVisibility(View.GONE);
+                        @Override
+                        protected void onStartLoading() {
+                            displayProgressBar();
+                            if (favoritePlaceCursor != null) {
+                                deliverResult(favoritePlaceCursor);
+                            } else {
+                                forceLoad();
+                            }
+                        }
+
+                        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                        @Override
+                        public Cursor loadInBackground() {
+                            try {
+                                return mContext.getContentResolver().query(
+                                        PlaceContract.PlaceEntry.CONTENT_URI, FAV_PLACE_COLUMNS, null, null, null);
+                            } catch (Exception e) {
+                                hideProgressBar();
+                                return null;
+                            }
+                        }
+                    };
+                }
+
+                @Override
+                public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+                    hideProgressBar();
+                    mFavoritePlaceList = getDataFromCursor(data);
+                    if (mFavoritePlaceList == null) {
+                        mErrorMsgTV.setText(getResources().getString(R.string.no_favorite_place));
+                        mErrorMsgTV.setVisibility(View.VISIBLE);
+                        searchResultRecyclerView.setVisibility(View.GONE);
+                        if (placeListAdapter != null)
+                            placeListAdapter.notifyDataSetChanged();
+                        return;
+                    }
+                    setFavoritePlacesAdapter();
+                }
+
+                @Override
+                public void onLoaderReset(Loader<Cursor> loader) {
+                    mFavoritePlaceList = null;
                     if (placeListAdapter != null)
                         placeListAdapter.notifyDataSetChanged();
-                    return;
                 }
-                setFavoritePlacesAdapter();
-            }
+            };
 
-            @Override
-            public void onLoaderReset(Loader<Cursor> loader) {
-                mFavoritePlaceList = null;
-                if (placeListAdapter != null)
-                    placeListAdapter.notifyDataSetChanged();
-            }
-        };
-
-        if(savedInstanceState!=null && savedInstanceState.containsKey(Constants.SELECTED_PLACE_INDEX_KEY)){
-            mSelectedPlaceIndex = savedInstanceState.getInt(Constants.SELECTED_PLACE_INDEX_KEY);
         }
-
         mHandler = new Handler(this);
     }
 
@@ -167,7 +173,7 @@ public class FavoritePlaceListFragment extends Fragment implements SharedPrefere
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_favorite_places, container, false);
-        checkTwoPanelLayout(rootView);
+        DeviceUtil.checkAndSetTwoPanelLayout(rootView);
         mProgress = (ProgressBar) rootView.findViewById(R.id.progress);
         mErrorMsgTV = (TextView) rootView.findViewById(R.id.noPlace);
         searchResultRecyclerView = (RecyclerView) rootView.findViewById(R.id.searchResultRecyclerView);
@@ -188,6 +194,7 @@ public class FavoritePlaceListFragment extends Fragment implements SharedPrefere
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelableArrayList(Constants.FAVORITE_PLACES_BUNDLE_KEY, (ArrayList<? extends Parcelable>) mFavoritePlaceList);
         outState.putInt(Constants.SELECTED_PLACE_INDEX_KEY, mSelectedPlaceIndex);
         super.onSaveInstanceState(outState);
     }
@@ -282,11 +289,7 @@ public class FavoritePlaceListFragment extends Fragment implements SharedPrefere
         mProgress.setVisibility(View.GONE);
     }
 
-    private void checkTwoPanelLayout(View rootView) {
-        if (rootView.findViewById(R.id.detail_container) != null) {
-            DeviceUtil.setTwoPanelLayout(true);
-        }
-    }
+
 
     @Override
     public boolean handleMessage(Message msg) {

@@ -1,6 +1,7 @@
 package com.nds.pmc.views.activities;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +20,7 @@ import com.nds.pmc.converter.SearchResponseConverter;
 import com.nds.pmc.model.PlaceLocation;
 import com.nds.pmc.model.PlacesSearchResult;
 import com.nds.pmc.tos.requests.CategoryWisePlaceSearchRequest;
+import com.nds.pmc.util.DeviceUtil;
 import com.nds.pmc.util.NetworkUtil;
 import com.nds.pmc.views.fragments.ErrorFragment;
 import com.nds.pmc.views.fragments.SearchResultListFragment;
@@ -82,6 +84,14 @@ public class CategorySearchResultActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            DeviceUtil.setTwoPanelLayout(false);
+        }
     }
 
     private void displayErrorFragment(String errorMsg) {
