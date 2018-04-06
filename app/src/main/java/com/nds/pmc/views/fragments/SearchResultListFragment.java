@@ -29,7 +29,7 @@ import java.util.List;
  * Created by Namrata on 11/20/2017.
  */
 
-public class SearchResultListFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class SearchResultListFragment extends Fragment implements AdapterView.OnItemClickListener, Handler.Callback {
     private PlacesSearchResult mPlaceSearchResult;
     private List<Place> mPlaces;
     private int mSelectedPlaceIndex = 0;
@@ -56,19 +56,9 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
         }
         if(mPlaceSearchResult!=null){
             mPlaces = mPlaceSearchResult.getPlaces();
-            mHandler = new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    if (msg.what == Constants.DISPLAY_PLACE_DETAIL_MSG && !mPlaces.isEmpty()) {
-                        displayDetailFragment(mPlaces.get(mSelectedPlaceIndex));
-                    }
-                }
-            };
         }
 
-        if(DeviceUtil.isTwoPanelLayout() && mPlaces != null && mPlaces.size() > 0){
-            mHandler.sendEmptyMessage(Constants.DISPLAY_PLACE_DETAIL_MSG);
-        }
+        mHandler = new Handler(this);
     }
 
     @Nullable
@@ -84,8 +74,10 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
         SearchResultListAdapter searchResultListAdapter = new SearchResultListAdapter(
                 getContext(), mPlaces, this);
         searchResultRecyclerView.setAdapter(searchResultListAdapter);
-
         mRootView = rootView;
+        if(DeviceUtil.isTwoPanelLayout() && mPlaces != null && mPlaces.size() > 0){
+            mHandler.sendEmptyMessage(Constants.DISPLAY_PLACE_DETAIL_MSG);
+        }
         return rootView;
     }
 
@@ -132,5 +124,13 @@ public class SearchResultListFragment extends Fragment implements AdapterView.On
         detailIntent.putExtra(Constants.PLACE_BUNDLE_KEY, place);
         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), mRootView.findViewById(R.id.title), getString(R.string.shared_transition_name_from_list_to_detail));
         startActivity(detailIntent, activityOptionsCompat.toBundle());
+    }
+
+    @Override
+    public boolean handleMessage(Message msg) {
+        if (msg.what == Constants.DISPLAY_PLACE_DETAIL_MSG && mPlaces != null && !mPlaces.isEmpty()) {
+            displayDetailFragment(mPlaces.get(mSelectedPlaceIndex));
+        }
+        return true;
     }
 }

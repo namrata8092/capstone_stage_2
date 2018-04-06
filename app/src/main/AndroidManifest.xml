@@ -46,7 +46,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.activities.CategorySearchDetailActivity">
+        <activity android:name=".views.activities.CategorySearchDetailActivity" android:configChanges="orientation">
             <intent-filter>
                 <action android:name="com.nds.pmc.action.search_result_details" />
                 <category android:name="android.intent.category.DEFAULT" />

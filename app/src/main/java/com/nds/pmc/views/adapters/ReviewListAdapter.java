@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.nds.pmc.R;
 import com.nds.pmc.model.ReviewDetails;
-import com.nds.pmc.tos.responses.ReviewObject;
 
 import java.util.List;
 

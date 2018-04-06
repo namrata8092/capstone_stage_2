@@ -85,7 +85,7 @@ public final class DeviceUtil {
     }
 
     public static boolean isTwoPanelLayout() {
-        return twoPanelLayout;
+        return DeviceUtil.twoPanelLayout;
     }
 
     public static void setTwoPanelLayout(boolean twoPanelLayout) {
