@@ -215,8 +215,10 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
                 .setInterval(Constants.UPDATE_INTERVAL)
                 .setFastestInterval(Constants.FASTEST_INTERVAL);
 
-        if (DeviceUtil.checkLocationPermissionAvailable(getApplicationContext()))
+        if (DeviceUtil.checkLocationPermissionAvailable(getApplicationContext())){
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, locationRequest, this);
+            displaySearchCategoryWithPreviouslySavedLocation();
+        }
     }
 
 
