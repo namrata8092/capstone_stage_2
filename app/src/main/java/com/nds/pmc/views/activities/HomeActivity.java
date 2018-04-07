@@ -28,8 +28,6 @@ import com.nds.pmc.views.fragments.SearchCategoryFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private static final String TAG = HomeActivity.class.getSimpleName();
-
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -87,15 +85,15 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void replaceContainerAsPerNavOption(String option) {
-        if(option.contains("Categories")){
+        if(option.contains(Constants.MENU_CATEGORIES)){
             displayCategories(mLocation);
-        }else if(option.contains("Favorite")){
+        }else if(option.contains(Constants.MENU_FAVORITE)){
             displayFavoritePlaces();
-        }else if(option.contains("Exit")){
+        }else if(option.contains(Constants.MENU_EXIT)){
             finish();
-        }else if(option.contains("Share")){
+        }else if(option.contains(Constants.MENU_SHARE)){
             shareAppDetails();
-        }else if(option.contains("Rate")){
+        }else if(option.contains(Constants.MENU_RATE)){
             rateApplication();
         }
     }
@@ -104,13 +102,13 @@ public class HomeActivity extends AppCompatActivity {
         String packageName = getApplicationContext().getPackageName();
         Intent playStoreIntent = new Intent();
         playStoreIntent.setAction(Intent.ACTION_VIEW);
-        playStoreIntent.setData(Uri.parse("market://details?id=" + packageName));
+        playStoreIntent.setData(Uri.parse(Constants.PLAY_STORE_SCHEMA + packageName));
         if(playStoreIntent.resolveActivity(getPackageManager())!=null){
             startActivity(playStoreIntent);
         }else{
             Intent rateUsBrowserIntent = new Intent();
             rateUsBrowserIntent.setAction(Intent.ACTION_VIEW);
-            rateUsBrowserIntent.setData(Uri.parse("http://play.google.com/store/apps/details?id=" + packageName));
+            rateUsBrowserIntent.setData(Uri.parse(Constants.PLAY_STORE_BASE_URL + packageName));
             startActivity(rateUsBrowserIntent);
         }
     }
@@ -119,11 +117,11 @@ public class HomeActivity extends AppCompatActivity {
         int applicationNameId = getApplicationContext().getApplicationInfo().labelRes;
         final String appPackageName = getApplicationContext().getPackageName();
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("text/plain");
+        shareIntent.setType(Constants.INTENT_DATA_TYPE);
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(applicationNameId));
         shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_msg, appPackageName));
         if(shareIntent.resolveActivity(getPackageManager())!=null){
-            startActivity(Intent.createChooser(shareIntent, "Share link:"));
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_title)));
         }else{
             Toast.makeText(getApplicationContext(),getString(R.string.no_sharing_app), Toast.LENGTH_LONG).show();
         }

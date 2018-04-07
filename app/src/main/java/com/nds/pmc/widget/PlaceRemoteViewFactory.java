@@ -61,7 +61,6 @@ public class PlaceRemoteViewFactory implements RemoteViewsService.RemoteViewsFac
         mSelectedPlace = mPlaces.get(position);
         RemoteViews view = new RemoteViews(mContext.getPackageName(), R.layout.widget_grid_cell);
         view.setTextViewText(R.id.placeName, mSelectedPlace.getName());
-//        view.setImageViewResource(R.id.categoryType, mSelectedPlace.getIconImage());
         Bundle bundle = new Bundle();
         bundle.putParcelable(SELECTED_PLACE_BUNDLE_KEY, mSelectedPlace);
         Intent recipeDetailIntent = new Intent();

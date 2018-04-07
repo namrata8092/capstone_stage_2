@@ -10,7 +10,6 @@ import com.nds.pmc.widget.PlaceRemoteViewFactory;
  */
 
 public class PlaceRemoteViewService extends RemoteViewsService {
-    private static final String TAG = PlaceRemoteViewService.class.getSimpleName();
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {

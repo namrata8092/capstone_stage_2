@@ -71,11 +71,11 @@ public class NetworkRequestManager {
             public void onResponse(String response) {
                 NetworkRequester requester = null;
                 if (wNetworkRequester != null) {
-                    LogUtil.d("Test","send req");
+                    LogUtil.d(TAG,"send req");
                     requester = wNetworkRequester.get();
                 }
                 if (requester != null && ValidationUtil.isValidString(response)) {
-                    LogUtil.d("Test","onSuccess called");
+                    LogUtil.d(TAG,"onSuccess called");
                     requester.onSuccess(response);
                 }
             }
@@ -89,7 +89,7 @@ public class NetworkRequestManager {
                     requester = wNetworkRequester.get();
                 }
                 if (requester != null) {
-                    LogUtil.d("Test","onFailure called");
+                    LogUtil.d(TAG,"onFailure called");
                     requester.onFailure(volleyError);
                 }
             }
@@ -98,7 +98,7 @@ public class NetworkRequestManager {
         Uri.Builder builder = Uri.parse(url).buildUpon();
 
         url = builder.build().toString();
-        LogUtil.d("Test","url "+url);
+        LogUtil.d(TAG,"url "+url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
         addToRequestQueue(stringRequest, requestTag);
     }

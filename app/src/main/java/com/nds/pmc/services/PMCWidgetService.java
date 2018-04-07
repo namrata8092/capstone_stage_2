@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 
 public class PMCWidgetService extends IntentService {
-    private static final String TAG = "TEST"+PMCWidgetService.class.getSimpleName();
+    private static final String TAG = PMCWidgetService.class.getSimpleName();
     private Context mContext;
 
     @Override

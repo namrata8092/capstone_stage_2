@@ -1,6 +1,5 @@
 package com.nds.pmc.views.activities;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,7 +33,6 @@ import java.lang.ref.WeakReference;
 public class CategorySearchResultActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private FragmentManager mFragmentManager;
-    private Context mContext;
     private CategorySearchResultActivity mCategorySearchResultActivity;
     private PMCApplication mPMCApplication;
     private NetworkRequestManager mNetworkRequestManager;
@@ -44,7 +42,6 @@ public class CategorySearchResultActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mContext = getApplicationContext();
         mCategorySearchResultActivity = CategorySearchResultActivity.this;
         mPMCApplication = (PMCApplication) mCategorySearchResultActivity.getApplication();
         mNetworkRequestManager = mPMCApplication.getNetworkRequestManager();

@@ -45,4 +45,16 @@ public final class Constants {
     public static final String OK_STATUS = "OK";
     public static final String TELEPHONE_SCHEMA = "tel:";
     public static final String DRAWER_INDEX = "drawerIndex";
+    public static final String NEW_LINE_CHARACTER="\n";
+    public static final String MENU_CATEGORIES="Categories";
+    public static final String MENU_FAVORITE="Favorite";
+    public static final String MENU_EXIT="Exit";
+    public static final String MENU_SHARE="Share";
+    public static final String MENU_RATE="Rate";
+    public static final String PLAY_STORE_SCHEMA="market://details?id=";
+    public static final String PLAY_STORE_BASE_URL="http://play.google.com/store/apps/details?id=";
+    public static final String INTENT_DATA_TYPE="text/plain";
+    public static final String POSTER_IMAGE_HEIGHT="200";
+    public static final String HYPERLINK_SUB_STRING_START="<a href=\"";
+    public static final String HYPERLINK_SUB_STRING_END="\">";
 }

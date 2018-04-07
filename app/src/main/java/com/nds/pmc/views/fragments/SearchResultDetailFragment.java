@@ -69,6 +69,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     private PlaceDetails mPlaceDetails;
     private String contactNumber;
     private static boolean reviewsOpened = false;
+    private static final String TAG=SearchResultDetailFragment.class.getSimpleName();
 
     public static SearchResultDetailFragment newInstance(Place place) {
         SearchResultDetailFragment fragment = new SearchResultDetailFragment();
@@ -126,7 +127,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
             setPlaceMap(mRootView, savedInstanceState);
             PlaceDetailRequest placeDetailRequest = new PlaceDetailRequest(mPlace.getId(), getResources().getString(R.string.PLACES_API_KEY));
             String req = placeDetailRequest.createRequest();
-            LogUtil.d("Test", "detail request " + req);
+            LogUtil.d(TAG, "detail request " + req);
             showProgressBar();
             mNetworkRequestManager.createStringRequest(new WeakReference<NetworkRequester>(searchNetworkRequster), placeDetailRequest.createRequest(),
                     Constants.SEARCH_REQUEST_TAG);
@@ -348,13 +349,13 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         String url = null;
         if (mPlaceDetails.getPhotoList() != null && !mPlaceDetails.getPhotoList().isEmpty()) {
             PosterPhotoRequest posterPhotoRequest = new PosterPhotoRequest(mPlaceDetails.getPhotoList().get(0), getResources().getString(R.string.PLACES_API_KEY));
-            posterPhotoRequest.setImgHeight("200");
+            posterPhotoRequest.setImgHeight(Constants.POSTER_IMAGE_HEIGHT);
             url = posterPhotoRequest.createRequestWithHeight();
         } else {
             url = mPlaceDetails.getPhotoUrl();
         }
         if(url!=null){
-            LogUtil.d("Test", "url -->" + url);
+            LogUtil.d(TAG, "url -->" + url);
             posterImage.setVisibility(View.VISIBLE);
             posterImage.setContentDescription(R.string.reader_text_poster+mPlace.getName());
             Glide.with(getContext()).load(url).placeholder(R.drawable.loading).error(R.drawable.error).into(posterImage);
@@ -362,8 +363,8 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     }
 
     private String extractUrlFromLink(String mapLink) {
-        mapLink = mapLink.replace("<a href=\"","");
-        int endIndex = mapLink.indexOf("\">");
+        mapLink = mapLink.replace(Constants.HYPERLINK_SUB_STRING_START,"");
+        int endIndex = mapLink.indexOf(Constants.HYPERLINK_SUB_STRING_END);
         mapLink = mapLink.substring(0,endIndex-1);
         return mapLink;
     }

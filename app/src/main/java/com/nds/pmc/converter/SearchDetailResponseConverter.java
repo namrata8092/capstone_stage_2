@@ -83,7 +83,7 @@ public class SearchDetailResponseConverter {
         Calendar calendar = Calendar.getInstance();
         int today = calendar.get(Calendar.DAY_OF_WEEK);
         for (int i = 0; i < weekdayText.size(); i++) {
-            weekText.append(weekdayText.get(i)).append("\n");
+            weekText.append(weekdayText.get(i)).append(Constants.NEW_LINE_CHARACTER);
         }
         return weekText.toString();
     }

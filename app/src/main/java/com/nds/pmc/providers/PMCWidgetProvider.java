@@ -31,10 +31,6 @@ public class PMCWidgetProvider extends AppWidgetProvider {
 
     private static final String TAG=PMCWidgetProvider.class.getSimpleName();
     private static ArrayList<Place> mPlaces;
-    private static final String SELECTED_PLACE_BUNDLE_KEY = "selectedPlace";
-    private static final String PLACE_INDEX_KEY="placeIndex";
-    private static final String PLACE_BUNDLE="placeBundle";
-    private static final String PLACE_LIST="placeList";
     private static int PLACE_INDEX = 0;
     private static Context mContext;
 

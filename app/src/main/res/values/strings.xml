@@ -89,7 +89,8 @@
         <item>Rate App</item>
         <item>Exit</item>
     </string-array>
-    <string name="share_msg" formatted="true">Install this cool application: https://play.google.com/store/apps/details?id=%1s</string>
+    <string name="share_msg" formatted="false">Install this cool application: https://play.google.com/store/apps/details?id=%1s</string>
+    <string name="share_title" formatted="true">Share link :</string>
     <string name="no_sharing_app">No application to support sharing functionality.</string>
     <string name="no_favorite">No favorite place or category found.</string>
     <string name="no_application_error">No application found to handle this action.</string>
