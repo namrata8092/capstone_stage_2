@@ -1,5 +1,6 @@
 package com.nds.pmc.views.fragments;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,17 +61,18 @@ import java.lang.ref.WeakReference;
 public class SearchResultDetailFragment extends Fragment implements OnMapReadyCallback, FavoritePlaceUpdateListener {
     private Place mPlace;
     private MapView mMapView;
-    private ImageView mAddToFavorite;
+    private ImageView mAddToFavorite, mPosterImage, mImageLink, mPhoneNumberImage, mWebsiteImage;
     private SharedPreferences mSharedPreferences;
     private PMCApplication mPMCApplication;
     private NetworkRequestManager mNetworkRequestManager;
-    private View mRootView;
-    private LinearLayout mProgressBarContainer;
-    private LinearLayout mDetailContainer;
+    private LinearLayout mProgressBarContainer, mDetailContainer;
     private PlaceDetails mPlaceDetails;
     private String contactNumber;
     private static boolean reviewsOpened = false;
-    private static final String TAG=SearchResultDetailFragment.class.getSimpleName();
+    private static final String TAG = SearchResultDetailFragment.class.getSimpleName();
+    private TextView mOpenSymbolTextView, mWeeklyTimingTextView, mPlaceTitleTextView, mPlaceAddressTextView, mReviewListTextView;
+    private RatingBar mResultRatingBar;
+    private RecyclerView mReviewListRecyclerView;
 
     public static SearchResultDetailFragment newInstance(Place place) {
         SearchResultDetailFragment fragment = new SearchResultDetailFragment();
@@ -118,13 +121,15 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search_detail, container, false);
-        mRootView = rootView;
+
+        initializeUIComponents(rootView);
+
         mProgressBarContainer = (LinearLayout) rootView.findViewById(R.id.progressContainer);
         mDetailContainer = (LinearLayout) rootView.findViewById(R.id.detailContainer);
         if (!NetworkUtil.isDataNetworkAvailable(getContext())) {
             displayErrorFragment(getResources().getString(R.string.network_error));
-        } else if(mPlace != null){
-            setPlaceMap(mRootView, savedInstanceState);
+        } else if (mPlace != null) {
+            setPlaceMap(savedInstanceState);
             PlaceDetailRequest placeDetailRequest = new PlaceDetailRequest(mPlace.getId(), getResources().getString(R.string.PLACES_API_KEY));
             String req = placeDetailRequest.createRequest();
             LogUtil.d(TAG, "detail request " + req);
@@ -135,103 +140,8 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
         return rootView;
     }
 
-    private void setFavoritePlace(View rootView) {
-        mAddToFavorite = (ImageView) rootView.findViewById(R.id.addToFavorite);
-        if (mPlace.isWidgetEntry()) {
-            mAddToFavorite.setVisibility(View.GONE);
-            return;
-        }
-
-        if (mSharedPreferences.getBoolean(mPlace.getId(), false)) {
-            setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_on));
-            mAddToFavorite.setContentDescription(mPlace.getName()+R.string.reader_text_favorite_on);
-        } else {
-            setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_off));
-            mAddToFavorite.setContentDescription(mPlace.getName()+R.string.reader_text_favorite_off);
-        }
-
-        mAddToFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UpdateFavoritePlaceToDB updateFavoritePlaceToDB = new UpdateFavoritePlaceToDB(getActivity(),
-                        mPlace, SearchResultDetailFragment.this);
-                updateFavoritePlaceToDB.execute();
-            }
-        });
-    }
-
-    private void setFavoriteIcon(Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            mAddToFavorite.setBackground(drawable);
-        }else
-            mAddToFavorite.setImageDrawable(drawable);
-    }
-
-    @SuppressLint("MissingPermission")
-    private void setPlaceMap(View rootView, Bundle savedInstanceState) {
-        mMapView = (MapView) rootView.findViewById(R.id.placeLocation);
-        mMapView.onCreate(savedInstanceState);
-        mMapView.getMapAsync(this);
-    }
-
-    private void setPlaceOperationHours(View rootView) {
-        TextView openSymbol = (TextView) rootView.findViewById(R.id.openSymbol);
-        TextView weeklyTiming = (TextView) rootView.findViewById(R.id.weeklyTiming);
-        if (mPlaceDetails.isOpen()) {
-            openSymbol.setText(mPlace.isOpenNow() ? getString(R.string.open_now) : getString(R.string.close_now));
-        } else
-            openSymbol.setVisibility(View.GONE);
-        if (mPlaceDetails.getWeeklyTiming() != null) {
-            weeklyTiming.setText(mPlaceDetails.getWeeklyTiming());
-            weeklyTiming.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void setPlaceTitleAddress(View rootView) {
-        TextView placeTitle = (TextView) rootView.findViewById(R.id.placeTitle);
-        TextView placeAddress = (TextView) rootView.findViewById(R.id.placeAddress);
-        RatingBar resultRating = (RatingBar) rootView.findViewById(R.id.resultRating);
-
-        placeTitle.setText(mPlaceDetails.getPlaceName());
-        placeAddress.setText(mPlaceDetails.getPlaceAddress());
-        resultRating.setRating((float) mPlaceDetails.getRating());
-
-    }
-
-    private void setPlacePhoneNumber(View rootView) {
-        ImageView phoneNumber = (ImageView) rootView.findViewById(R.id.phoneNumber);
-        if (mPlaceDetails.getPhoneNumber() != null) {
-            contactNumber = mPlaceDetails.getPhoneNumber();
-            phoneNumber.setVisibility(View.VISIBLE);
-            phoneNumber.setContentDescription(R.string.reader_text_contact_number+contactNumber);
-            phoneNumber.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (DeviceUtil.checkCallPermissionAvailable(getActivity())) {
-                        placeCall(contactNumber);
-                        return;
-                    }else
-                        DeviceUtil.requestCallPermission(getActivity());
-
-                }
-            });
-        }
-    }
-
-    private void placeCall(String contactNumber){
-        Intent dialNumberIntent = new Intent(Intent.ACTION_CALL);
-        dialNumberIntent.setData(Uri.parse(Constants.TELEPHONE_SCHEMA + contactNumber));
-        dialNumberIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (dialNumberIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            getActivity().startActivity(dialNumberIntent);
-        }else{
-            Toast.makeText(getContext(),getString(R.string.no_application_error), Toast.LENGTH_LONG).show();
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case Constants.REQ_CALL_PERMISSION: {
                 if (grantResults.length > 0
@@ -243,130 +153,6 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
                 break;
             }
         }
-    }
-
-    private void setPlaceWebsite(View rootView) {
-        ImageView website = (ImageView) rootView.findViewById(R.id.website);
-        if(mPlaceDetails.getWebSiteUrl()!=null){
-            final String url = mPlaceDetails.getWebSiteUrl();
-            website.setVisibility(View.VISIBLE);
-            website.setContentDescription(R.string.reader_text_website_address+url);
-            website.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openUrlInBrowser(url);
-                }
-            });
-        }
-    }
-
-    private void openUrlInBrowser(String url) {
-        Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
-        webSiteIntent.setData(Uri.parse(url));
-        webSiteIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (webSiteIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            getActivity().startActivity(webSiteIntent);
-        }else{
-            Toast.makeText(getContext(),getResources().getString(R.string.no_application_error), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private NetworkRequester searchNetworkRequster = new NetworkRequester() {
-        @Override
-        public void onFailure(Throwable error) {
-            hideProgressBar();
-            displayErrorFragment(getResources().getString(R.string.network_error));
-        }
-
-        @Override
-        public void onSuccess(String response) {
-            hideProgressBar();
-            if (response != null && !TextUtils.isEmpty(response)) {
-                mPlaceDetails = SearchDetailResponseConverter.getSearchDetailResultModel(response);
-                mDetailContainer.setVisibility(View.VISIBLE);
-                if(mPlaceDetails!=null && isAdded() && getActivity() != null) {
-                    setPostImage(mRootView);
-
-                    setPlaceTitleAddress(mRootView);
-
-                    setPlaceOperationHours(mRootView);
-
-                    setPlacePhoneNumber(mRootView);
-
-                    setPlaceWebsite(mRootView);
-
-                    setFavoritePlace(mRootView);
-
-                    setPlaceReviews(mRootView);
-                }
-            }
-        }
-    };
-
-    private void setPlaceReviews(View mRootView) {
-        TextView reviewListText = (TextView) mRootView.findViewById(R.id.reviews);
-        RecyclerView reviewList = (RecyclerView)mRootView.findViewById(R.id.reviewList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        reviewList.setLayoutManager(linearLayoutManager);
-
-
-        if(mPlaceDetails.getReviewDetailList()!=null && !mPlaceDetails.getReviewDetailList().isEmpty()){
-            reviewListText.setVisibility(View.VISIBLE);
-            reviewListText.setText(getString(R.string.reviews));
-            ReviewListAdapter reviewListAdapter = new ReviewListAdapter(getContext(), mPlaceDetails.getReviewDetailList());
-            reviewList.setAdapter(reviewListAdapter);
-            reviewListText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(reviewsOpened){
-                        reviewListText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up, 0);
-                        reviewsOpened = false;
-                        reviewList.setVisibility(View.GONE);
-                    }else{
-                        reviewsOpened = true;
-                        reviewListText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down, 0);
-                        reviewList.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
-        }
-    }
-
-    private void setPostImage(View rootView) {
-        ImageView posterImage = (ImageView) rootView.findViewById(R.id.posterImage);
-        ImageView imageLink = (ImageView) rootView.findViewById(R.id.imageLink);
-        if(mPlace.getPhotos()!=null && mPlace.getPhotos().get(0).getMapLink()!=null){
-            String mapLink = extractUrlFromLink(mPlace.getPhotos().get(0).getMapLink());
-            imageLink.setVisibility(View.VISIBLE);
-            imageLink.setContentDescription(R.string.reader_text_image_link+mPlace.getName());
-            imageLink.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openUrlInBrowser(mapLink);
-                }
-            });
-        }
-        String url = null;
-        if (mPlaceDetails.getPhotoList() != null && !mPlaceDetails.getPhotoList().isEmpty()) {
-            PosterPhotoRequest posterPhotoRequest = new PosterPhotoRequest(mPlaceDetails.getPhotoList().get(0), getResources().getString(R.string.PLACES_API_KEY));
-            posterPhotoRequest.setImgHeight(Constants.POSTER_IMAGE_HEIGHT);
-            url = posterPhotoRequest.createRequestWithHeight();
-        } else {
-            url = mPlaceDetails.getPhotoUrl();
-        }
-        if(url!=null){
-            LogUtil.d(TAG, "url -->" + url);
-            posterImage.setVisibility(View.VISIBLE);
-            posterImage.setContentDescription(R.string.reader_text_poster+mPlace.getName());
-            Glide.with(getContext()).load(url).placeholder(R.drawable.loading).error(R.drawable.error).into(posterImage);
-        }
-    }
-
-    private String extractUrlFromLink(String mapLink) {
-        mapLink = mapLink.replace(Constants.HYPERLINK_SUB_STRING_START,"");
-        int endIndex = mapLink.indexOf(Constants.HYPERLINK_SUB_STRING_END);
-        mapLink = mapLink.substring(0,endIndex-1);
-        return mapLink;
     }
 
     @Override
@@ -432,4 +218,226 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     public void onFailure() {
         Toast.makeText(getActivity(), getResources().getString(R.string.adding_favorite_error), Toast.LENGTH_SHORT).show();
     }
+
+    private void initializeUIComponents(View rootView) {
+        mMapView = (MapView) rootView.findViewById(R.id.placeLocation);
+        mOpenSymbolTextView = (TextView) rootView.findViewById(R.id.openSymbol);
+        mWeeklyTimingTextView = (TextView) rootView.findViewById(R.id.weeklyTiming);
+        mPosterImage = (ImageView) rootView.findViewById(R.id.posterImage);
+        mImageLink = (ImageView) rootView.findViewById(R.id.imageLink);
+        mPhoneNumberImage = (ImageView) rootView.findViewById(R.id.phoneNumber);
+        mPlaceTitleTextView = (TextView) rootView.findViewById(R.id.placeTitle);
+        mPlaceAddressTextView = (TextView) rootView.findViewById(R.id.placeAddress);
+        mResultRatingBar = (RatingBar) rootView.findViewById(R.id.resultRating);
+        mReviewListTextView = (TextView) rootView.findViewById(R.id.reviews);
+        mReviewListRecyclerView = (RecyclerView) rootView.findViewById(R.id.reviewList);
+        mWebsiteImage = (ImageView) rootView.findViewById(R.id.website);
+        mAddToFavorite = (ImageView) rootView.findViewById(R.id.addToFavorite);
+    }
+
+    private void setFavoritePlace() {
+        if (mPlace.isWidgetEntry()) {
+            mAddToFavorite.setVisibility(View.GONE);
+            return;
+        }
+
+        if (mSharedPreferences.getBoolean(mPlace.getId(), false)) {
+            setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_on));
+            mAddToFavorite.setContentDescription(mPlace.getName() + R.string.reader_text_favorite_on);
+        } else {
+            setFavoriteIcon(getResources().getDrawable(R.drawable.favorite_off));
+            mAddToFavorite.setContentDescription(mPlace.getName() + R.string.reader_text_favorite_off);
+        }
+
+        mAddToFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdateFavoritePlaceToDB updateFavoritePlaceToDB = new UpdateFavoritePlaceToDB(getActivity(),
+                        mPlace, SearchResultDetailFragment.this);
+                updateFavoritePlaceToDB.execute();
+            }
+        });
+    }
+
+    private void setFavoriteIcon(Drawable drawable) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mAddToFavorite.setBackground(drawable);
+        } else
+            mAddToFavorite.setImageDrawable(drawable);
+    }
+
+    @SuppressLint("MissingPermission")
+    private void setPlaceMap(Bundle savedInstanceState) {
+        mMapView.onCreate(savedInstanceState);
+        mMapView.getMapAsync(this);
+    }
+
+    private void setPlaceOperationHours() {
+        if (mPlaceDetails.isOpen()) {
+            mOpenSymbolTextView.setText(mPlace.isOpenNow() ? getString(R.string.open_now) : getString(R.string.close_now));
+        } else
+            mOpenSymbolTextView.setVisibility(View.GONE);
+        if (mPlaceDetails.getWeeklyTiming() != null) {
+            mWeeklyTimingTextView.setText(mPlaceDetails.getWeeklyTiming());
+            mWeeklyTimingTextView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setPlaceTitleAddress() {
+        mPlaceTitleTextView.setText(mPlaceDetails.getPlaceName());
+        mPlaceAddressTextView.setText(mPlaceDetails.getPlaceAddress());
+        mResultRatingBar.setRating((float) mPlaceDetails.getRating());
+
+    }
+
+    private void setPlacePhoneNumber() {
+
+        if (mPlaceDetails.getPhoneNumber() != null) {
+            contactNumber = mPlaceDetails.getPhoneNumber();
+            mPhoneNumberImage.setVisibility(View.VISIBLE);
+            mPhoneNumberImage.setContentDescription(R.string.reader_text_contact_number + contactNumber);
+            mPhoneNumberImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (DeviceUtil.checkCallPermissionAvailable(getActivity())) {
+                        placeCall(contactNumber);
+                        return;
+                    } else
+                        requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
+                                Constants.REQ_CALL_PERMISSION);
+                }
+            });
+        }
+    }
+
+    private void placeCall(String contactNumber) {
+        Intent dialNumberIntent = new Intent(Intent.ACTION_CALL);
+        dialNumberIntent.setData(Uri.parse(Constants.TELEPHONE_SCHEMA + contactNumber));
+        dialNumberIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (dialNumberIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            getActivity().startActivity(dialNumberIntent);
+        }else{
+            Toast.makeText(getContext(),getString(R.string.no_application_error), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void setPlaceWebsite() {
+        if(mPlaceDetails.getWebSiteUrl()!=null){
+            final String url = mPlaceDetails.getWebSiteUrl();
+            mWebsiteImage.setVisibility(View.VISIBLE);
+            mWebsiteImage.setContentDescription(R.string.reader_text_website_address+url);
+            mWebsiteImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openUrlInBrowser(url);
+                }
+            });
+        }
+    }
+
+    private void openUrlInBrowser(String url) {
+        Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
+        webSiteIntent.setData(Uri.parse(url));
+        webSiteIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (webSiteIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            getActivity().startActivity(webSiteIntent);
+        }else{
+            Toast.makeText(getContext(),getResources().getString(R.string.no_application_error), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private NetworkRequester searchNetworkRequster = new NetworkRequester() {
+        @Override
+        public void onFailure(Throwable error) {
+            hideProgressBar();
+            displayErrorFragment(getResources().getString(R.string.network_error));
+        }
+
+        @Override
+        public void onSuccess(String response) {
+            hideProgressBar();
+            if (response != null && !TextUtils.isEmpty(response)) {
+                mPlaceDetails = SearchDetailResponseConverter.getSearchDetailResultModel(response);
+                mDetailContainer.setVisibility(View.VISIBLE);
+                if(mPlaceDetails!=null && isAdded() && getActivity() != null) {
+                    setPostImage();
+
+                    setPlaceTitleAddress();
+
+                    setPlaceOperationHours();
+
+                    setPlacePhoneNumber();
+
+                    setPlaceWebsite();
+
+                    setFavoritePlace();
+
+                    setPlaceReviews();
+                }
+            }
+        }
+    };
+
+    private void setPlaceReviews() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        mReviewListRecyclerView.setLayoutManager(linearLayoutManager);
+
+        if(mPlaceDetails.getReviewDetailList()!=null && !mPlaceDetails.getReviewDetailList().isEmpty()){
+            mReviewListTextView.setVisibility(View.VISIBLE);
+            mReviewListTextView.setText(getString(R.string.reviews));
+            ReviewListAdapter reviewListAdapter = new ReviewListAdapter(getContext(), mPlaceDetails.getReviewDetailList());
+            mReviewListRecyclerView.setAdapter(reviewListAdapter);
+            mReviewListTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(reviewsOpened){
+                        mReviewListTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up, 0);
+                        reviewsOpened = false;
+                        mReviewListRecyclerView.setVisibility(View.GONE);
+                    }else{
+                        reviewsOpened = true;
+                        mReviewListTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down, 0);
+                        mReviewListRecyclerView.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
+    }
+
+    private void setPostImage() {
+        if(mPlace.getPhotos()!=null && mPlace.getPhotos().get(0).getMapLink()!=null){
+            String mapLink = extractUrlFromLink(mPlace.getPhotos().get(0).getMapLink());
+            mImageLink.setVisibility(View.VISIBLE);
+            mImageLink.setContentDescription(R.string.reader_text_image_link+mPlace.getName());
+            mImageLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openUrlInBrowser(mapLink);
+                }
+            });
+        }
+        String url = null;
+        if (mPlaceDetails.getPhotoList() != null && !mPlaceDetails.getPhotoList().isEmpty()) {
+            PosterPhotoRequest posterPhotoRequest = new PosterPhotoRequest(mPlaceDetails.getPhotoList().get(0), getResources().getString(R.string.PLACES_API_KEY));
+            posterPhotoRequest.setImgHeight(Constants.POSTER_IMAGE_HEIGHT);
+            url = posterPhotoRequest.createRequestWithHeight();
+        } else {
+            url = mPlaceDetails.getPhotoUrl();
+        }
+        if(url!=null){
+            LogUtil.d(TAG, "url -->" + url);
+            mPosterImage.setVisibility(View.VISIBLE);
+            mPosterImage.setContentDescription(R.string.reader_text_poster+mPlace.getName());
+            Glide.with(getContext()).load(url).placeholder(R.drawable.loading).error(R.drawable.error).into(mPosterImage);
+        }
+    }
+
+    private String extractUrlFromLink(String mapLink) {
+        mapLink = mapLink.replace(Constants.HYPERLINK_SUB_STRING_START,"");
+        int endIndex = mapLink.indexOf(Constants.HYPERLINK_SUB_STRING_END);
+        mapLink = mapLink.substring(0,endIndex-1);
+        return mapLink;
+    }
+
+
 }
