@@ -89,6 +89,7 @@
                 style="@style/detail_address"
                 android:clickable="true"
                 android:focusable="true"
+                android:drawableRight="@drawable/up"
                 android:drawableEnd="@drawable/up"
                 android:visibility="gone"/>
 

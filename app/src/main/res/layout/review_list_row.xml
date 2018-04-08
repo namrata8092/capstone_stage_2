@@ -16,6 +16,7 @@
             android:id="@+id/reviewerPhoto"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"
@@ -25,22 +26,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"
-            android:gravity="left"
+            android:gravity="left|start"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/reviewerName"
                 style="@style/timing_text"
-                android:gravity="left"
+                android:gravity="left|start"
                 tools:text="name"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/reviewerTimeline"
                 style="@style/timing_text"
-                android:gravity="left"
+                android:gravity="left|start"
                 tools:text="days ago" />
 
             <RatingBar
@@ -49,7 +51,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="20dp"
-                android:layout_gravity="left"/>
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="left|start"/>
 
         </LinearLayout>
 
@@ -57,7 +60,7 @@
             android:id="@+id/reviewerText"
             style="@style/timing_text"
             android:layout_below="@+id/reviewerPhoto"
-            android:gravity="left"
+            android:gravity="left|start"
             tools:text="sfdsafasdf ago"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"/>
