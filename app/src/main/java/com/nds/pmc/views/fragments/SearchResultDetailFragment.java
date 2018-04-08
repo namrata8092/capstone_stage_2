@@ -1,5 +1,6 @@
 package com.nds.pmc.views.fragments;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -211,7 +212,8 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
                         placeCall(contactNumber);
                         return;
                     }else
-                        DeviceUtil.requestCallPermission(getActivity());
+                        requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
+                                +                                Constants.REQ_CALL_PERMISSION);
 
                 }
             });
@@ -304,7 +306,7 @@ public class SearchResultDetailFragment extends Fragment implements OnMapReadyCa
     };
 
     private void setPlaceReviews(View mRootView) {
-        TextView reviewListText = (TextView) mRootView.findViewById(R.id.reviews);
+        final TextView reviewListText = (TextView) mRootView.findViewById(R.id.reviews);
         RecyclerView reviewList = (RecyclerView)mRootView.findViewById(R.id.reviewList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         reviewList.setLayoutManager(linearLayoutManager);
